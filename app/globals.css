@@ -1,78 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --color-bg: #080810;
-  --color-surface: #0f0f1a;
-  --color-border: #1e1e2e;
-  --color-muted: #3a3a4e;
-  --color-accent: #7c3aed;
-  --color-accent-light: #a855f7;
-  --color-text: #f0f0ff;
-  --color-text-muted: #8b8fa8;
-  --color-text-dim: #525270;
-
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
-
-  --animate-fade-in: fadeIn 0.6s ease forwards;
-  --animate-slide-up: slideUp 0.6s ease forwards;
-  --animate-float: float 6s ease-in-out infinite;
-
-  --background-image-hero-glow: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,0.2) 0%, transparent 60%);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
+/* ─── Design tokens ─────────────────────────────────────────── */
+:root {
+  --bg:         #05050f;
+  --bg-1:       #0a0a1a;
+  --bg-2:       #0f0f22;
+  --surface:    #12122a;
+  --surface-2:  #16163a;
+  --border:     #1f1f40;
+  --border-2:   #2a2a55;
+  --accent:     #7c3aed;
+  --accent-2:   #a855f7;
+  --accent-3:   #c084fc;
+  --blue:       #3b82f6;
+  --text:       #eeeeff;
+  --text-2:     #a8a8c8;
+  --text-3:     #6666a0;
+  --text-4:     #3a3a60;
+  --green:      #22c55e;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-::selection {
-  background: rgba(124, 58, 237, 0.3);
-  color: #fff;
-}
-
+::selection { background: rgba(124,58,237,0.3); color: #fff; }
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
+/* ─── Reusable helpers ─────────────────────────────────────── */
 .text-gradient {
-  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 40%, #2563eb 100%);
+  background: linear-gradient(135deg, #c084fc 0%, #a855f7 35%, #7c3aed 65%, #3b82f6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.glow-border {
-  border: 1px solid rgba(124, 58, 237, 0.3);
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.1), inset 0 0 20px rgba(124, 58, 237, 0.05);
-}
-
 .card-hover {
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .card-hover:hover {
-  transform: translateY(-4px);
-  border-color: rgba(124, 58, 237, 0.5) !important;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(124, 58, 237, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 48px rgba(124,58,237,0.08);
+}
+
+/* ─── Dot grid pattern ─────────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(124,58,237,0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Glow line ────────────────────────────────────────────── */
+.glow-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124,58,237,0.6), rgba(59,130,246,0.4), transparent);
+}
+
+/* Responsive helpers */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .grid-mobile-1 { grid-template-columns: 1fr !important; }
 }

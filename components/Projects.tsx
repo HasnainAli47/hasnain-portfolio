@@ -4,110 +4,96 @@ import { motion } from "framer-motion";
 const PROJECTS = [
   {
     title: "Speculo.ai",
-    tagline: "Autonomous AI Outreach → $2M+ ARR",
-    description: "Architected an AI-driven outreach system that autonomously processed 117K+ personalised emails and 10K+ AI voice calls within 6 hours. Built the full LangGraph agent pipeline with Twilio, ElevenLabs, and HubSpot integrations — replacing an entire inside sales team.",
-    impact: ["$2M+ annual revenue contribution", "117K emails + 10K AI calls in 6 hours", "Zero human intervention end-to-end", "Full lead-to-appointment pipeline"],
+    tagline: "Autonomous AI Outreach System",
+    result: "$2M+ ARR",
+    description: "Architected the full AI-driven outreach pipeline that processes 117K+ personalized emails and 10K+ AI voice calls within 6 hours, with zero human involvement. Replaced an entire inside sales team using LangGraph agents connected to Twilio, ElevenLabs, and HubSpot.",
+    impact: ["$2M+ annual revenue contribution", "117K emails and 10K AI calls in 6 hours", "Zero human intervention end to end", "Full lead-to-booked-appointment pipeline"],
     stack: ["Python", "LangGraph", "OpenAI", "Twilio", "ElevenLabs", "HubSpot", "GCP", "pgvector"],
-    links: { live: "https://speculo.ai", github: null },
+    live: "https://speculo.ai",
     accent: "#7c3aed",
-    featured: true,
   },
   {
     title: "Smart Advocate",
-    tagline: "Production Legal AI — 40% Accuracy Gain",
-    description: "Built a production-scale legal AI for SmartAdvocate (20K+ legal professionals). Replaced standard RAG with KAG (Knowledge-Augmented Generation) using Neo4j to solve long-range contradiction detection across 50+ page case files — something RAG fundamentally cannot do.",
-    impact: ["40% RAG accuracy improvement", "10,000+ legal case files processed", "PII-masking pipeline for compliance", "Multi-agent OCR + chronology generation"],
-    stack: ["Python", "LangGraph", "Neo4j", "PyTorch", "LoRA", "OpenAI", "OCR", "Docker", "MCP"],
-    links: { live: "https://smartadvocate.com", github: null },
-    accent: "#2563eb",
-    featured: true,
+    tagline: "Production Legal AI Platform",
+    result: "40% accuracy gain",
+    description: "Built for SmartAdvocate, used by 20K+ legal professionals. Replaced standard RAG with KAG (Knowledge-Augmented Generation) using a Neo4j graph database to detect long-range contradictions across 50+ page case files. Standard RAG cannot do this.",
+    impact: ["40% improvement in retrieval accuracy", "10,000+ legal case files processed", "PII masking pipeline for compliance", "Multi-agent OCR and chronology generation"],
+    stack: ["Python", "LangGraph", "Neo4j", "PyTorch", "LoRA", "OpenAI", "Docker", "MCP"],
+    live: "https://smartadvocate.com",
+    accent: "#3b82f6",
   },
   {
     title: "ConvoPilot",
-    tagline: "Enterprise RAG Framework — Multi-Tenant",
-    description: "A modular, multi-tenant architecture for building, testing, and deploying RAG systems with user-controlled performance. Includes PII redaction, evaluation dashboards, and A/B testing across multiple LLMs and vectorization strategies.",
-    impact: ["Multi-tenant architecture", "A/B testing across LLM providers", "PII redaction + compliance layer", "Evaluation dashboards"],
+    tagline: "Enterprise Multi-Tenant RAG Framework",
+    result: "Production-grade",
+    description: "A modular platform for building, testing, and shipping RAG systems at enterprise scale. Includes A/B testing across LLM providers, PII redaction, evaluation dashboards, and tenant-level performance controls.",
+    impact: ["Multi-tenant architecture with isolation", "A/B testing across LLM providers", "PII redaction and compliance layer", "Evaluation dashboards with scoring"],
     stack: ["Python", "LangGraph", "OpenAI", "Gemini", "AWS", "Pinecone", "FastAPI"],
-    links: { live: null, github: "https://github.com/HasnainAli47" },
+    live: null,
     accent: "#059669",
-    featured: false,
   },
   {
-    title: "2ndPlace — Travel Platform",
-    tagline: "AI-Enhanced Discovery — 3,500+ Users",
-    description: "Founded and built a global travel discovery platform from zero. Designed AI-enhanced search and recommendation integrating geolocation, NLP, and user preferences — 80% latency reduction. Led 14 engineers through the full product lifecycle.",
-    impact: ["3,500+ active users", "1,200+ agency clients", "15,000+ global listings", "80% search latency reduction"],
+    title: "2ndPlace",
+    tagline: "AI-Enhanced Travel Discovery Platform",
+    result: "3,500+ users",
+    description: "Founded and built from zero. Designed AI-enhanced search using geolocation, NLP, and preference modeling that cut search latency by 80%. Led 14 engineers through the full product lifecycle, from architecture to launch.",
+    impact: ["3,500+ active users at peak", "1,200+ agency clients onboarded", "15,000+ global listings", "80% search latency reduction"],
     stack: ["Django", "React", "PostgreSQL", "AWS", "NLP", "Geospatial", "CI/CD"],
-    links: { live: null, github: null },
+    live: null,
     accent: "#d97706",
-    featured: false,
   },
 ];
 
-function ProjectCard({ p, i }: { p: typeof PROJECTS[0]; i: number }) {
+function Card({ p, i }: { p: typeof PROJECTS[0]; i: number }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: i * 0.1, duration: 0.6 }}
+      initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.1 }}
       className="card-hover"
-      style={{
-        borderRadius: 20,
-        border: `1px solid ${p.accent}25`,
-        background: "#0f0f1a",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-      }}>
-      {/* Top accent bar */}
-      <div style={{ height: 2, background: `linear-gradient(90deg, ${p.accent}, transparent)` }} />
+      style={{ borderRadius: 20, border: `1px solid ${p.accent}22`, background: "linear-gradient(160deg, #0f0f22 0%, #0a0a18 100%)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+      {/* Accent bar */}
+      <div style={{ height: 3, background: `linear-gradient(90deg, ${p.accent}, ${p.accent}40, transparent)` }} />
+      <div style={{ padding: "28px 28px 24px", flex: 1, display: "flex", flexDirection: "column" }}>
+        {/* Header */}
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 20 }}>
+          <div>
+            <h3 style={{ fontSize: 20, fontWeight: 800, color: "#eeeeff", marginBottom: 5, letterSpacing: "-0.02em" }}>{p.title}</h3>
+            <p style={{ fontSize: 13, color: "#6666a0" }}>{p.tagline}</p>
+          </div>
+          <span style={{ fontSize: 12, fontWeight: 700, padding: "5px 12px", borderRadius: 8, background: `${p.accent}18`, color: p.accent, border: `1px solid ${p.accent}30`, whiteSpace: "nowrap", flexShrink: 0 }}>{p.result}</span>
+        </div>
 
-      <div style={{ padding: 28, display: "flex", flexDirection: "column", flex: 1 }}>
-        {p.featured && (
-          <span style={{ display: "inline-block", fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 6, background: `${p.accent}18`, color: p.accent, marginBottom: 14, letterSpacing: "0.05em", textTransform: "uppercase" }}>
-            Featured
-          </span>
-        )}
+        <p style={{ fontSize: 14, color: "#a8a8c8", lineHeight: 1.75, marginBottom: 20 }}>{p.description}</p>
 
-        <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f0f0ff", marginBottom: 4 }}>{p.title}</h3>
-        <p style={{ fontSize: 13, fontWeight: 600, color: p.accent, marginBottom: 16 }}>{p.tagline}</p>
-        <p style={{ fontSize: 14, color: "#8b8fa8", lineHeight: 1.7, marginBottom: 20 }}>{p.description}</p>
-
-        <ul style={{ marginBottom: 20, display: "flex", flexDirection: "column", gap: 8 }}>
-          {p.impact.map((item) => (
-            <li key={item} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#525270" }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: p.accent, flexShrink: 0 }} />
+        {/* Impact */}
+        <ul style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 20 }}>
+          {p.impact.map(item => (
+            <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13, color: "#6666a0" }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: p.accent, flexShrink: 0, marginTop: 5 }} />
               {item}
             </li>
           ))}
         </ul>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 24, marginTop: "auto" }}>
-          {p.stack.map((t) => (
-            <span key={t} style={{ fontSize: 11, fontFamily: "monospace", padding: "3px 10px", borderRadius: 6, background: "#080810", border: "1px solid #1e1e2e", color: "#525270" }}>{t}</span>
+        {/* Stack */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 22, marginTop: "auto" }}>
+          {p.stack.map(t => (
+            <span key={t} style={{ fontSize: 11, fontFamily: "monospace", padding: "3px 10px", borderRadius: 6, background: "rgba(255,255,255,0.04)", border: "1px solid #1f1f40", color: "#6666a0" }}>{t}</span>
           ))}
         </div>
 
-        <div style={{ display: "flex", gap: 10 }}>
-          {p.links.live && (
-            <a href={p.links.live} target="_blank" rel="noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, padding: "8px 16px", borderRadius: 10, background: p.accent, color: "#fff", textDecoration: "none", transition: "opacity 0.2s" }}
+        {/* Link */}
+        <div>
+          {p.live ? (
+            <a href={p.live} target="_blank" rel="noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, padding: "9px 18px", borderRadius: 10, background: `linear-gradient(135deg, ${p.accent}, ${p.accent}cc)`, color: "#fff", textDecoration: "none", transition: "opacity 0.2s", boxShadow: `0 4px 16px ${p.accent}30` }}
               onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
               onMouseLeave={e => (e.currentTarget.style.opacity = "1")}>
-              Live Demo ↗
+              Live Site
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M8 2H14V8M14 2L6 10M3 5H1V15H11V13"/></svg>
             </a>
-          )}
-          {p.links.github && (
-            <a href={p.links.github} target="_blank" rel="noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, padding: "8px 16px", borderRadius: 10, border: "1px solid #1e1e2e", color: "#8b8fa8", textDecoration: "none", transition: "all 0.2s" }}
-              onMouseEnter={e => { e.currentTarget.style.color = "#f0f0ff"; e.currentTarget.style.borderColor = "#3a3a4e"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = "#8b8fa8"; e.currentTarget.style.borderColor = "#1e1e2e"; }}>
-              GitHub
-            </a>
-          )}
-          {!p.links.live && !p.links.github && (
-            <span style={{ fontSize: 12, color: "#3a3a4e", fontStyle: "italic", padding: "8px 0" }}>Production — NDA protected</span>
+          ) : (
+            <span style={{ fontSize: 12, color: "#3a3a60", fontStyle: "italic" }}>Production system, NDA protected</span>
           )}
         </div>
       </div>
@@ -117,15 +103,15 @@ function ProjectCard({ p, i }: { p: typeof PROJECTS[0]; i: number }) {
 
 export default function Projects() {
   return (
-    <section id="projects" style={{ padding: "96px 0" }}>
+    <section id="projects" style={{ padding: "100px 0", background: "#07071a" }}>
       <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px" }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 64 }}>
-          <p style={{ color: "#7c3aed", fontSize: 12, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 12 }}>Work</p>
-          <h2 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 900, color: "#f0f0ff", marginBottom: 16, letterSpacing: "-0.03em" }}>Systems I&apos;ve Built</h2>
-          <p style={{ fontSize: 18, color: "#8b8fa8", maxWidth: 520 }}>Production systems used by real customers, generating real revenue. Not side projects.</p>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 60 }}>
+          <p style={{ color: "#7c3aed", fontSize: 11, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Selected Work</p>
+          <h2 style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 900, color: "#eeeeff", marginBottom: 16, letterSpacing: "-0.03em" }}>Systems I Have Built</h2>
+          <p style={{ fontSize: 18, color: "#6666a0", maxWidth: 500, lineHeight: 1.65 }}>Real production deployments. Real revenue. Not portfolio demos.</p>
         </motion.div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(440px, 1fr))", gap: 24 }}>
-          {PROJECTS.map((p, i) => <ProjectCard key={p.title} p={p} i={i} />)}
+        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
+          {PROJECTS.map((p, i) => <Card key={p.title} p={p} i={i} />)}
         </div>
       </div>
     </section>
