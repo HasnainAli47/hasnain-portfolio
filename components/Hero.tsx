@@ -11,7 +11,7 @@ export default function Hero() {
       aria-label="Introduction"
       style={{
         position: "relative",
-        minHeight: "100vh",
+        minHeight: "100svh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -68,7 +68,7 @@ export default function Hero() {
         style={{
           maxWidth: 1200,
           margin: "0 auto",
-          padding: "96px 24px",
+          padding: "clamp(48px, 8vh, 96px) 24px",
           position: "relative",
           zIndex: 1,
           width: "100%",
@@ -117,15 +117,15 @@ export default function Hero() {
 
             <h1
               style={{
-                fontSize: "clamp(56px, 10vw, 100px)",
+                fontSize: "clamp(44px, 8vw, 88px)",
                 fontWeight: 900,
-                letterSpacing: "-0.05em",
-                lineHeight: 0.92,
+                letterSpacing: "-0.045em",
+                lineHeight: 1.05,
                 marginBottom: 28,
               }}
             >
               <span style={{ color: "#eeeeff", display: "block" }}>Senior</span>
-              <span className="text-gradient" style={{ display: "block" }}>
+              <span className="text-gradient" style={{ display: "block", paddingBottom: 4 }}>
                 AI Engineer.
               </span>
             </h1>

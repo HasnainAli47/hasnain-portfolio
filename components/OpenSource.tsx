@@ -10,7 +10,7 @@ export default function OpenSource() {
           <h2 className="section-heading" style={{ fontSize: "clamp(30px, 5vw, 48px)", fontWeight: 900, color: "#eeeeff" }}>Public Work</h2>
         </motion.div>
 
-        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
+        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))", gap: 16 }}>
           {/* Toon MCP */}
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="card-hover"

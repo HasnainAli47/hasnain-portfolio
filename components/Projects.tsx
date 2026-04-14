@@ -213,7 +213,7 @@ export default function Projects() {
         </motion.div>
         <div
           className="grid-mobile-1"
-          style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}
+          style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))", gap: 16 }}
         >
           {PROJECTS.map((p, i) => (
             <Card key={p.title} p={p} i={i} />

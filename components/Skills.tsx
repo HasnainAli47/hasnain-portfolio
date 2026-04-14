@@ -19,7 +19,7 @@ export default function Skills() {
           <p style={{ fontSize: 16, color: "#3a3a60" }}>Production-tested across healthcare, legal, real estate, and SaaS.</p>
         </motion.div>
 
-        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
+        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: 14 }}>
           {GROUPS.map((g, i) => (
             <motion.div key={g.label}
               initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}
