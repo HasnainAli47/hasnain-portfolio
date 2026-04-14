@@ -11,46 +11,43 @@ const GROUPS = [
 
 export default function Skills() {
   return (
-    <section id="skills" aria-label="Technical skills" style={{ padding: "100px 0", background: "linear-gradient(180deg, #070718 0%, #0a0a1e 100%)" }}>
+    <section id="skills" aria-label="Technical skills" style={{ padding: "100px 0" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 60 }}>
-          <p style={{ color: "#7c3aed", fontSize: 11, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Toolkit</p>
-          <h2 className="section-heading" style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 900, color: "#eeeeff", marginBottom: 14 }}>Skills and Stack</h2>
-          <p style={{ fontSize: 17, color: "#6666a0" }}>Production-tested across healthcare, legal, real estate, and SaaS.</p>
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 56 }}>
+          <p style={{ color: "#7c3aed", fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 12 }}>Toolkit</p>
+          <h2 className="section-heading" style={{ fontSize: "clamp(30px, 5vw, 48px)", fontWeight: 900, color: "#eeeeff", marginBottom: 12 }}>Skills and Stack</h2>
+          <p style={{ fontSize: 16, color: "#3a3a60" }}>Production-tested across healthcare, legal, real estate, and SaaS.</p>
         </motion.div>
 
-        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18 }}>
+        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
           {GROUPS.map((g, i) => (
             <motion.div key={g.label}
-              initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
-              className="glass-card"
-              style={{ borderRadius: 18, padding: "24px" }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = `${g.color}40`)}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(124,58,237,0.15)")}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-                <div style={{ width: 4, height: 20, borderRadius: 2, background: `linear-gradient(180deg, ${g.color}, ${g.color}60)` }} />
+              initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}
+              style={{ borderRadius: 14, border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)", padding: "22px", transition: "border-color 0.25s" }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)")}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)")}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+                <div style={{ width: 3, height: 18, borderRadius: 2, background: g.color, opacity: 0.6 }} />
                 <h3 style={{ fontSize: 14, fontWeight: 700, color: "#eeeeff" }}>{g.label}</h3>
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                 {g.skills.map(s => (
-                  <span key={s} style={{ fontSize: 12, fontWeight: 500, padding: "5px 12px", borderRadius: 8, background: `${g.color}10`, color: g.color, border: `1px solid ${g.color}25`, cursor: "default" }}>{s}</span>
+                  <span key={s} style={{ fontSize: 12, fontWeight: 500, padding: "4px 10px", borderRadius: 6, background: `${g.color}08`, color: g.color, border: `1px solid ${g.color}15`, cursor: "default", opacity: 0.85 }}>{s}</span>
                 ))}
               </div>
             </motion.div>
           ))}
 
-          {/* Education card */}
           <motion.div
-            initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.35 }}
-            className="glass-card"
-            style={{ borderRadius: 18, padding: "24px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-              <div style={{ width: 4, height: 20, borderRadius: 2, background: "#3a3a60" }} />
+            initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
+            style={{ borderRadius: 14, border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)", padding: "22px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <div style={{ width: 3, height: 18, borderRadius: 2, background: "#3a3a60" }} />
               <h3 style={{ fontSize: 14, fontWeight: 700, color: "#eeeeff" }}>Education</h3>
             </div>
-            <p style={{ fontSize: 15, fontWeight: 800, color: "#eeeeff", marginBottom: 4 }}>B.Sc. Computer Science</p>
-            <p style={{ fontSize: 14, fontWeight: 600, color: "#7c3aed", marginBottom: 4 }}>COMSATS University Islamabad</p>
-            <p style={{ fontSize: 13, color: "#6666a0", marginBottom: 16 }}>CGPA: 3.33 / 4.0</p>
+            <p style={{ fontSize: 15, fontWeight: 700, color: "#eeeeff", marginBottom: 3 }}>B.Sc. Computer Science</p>
+            <p style={{ fontSize: 14, fontWeight: 600, color: "#7c3aed", marginBottom: 3, opacity: 0.8 }}>COMSATS University Islamabad</p>
+            <p style={{ fontSize: 13, color: "#3a3a60", marginBottom: 14 }}>CGPA: 3.33 / 4.0</p>
             <p style={{ fontSize: 12, color: "#3a3a60", lineHeight: 1.65 }}>
               Thesis: SatCorn, an ML crop irrigation system using Sentinel-2 satellite imagery at 87% accuracy.
             </p>

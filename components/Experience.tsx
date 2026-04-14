@@ -43,45 +43,45 @@ const JOBS = [
 
 export default function Experience() {
   return (
-    <section id="experience" aria-label="Work experience" style={{ padding: "100px 0", background: "#050510", borderTop: "1px solid rgba(124,58,237,0.15)", borderBottom: "1px solid rgba(124,58,237,0.15)" }}>
+    <section id="experience" aria-label="Work experience" style={{ padding: "100px 0", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 60 }}>
-          <p style={{ color: "#7c3aed", fontSize: 11, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Career</p>
-          <h2 className="section-heading" style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 900, color: "#eeeeff", marginBottom: 14 }}>Experience</h2>
-          <p style={{ fontSize: 17, color: "#6666a0" }}>5+ years building production AI systems that scale.</p>
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 56 }}>
+          <p style={{ color: "#7c3aed", fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 12 }}>Career</p>
+          <h2 className="section-heading" style={{ fontSize: "clamp(30px, 5vw, 48px)", fontWeight: 900, color: "#eeeeff", marginBottom: 12 }}>Experience</h2>
+          <p style={{ fontSize: 16, color: "#3a3a60" }}>5+ years building production AI systems that scale.</p>
         </motion.div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {JOBS.map((job, i) => (
             <motion.div key={job.company}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-              <div className="glass-card" style={{ borderRadius: 20, padding: "28px 32px" }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = `${job.color}50`)}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(124,58,237,0.15)")}>
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 20 }}>
+              initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
+              <div style={{ borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)", padding: "28px 32px", transition: "border-color 0.25s" }}
+                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)")}
+                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)")}>
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 18 }}>
                   <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
-                      <div style={{ width: 10, height: 10, borderRadius: "50%", background: job.color, boxShadow: `0 0 8px ${job.color}`, flexShrink: 0 }} />
-                      <h3 style={{ fontSize: 19, fontWeight: 800, color: "#eeeeff", letterSpacing: "-0.02em" }}>{job.role}</h3>
-                      <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 6, background: `${job.color}18`, color: job.color, letterSpacing: "0.04em" }}>{job.type}</span>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 5 }}>
+                      <div style={{ width: 8, height: 8, borderRadius: "50%", background: job.color, flexShrink: 0 }} />
+                      <h3 style={{ fontSize: 18, fontWeight: 700, color: "#eeeeff", letterSpacing: "-0.01em" }}>{job.role}</h3>
+                      <span style={{ fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 5, background: `${job.color}10`, color: job.color }}>{job.type}</span>
                     </div>
-                    <p style={{ fontSize: 15, fontWeight: 600, color: job.color, paddingLeft: 22 }}>{job.company}</p>
+                    <p style={{ fontSize: 14, fontWeight: 600, color: job.color, paddingLeft: 18, opacity: 0.8 }}>{job.company}</p>
                   </div>
                   <span style={{ fontSize: 12, color: "#3a3a60", fontFamily: "'JetBrains Mono', monospace" }}>{job.period}</span>
                 </div>
 
-                <ul style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20, paddingLeft: 4 }}>
+                <ul style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 18, paddingLeft: 4 }}>
                   {job.bullets.map(b => (
                     <li key={b} style={{ display: "flex", gap: 12, fontSize: 14, color: "#a8a8c8", lineHeight: 1.7 }}>
-                      <span style={{ color: job.color, flexShrink: 0, marginTop: 1, fontSize: 12 }}>▸</span>
+                      <span style={{ color: "#3a3a60", flexShrink: 0, marginTop: 2, fontSize: 11 }}>▸</span>
                       {b}
                     </li>
                   ))}
                 </ul>
 
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {job.stack.map(t => (
-                    <span key={t} style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", padding: "4px 12px", borderRadius: 8, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.15)", color: "#6666a0" }}>{t}</span>
+                    <span key={t} style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", padding: "3px 10px", borderRadius: 6, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)", color: "#3a3a60" }}>{t}</span>
                   ))}
                 </div>
               </div>

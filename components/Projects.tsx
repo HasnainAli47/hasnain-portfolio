@@ -39,7 +39,7 @@ const PROJECTS = [
     description: "Founded and built from zero. Designed AI-enhanced search using geolocation, NLP, and preference modeling that cut search latency by 80%. Led 14 engineers through the full product lifecycle, from architecture to launch.",
     impact: ["3,500+ active users at peak", "1,200+ agency clients onboarded", "15,000+ global listings", "80% search latency reduction"],
     stack: ["Django", "React", "PostgreSQL", "AWS", "NLP", "Geospatial", "CI/CD"],
-    live: null,
+    live: "https://2ndplace.vercel.app",
     accent: "#d97706",
   },
 ];
@@ -47,89 +47,48 @@ const PROJECTS = [
 function Card({ p, i }: { p: (typeof PROJECTS)[0]; i: number }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ delay: i * 0.1 }}
-      className="card-hover gradient-border-animated"
+      transition={{ delay: i * 0.08 }}
+      className="card-hover"
       style={{
-        borderRadius: 20,
-        border: "1px solid rgba(124,58,237,0.15)",
-        background: "rgba(15, 15, 35, 0.6)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
+        borderRadius: 16,
+        border: "1px solid rgba(255,255,255,0.06)",
+        background: "rgba(255,255,255,0.02)",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
       }}
     >
-      {/* Accent bar */}
-      <div
-        style={{
-          height: 3,
-          background: `linear-gradient(90deg, ${p.accent}, ${p.accent}40, transparent)`,
-        }}
-      />
+      <div style={{ height: 2, background: `linear-gradient(90deg, ${p.accent}, transparent)` }} />
 
-      <div
-        style={{
-          padding: "28px 28px 24px",
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {/* Result as hero number */}
+      <div style={{ padding: "28px 28px 24px", flex: 1, display: "flex", flexDirection: "column" }}>
         <div
           style={{
-            fontSize: "clamp(28px, 4vw, 36px)",
+            fontSize: "clamp(26px, 3.5vw, 32px)",
             fontWeight: 900,
             color: p.accent,
             letterSpacing: "-0.03em",
             lineHeight: 1,
-            marginBottom: 16,
-            textShadow: `0 0 30px ${p.accent}30`,
+            marginBottom: 14,
           }}
         >
           {p.result}
         </div>
 
-        {/* Title + tagline */}
-        <div style={{ marginBottom: 16 }}>
-          <h3
-            style={{
-              fontSize: 20,
-              fontWeight: 800,
-              color: "#eeeeff",
-              marginBottom: 5,
-              letterSpacing: "-0.02em",
-            }}
-          >
+        <div style={{ marginBottom: 14 }}>
+          <h3 style={{ fontSize: 18, fontWeight: 700, color: "#eeeeff", marginBottom: 4, letterSpacing: "-0.01em" }}>
             {p.title}
           </h3>
-          <p style={{ fontSize: 13, color: "#6666a0" }}>{p.tagline}</p>
+          <p style={{ fontSize: 13, color: "#3a3a60" }}>{p.tagline}</p>
         </div>
 
-        <p
-          style={{
-            fontSize: 14,
-            color: "#a8a8c8",
-            lineHeight: 1.75,
-            marginBottom: 20,
-          }}
-        >
+        <p style={{ fontSize: 14, color: "#a8a8c8", lineHeight: 1.75, marginBottom: 18 }}>
           {p.description}
         </p>
 
-        {/* Impact */}
-        <ul
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 8,
-            marginBottom: 20,
-          }}
-        >
+        <ul style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 18 }}>
           {p.impact.map((item) => (
             <li
               key={item}
@@ -143,12 +102,13 @@ function Card({ p, i }: { p: (typeof PROJECTS)[0]; i: number }) {
             >
               <span
                 style={{
-                  width: 5,
-                  height: 5,
+                  width: 4,
+                  height: 4,
                   borderRadius: "50%",
                   background: p.accent,
                   flexShrink: 0,
-                  marginTop: 5,
+                  marginTop: 6,
+                  opacity: 0.6,
                 }}
               />
               {item}
@@ -156,16 +116,7 @@ function Card({ p, i }: { p: (typeof PROJECTS)[0]; i: number }) {
           ))}
         </ul>
 
-        {/* Stack */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 6,
-            marginBottom: 22,
-            marginTop: "auto",
-          }}
-        >
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20, marginTop: "auto" }}>
           {p.stack.map((t) => (
             <span
               key={t}
@@ -174,9 +125,9 @@ function Card({ p, i }: { p: (typeof PROJECTS)[0]; i: number }) {
                 fontFamily: "'JetBrains Mono', monospace",
                 padding: "3px 10px",
                 borderRadius: 6,
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(124,58,237,0.15)",
-                color: "#6666a0",
+                background: "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(255,255,255,0.05)",
+                color: "#3a3a60",
               }}
             >
               {t}
@@ -184,7 +135,6 @@ function Card({ p, i }: { p: (typeof PROJECTS)[0]; i: number }) {
           ))}
         </div>
 
-        {/* Link */}
         <div>
           {p.live ? (
             <a
@@ -196,34 +146,20 @@ function Card({ p, i }: { p: (typeof PROJECTS)[0]; i: number }) {
                 alignItems: "center",
                 gap: 6,
                 fontSize: 13,
-                fontWeight: 700,
-                padding: "9px 18px",
-                borderRadius: 10,
-                background: `linear-gradient(135deg, ${p.accent}, ${p.accent}cc)`,
-                color: "#fff",
+                fontWeight: 600,
+                padding: "8px 16px",
+                borderRadius: 8,
+                background: `${p.accent}12`,
+                color: p.accent,
                 textDecoration: "none",
-                transition: "all 0.25s",
-                boxShadow: `0 4px 16px ${p.accent}30`,
+                transition: "opacity 0.2s",
                 minHeight: 44,
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = "0.85";
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.opacity = "1";
-                e.currentTarget.style.transform = "none";
-              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
               Live Site
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M8 2H14V8M14 2L6 10M3 5H1V15H11V13" />
               </svg>
             </a>
@@ -240,22 +176,22 @@ function Card({ p, i }: { p: (typeof PROJECTS)[0]; i: number }) {
 
 export default function Projects() {
   return (
-    <section id="projects" style={{ padding: "100px 0", background: "#070718" }}>
+    <section id="projects" style={{ padding: "100px 0" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ marginBottom: 60 }}
+          style={{ marginBottom: 56 }}
         >
           <p
             style={{
               color: "#7c3aed",
               fontSize: 11,
-              fontWeight: 800,
-              letterSpacing: "0.18em",
+              fontWeight: 700,
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
-              marginBottom: 14,
+              marginBottom: 12,
             }}
           >
             Selected Work
@@ -263,32 +199,21 @@ export default function Projects() {
           <h2
             className="section-heading"
             style={{
-              fontSize: "clamp(32px, 5vw, 54px)",
+              fontSize: "clamp(30px, 5vw, 48px)",
               fontWeight: 900,
               color: "#eeeeff",
-              marginBottom: 16,
+              marginBottom: 12,
             }}
           >
             Systems I Have Built
           </h2>
-          <p
-            style={{
-              fontSize: 18,
-              color: "#6666a0",
-              maxWidth: 500,
-              lineHeight: 1.65,
-            }}
-          >
+          <p style={{ fontSize: 17, color: "#3a3a60", maxWidth: 480, lineHeight: 1.6 }}>
             Real production deployments. Real revenue. Not portfolio demos.
           </p>
         </motion.div>
         <div
           className="grid-mobile-1"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 20,
-          }}
+          style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}
         >
           {PROJECTS.map((p, i) => (
             <Card key={p.title} p={p} i={i} />

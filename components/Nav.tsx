@@ -30,9 +30,12 @@ export default function Nav() {
         right: 0,
         zIndex: 50,
         transition: "all 0.3s ease",
-        background: scrolled ? "rgba(5,5,16,0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+        background: scrolled ? "rgba(5,5,16,0.9)" : "transparent",
+        backdropFilter: scrolled ? "blur(16px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+        borderBottom: scrolled
+          ? "1px solid rgba(255,255,255,0.06)"
+          : "1px solid transparent",
       }}
     >
       <nav
@@ -56,18 +59,15 @@ export default function Nav() {
           }}
         >
           <div
-            className="pulse-dot"
             style={{
-              width: 8,
-              height: 8,
+              width: 7,
+              height: 7,
               borderRadius: "50%",
               background: "#7c3aed",
-              boxShadow: "0 0 8px #7c3aed",
             }}
           />
           <span
-            style={{ fontWeight: 800, fontSize: 16, letterSpacing: "-0.02em" }}
-            className="text-gradient"
+            style={{ fontWeight: 700, fontSize: 15, color: "#eeeeff", letterSpacing: "-0.02em" }}
           >
             Hasnain Ali
           </span>
@@ -104,48 +104,27 @@ export default function Nav() {
             alignItems: "center",
             gap: 6,
             padding: "8px 18px",
-            borderRadius: 10,
-            background: "rgba(124,58,237,0.15)",
-            border: "1px solid rgba(124,58,237,0.4)",
-            color: "#c084fc",
+            borderRadius: 8,
+            background: "rgba(124,58,237,0.1)",
+            border: "1px solid rgba(124,58,237,0.2)",
+            color: "#a855f7",
             fontSize: 13,
             fontWeight: 600,
             cursor: "pointer",
             fontFamily: "inherit",
-            transition: "all 0.25s",
+            transition: "all 0.2s",
             minHeight: 44,
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background =
-              "rgba(124,58,237,0.28)";
-            (e.currentTarget as HTMLElement).style.color = "#e9d5ff";
-            (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(124,58,237,0.18)";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background =
-              "rgba(124,58,237,0.15)";
-            (e.currentTarget as HTMLElement).style.color = "#c084fc";
-            (e.currentTarget as HTMLElement).style.transform = "none";
+            (e.currentTarget as HTMLElement).style.background = "rgba(124,58,237,0.1)";
           }}
         >
           Hire Me
         </button>
       </nav>
-
-      {/* Glowing purple bottom line — visible when scrolled */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: 1,
-          background: scrolled
-            ? "linear-gradient(90deg, transparent, rgba(124,58,237,0.5), rgba(168,85,247,0.4), transparent)"
-            : "transparent",
-          transition: "background 0.3s ease",
-        }}
-      />
     </header>
   );
 }

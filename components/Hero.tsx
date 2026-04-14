@@ -19,77 +19,51 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* Layered mesh gradient background */}
+      {/* Subtle top gradient */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(ellipse 90% 60% at 50% -5%, rgba(124,58,237,0.22) 0%, transparent 65%)",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "radial-gradient(ellipse 60% 40% at 80% 20%, rgba(59,130,246,0.08) 0%, transparent 60%)",
+            "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,0.1) 0%, transparent 60%)",
           pointerEvents: "none",
         }}
       />
 
-      {/* Visible dot grid */}
+      {/* Barely-visible dot grid */}
       <div
         className="dot-grid"
-        style={{ position: "absolute", inset: 0, opacity: 0.5, pointerEvents: "none" }}
+        style={{ position: "absolute", inset: 0, opacity: 0.35, pointerEvents: "none" }}
       />
 
-      {/* Floating orbs — CSS keyframes only, no JS */}
+      {/* Static ambient blurs */}
       <div
-        className="orb-1"
         style={{
           position: "absolute",
-          top: "20%",
-          left: "8%",
-          width: 400,
-          height: 400,
+          top: "25%",
+          left: "5%",
+          width: 300,
+          height: 300,
           borderRadius: "50%",
-          background: "rgba(124,58,237,0.08)",
-          filter: "blur(80px)",
+          background: "rgba(124,58,237,0.04)",
+          filter: "blur(100px)",
           pointerEvents: "none",
         }}
       />
       <div
-        className="orb-2"
         style={{
           position: "absolute",
-          top: "12%",
-          right: "5%",
-          width: 320,
-          height: 320,
+          top: "15%",
+          right: "10%",
+          width: 250,
+          height: 250,
           borderRadius: "50%",
-          background: "rgba(59,130,246,0.08)",
-          filter: "blur(80px)",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        className="orb-3"
-        style={{
-          position: "absolute",
-          bottom: "18%",
-          left: "40%",
-          width: 260,
-          height: 260,
-          borderRadius: "50%",
-          background: "rgba(168,85,247,0.06)",
-          filter: "blur(80px)",
+          background: "rgba(59,130,246,0.03)",
+          filter: "blur(100px)",
           pointerEvents: "none",
         }}
       />
 
-      {/* Main content — two-column on desktop */}
       <div
         style={{
           maxWidth: 1200,
@@ -104,37 +78,35 @@ export default function Hero() {
           className="hero-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1.1fr 0.9fr",
-            gap: 64,
+            gridTemplateColumns: "1.15fr 0.85fr",
+            gap: 80,
             alignItems: "center",
           }}
         >
           {/* LEFT — Text */}
           <motion.div
-            initial={{ opacity: 0, y: 32 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            {/* Availability badge */}
             <div
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                padding: "7px 18px",
+                padding: "6px 16px",
                 borderRadius: 999,
-                border: "1px solid rgba(34,197,94,0.3)",
-                background: "rgba(34,197,94,0.06)",
+                border: "1px solid rgba(34,197,94,0.2)",
+                background: "rgba(34,197,94,0.04)",
                 marginBottom: 36,
               }}
             >
               <span
                 style={{
-                  width: 7,
-                  height: 7,
+                  width: 6,
+                  height: 6,
                   borderRadius: "50%",
                   background: "#22c55e",
-                  boxShadow: "0 0 6px #22c55e",
                   flexShrink: 0,
                 }}
               />
@@ -143,10 +115,9 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* Main headline */}
             <h1
               style={{
-                fontSize: "clamp(60px, 11vw, 110px)",
+                fontSize: "clamp(56px, 10vw, 100px)",
                 fontWeight: 900,
                 letterSpacing: "-0.05em",
                 lineHeight: 0.92,
@@ -159,12 +130,11 @@ export default function Hero() {
               </span>
             </h1>
 
-            {/* Sub-headline */}
             <p
               style={{
-                fontSize: "clamp(17px, 2.5vw, 22px)",
+                fontSize: "clamp(17px, 2.2vw, 20px)",
                 color: "#a8a8c8",
-                maxWidth: 620,
+                maxWidth: 580,
                 lineHeight: 1.7,
                 marginBottom: 16,
               }}
@@ -173,40 +143,38 @@ export default function Hero() {
               from architecture to scaled deployment.
             </p>
 
-            {/* Impact line */}
             <p
               style={{
-                fontSize: 17,
+                fontSize: 16,
                 color: "#6666a0",
-                marginBottom: 44,
-                maxWidth: 560,
+                marginBottom: 40,
+                maxWidth: 540,
                 lineHeight: 1.6,
               }}
             >
               Systems I have built processed{" "}
-              <strong style={{ color: "#c084fc", fontWeight: 700 }}>
+              <strong style={{ color: "#c084fc", fontWeight: 600 }}>
                 117K+ automated interactions
               </strong>{" "}
               and generated{" "}
-              <strong style={{ color: "#c084fc", fontWeight: 700 }}>
+              <strong style={{ color: "#c084fc", fontWeight: 600 }}>
                 $2M+ in annual revenue.
               </strong>
             </p>
 
-            {/* Skill tags */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 48 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 44 }}>
               {TAGS.map((t) => (
                 <span
                   key={t}
                   style={{
-                    padding: "6px 16px",
+                    padding: "5px 14px",
                     fontSize: 12,
                     fontFamily: "'JetBrains Mono', monospace",
                     fontWeight: 500,
-                    borderRadius: 999,
-                    background: "rgba(124,58,237,0.1)",
-                    border: "1px solid rgba(124,58,237,0.25)",
-                    color: "#a8a8c8",
+                    borderRadius: 6,
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    color: "#6666a0",
                   }}
                 >
                   {t}
@@ -214,46 +182,28 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* CTAs */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
               <a
                 href="#projects"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 8,
-                  padding: "15px 30px",
-                  borderRadius: 14,
-                  background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+                  padding: "13px 28px",
+                  borderRadius: 10,
+                  background: "#7c3aed",
                   color: "#fff",
-                  fontWeight: 700,
-                  fontSize: 16,
+                  fontWeight: 600,
+                  fontSize: 15,
                   textDecoration: "none",
-                  boxShadow:
-                    "0 8px 32px rgba(124,58,237,0.4), 0 2px 8px rgba(0,0,0,0.3)",
-                  transition: "all 0.25s",
+                  transition: "opacity 0.2s",
                   minHeight: 44,
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-3px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 14px 40px rgba(124,58,237,0.5), 0 2px 8px rgba(0,0,0,0.3)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "none";
-                  e.currentTarget.style.boxShadow =
-                    "0 8px 32px rgba(124,58,237,0.4), 0 2px 8px rgba(0,0,0,0.3)";
-                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
               >
                 View My Work
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M3 8h10M9 4l4 4-4 4" />
                 </svg>
               </a>
@@ -263,32 +213,24 @@ export default function Hero() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 8,
-                  padding: "15px 30px",
-                  borderRadius: 14,
-                  border: "1px solid rgba(124,58,237,0.3)",
-                  background: "rgba(124,58,237,0.08)",
+                  padding: "13px 28px",
+                  borderRadius: 10,
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "transparent",
                   color: "#eeeeff",
                   fontWeight: 600,
-                  fontSize: 16,
+                  fontSize: 15,
                   fontFamily: "inherit",
                   cursor: "pointer",
-                  transition: "all 0.25s",
+                  transition: "border-color 0.2s",
                   minHeight: 44,
                 }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    "rgba(124,58,237,0.6)";
-                  (e.currentTarget as HTMLElement).style.background =
-                    "rgba(124,58,237,0.15)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    "rgba(124,58,237,0.3)";
-                  (e.currentTarget as HTMLElement).style.background =
-                    "rgba(124,58,237,0.08)";
-                  (e.currentTarget as HTMLElement).style.transform = "none";
-                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.2)")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)")
+                }
               >
                 Get in Touch
               </button>
@@ -300,158 +242,37 @@ export default function Hero() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 8,
-                  padding: "15px 30px",
-                  borderRadius: 14,
-                  border: "1px solid rgba(124,58,237,0.15)",
-                  background: "rgba(255,255,255,0.03)",
-                  color: "#a8a8c8",
+                  padding: "13px 28px",
+                  borderRadius: 10,
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  background: "transparent",
+                  color: "#6666a0",
                   fontWeight: 600,
-                  fontSize: 16,
+                  fontSize: 15,
                   textDecoration: "none",
-                  transition: "all 0.25s",
+                  transition: "color 0.2s",
                   minHeight: 44,
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#3b82f6";
-                  e.currentTarget.style.color = "#eeeeff";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(124,58,237,0.15)";
-                  e.currentTarget.style.color = "#a8a8c8";
-                  e.currentTarget.style.transform = "none";
-                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#a8a8c8")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#6666a0")}
               >
                 LinkedIn
               </a>
             </div>
           </motion.div>
 
-          {/* RIGHT — Visual elements */}
+          {/* RIGHT — Clean terminal snippet */}
           <motion.div
             className="hide-mobile"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            style={{ position: "relative" }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            {/* Floating stats card */}
             <div
               style={{
-                background: "rgba(15, 15, 35, 0.6)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                borderRadius: 20,
-                border: "1px solid rgba(124,58,237,0.2)",
-                padding: "28px 32px",
-                marginBottom: 20,
-                animation: "card-glow 4s ease-in-out infinite",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  marginBottom: 28,
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 700,
-                    color: "#6666a0",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  System Metrics
-                </span>
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <span
-                    style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: "50%",
-                      background: "#22c55e",
-                      boxShadow: "0 0 8px #22c55e",
-                      animation: "pulse-dot 2s ease-in-out infinite",
-                    }}
-                  />
-                  <span style={{ fontSize: 11, color: "#22c55e", fontWeight: 600 }}>
-                    Active
-                  </span>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr 1fr",
-                  gap: 16,
-                  marginBottom: 24,
-                }}
-              >
-                {[
-                  { value: "$2M+", label: "Annual Revenue", color: "#c084fc" },
-                  { value: "117K", label: "Emails Sent", color: "#a855f7" },
-                  { value: "10K", label: "AI Calls", color: "#7c3aed" },
-                ].map((s) => (
-                  <div key={s.label} style={{ textAlign: "center" }}>
-                    <div
-                      style={{
-                        fontSize: 28,
-                        fontWeight: 900,
-                        color: s.color,
-                        letterSpacing: "-0.03em",
-                        lineHeight: 1,
-                        marginBottom: 6,
-                        textShadow: `0 0 30px ${s.color}40`,
-                      }}
-                    >
-                      {s.value}
-                    </div>
-                    <div style={{ fontSize: 11, color: "#6666a0", fontWeight: 500 }}>
-                      {s.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div
-                style={{
-                  height: 2,
-                  borderRadius: 1,
-                  background: "rgba(124,58,237,0.15)",
-                  marginBottom: 16,
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    height: "100%",
-                    width: "78%",
-                    borderRadius: 1,
-                    background: "linear-gradient(90deg, #7c3aed, #a855f7)",
-                  }}
-                />
-              </div>
-
-              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                <span style={{ fontSize: 11, color: "#3a3a60" }}>Pipeline active</span>
-                <span style={{ fontSize: 11, color: "#3a3a60" }}>&middot;</span>
-                <span style={{ fontSize: 11, color: "#3a3a60" }}>6hr cycle</span>
-              </div>
-            </div>
-
-            {/* Decorative terminal / code snippet */}
-            <div
-              style={{
-                background: "rgba(10, 10, 25, 0.8)",
-                backdropFilter: "blur(12px)",
-                WebkitBackdropFilter: "blur(12px)",
-                borderRadius: 16,
-                border: "1px solid rgba(124,58,237,0.15)",
+                background: "rgba(255,255,255,0.02)",
+                borderRadius: 14,
+                border: "1px solid rgba(255,255,255,0.06)",
                 overflow: "hidden",
               }}
             >
@@ -461,34 +282,13 @@ export default function Hero() {
                   alignItems: "center",
                   gap: 8,
                   padding: "12px 16px",
-                  borderBottom: "1px solid rgba(124,58,237,0.1)",
+                  borderBottom: "1px solid rgba(255,255,255,0.04)",
                 }}
               >
                 <div style={{ display: "flex", gap: 6 }}>
-                  <div
-                    style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: "50%",
-                      background: "#ff5f57",
-                    }}
-                  />
-                  <div
-                    style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: "50%",
-                      background: "#ffbd2e",
-                    }}
-                  />
-                  <div
-                    style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: "50%",
-                      background: "#28c840",
-                    }}
-                  />
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.08)" }} />
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.08)" }} />
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.08)" }} />
                 </div>
                 <span
                   style={{
@@ -504,37 +304,41 @@ export default function Hero() {
 
               <div
                 style={{
-                  padding: "16px 20px",
+                  padding: "20px 24px",
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: 13,
-                  lineHeight: 1.8,
-                  color: "#a8a8c8",
+                  lineHeight: 1.9,
+                  color: "#6666a0",
                 }}
               >
                 <div>
-                  <span style={{ color: "#c084fc" }}>from</span> langgraph{" "}
-                  <span style={{ color: "#c084fc" }}>import</span>{" "}
-                  <span style={{ color: "#3b82f6" }}>Agent</span>
+                  <span style={{ color: "#7c3aed" }}>from</span>{" "}
+                  <span style={{ color: "#a8a8c8" }}>langgraph</span>{" "}
+                  <span style={{ color: "#7c3aed" }}>import</span>{" "}
+                  <span style={{ color: "#a8a8c8" }}>Agent</span>
                 </div>
-                <div style={{ height: 8 }} />
+                <div style={{ height: 10 }} />
                 <div>
-                  pipeline = <span style={{ color: "#3b82f6" }}>Agent</span>(
+                  <span style={{ color: "#a8a8c8" }}>pipeline</span>{" "}
+                  <span style={{ color: "#3a3a60" }}>=</span>{" "}
+                  <span style={{ color: "#a8a8c8" }}>Agent</span>(
                 </div>
                 <div>
                   {"  "}model=<span style={{ color: "#22c55e" }}>&quot;gpt-4o&quot;</span>,
                 </div>
                 <div>
-                  {"  "}tools=[
-                  <span style={{ color: "#d97706" }}>email, voice, crm</span>],
+                  {"  "}tools=[<span style={{ color: "#a8a8c8" }}>email, voice, crm</span>],
                 </div>
                 <div>
-                  {"  "}memory=<span style={{ color: "#3b82f6" }}>pgvector</span>()
+                  {"  "}memory=<span style={{ color: "#a8a8c8" }}>pgvector</span>()
                 </div>
                 <div>)</div>
-                <div style={{ height: 8 }} />
+                <div style={{ height: 10 }} />
                 <div>
-                  pipeline.<span style={{ color: "#a855f7" }}>deploy</span>(leads=
-                  <span style={{ color: "#d97706" }}>117_000</span>)
+                  <span style={{ color: "#a8a8c8" }}>pipeline</span>.
+                  <span style={{ color: "#a8a8c8" }}>deploy</span>(
+                  <span style={{ color: "#a8a8c8" }}>leads</span>=
+                  <span style={{ color: "#c084fc" }}>117_000</span>)
                 </div>
               </div>
             </div>
@@ -542,7 +346,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom glow line */}
       <div
         className="glow-line"
         style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
