@@ -6,18 +6,37 @@ const TO_EMAIL = "codingwithhasnain@gmail.com";
 export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
+  if (!process.env.RESEND_API_KEY) {
+    return NextResponse.json(
+      { error: "Email service not configured yet. Please email codingwithhasnain@gmail.com directly." },
+      { status: 503 }
+    );
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
-    const { name, email, company, budget, message } = await req.json();
+    const body = await req.json().catch(() => null);
+    if (!body) {
+      return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+    }
+    const { name, email, company, budget, message } = body;
 
-    if (!name || !email || !message) {
+    if (!name?.trim() || !email?.trim() || !message?.trim()) {
       return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 });
     }
 
+    if (name.trim().length < 2) {
+      return NextResponse.json({ error: "Please enter your full name." }, { status: 400 });
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
+    if (!emailRegex.test(email.trim())) {
+      return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+    }
+
+    if (message.trim().length < 10) {
+      return NextResponse.json({ error: "Please tell me a bit more about what you're building." }, { status: 400 });
     }
 
     const { error } = await resend.emails.send({

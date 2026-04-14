@@ -1,215 +1,257 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-interface Props {
-  open: boolean;
-  onClose: () => void;
-}
+interface Props { open: boolean; onClose: () => void; }
 
-const BUDGET_OPTIONS = [
-  "Under $5K",
-  "$5K – $15K",
-  "$15K – $40K",
-  "$40K+ / Full-time role",
-  "Not sure yet",
+const BUDGET_PRESETS = [
+  "Under $5K", "$5K – $15K", "$15K – $40K",
+  "$40K – $100K", "$100K+", "Full-time role",
+  "Will negotiate", "Not sure yet",
 ];
 
-export default function ContactModal({ open, onClose }: Props) {
-  const [form, setForm] = useState({ name: "", email: "", company: "", budget: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
+type Errors = { name?: string; email?: string; message?: string };
 
-  // Lock body scroll when modal is open
+function validate(form: { name: string; email: string; message: string }): Errors {
+  const e: Errors = {};
+  if (!form.name.trim() || form.name.trim().length < 2) e.name = "Enter your full name.";
+  if (!form.email.trim()) e.email = "Email is required.";
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) e.email = "Enter a valid email address.";
+  if (form.message.trim().length < 10) e.message = "Please add a bit more detail (10+ chars).";
+  return e;
+}
+
+export default function ContactModal({ open, onClose }: Props) {
+  const [form, setForm] = useState({ name: "", email: "", company: "", budget: "", customBudget: "", message: "" });
+  const [customBudget, setCustomBudget] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [errors, setErrors] = useState<Errors>({});
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [serverError, setServerError] = useState("");
+  const firstRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-      if (status === "success") {
-        setTimeout(() => setStatus("idle"), 400);
-      }
-    }
+    document.body.style.overflow = open ? "hidden" : "";
+    if (open) setTimeout(() => firstRef.current?.focus(), 80);
+    if (!open && status === "success") setTimeout(() => { setStatus("idle"); setTouched({}); setErrors({}); }, 400);
     return () => { document.body.style.overflow = ""; };
   }, [open, status]);
 
-  // Close on Escape
   useEffect(() => {
     const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
   }, [onClose]);
 
-  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    setForm(f => ({ ...f, [k]: e.target.value }));
+  const setField = (k: string, v: string) => {
+    const next = { ...form, [k]: v };
+    setForm(next);
+    if (touched[k]) setErrors(validate(next));
+  };
+
+  const blur = (k: string) => {
+    setTouched(t => ({ ...t, [k]: true }));
+    setErrors(validate(form));
+  };
+
+  const selectBudget = (val: string) => {
+    if (val === "__custom") {
+      setCustomBudget(true);
+      setForm(f => ({ ...f, budget: "__custom" }));
+    } else {
+      setCustomBudget(false);
+      setForm(f => ({ ...f, budget: val, customBudget: "" }));
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setTouched({ name: true, email: true, message: true });
+    const errs = validate(form);
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
     setStatus("sending");
-    setErrorMsg("");
+    setServerError("");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name.trim(), email: form.email.trim(),
+          company: form.company.trim(),
+          budget: form.budget === "__custom" ? form.customBudget : form.budget,
+          message: form.message.trim(),
+        }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed");
+      let data: { error?: string } = {};
+      try { data = await res.json(); } catch { /* empty */ }
+      if (!res.ok) throw new Error(data.error || "Failed to send.");
       setStatus("success");
-      setForm({ name: "", email: "", company: "", budget: "", message: "" });
+      setForm({ name: "", email: "", company: "", budget: "", customBudget: "", message: "" });
+      setCustomBudget(false);
+      setTouched({});
+      setErrors({});
     } catch (err: unknown) {
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setServerError(err instanceof Error ? err.message : "Something went wrong.");
       setStatus("error");
     }
   };
 
   if (!open) return null;
 
-  const inp: React.CSSProperties = {
-    width: "100%", padding: "12px 16px", borderRadius: 10,
-    border: "1px solid #1f1f40", background: "#080816",
-    color: "#eeeeff", fontSize: 15, fontFamily: "inherit",
-    outline: "none", transition: "border-color 0.2s",
-    boxSizing: "border-box",
+  const baseInp: React.CSSProperties = {
+    width: "100%", padding: "12px 14px", borderRadius: 10,
+    background: "#070714", color: "#eeeeff", fontSize: 15,
+    fontFamily: "inherit", outline: "none", boxSizing: "border-box",
+    transition: "border-color 0.2s, box-shadow 0.2s",
   };
+  const inp = (hasErr?: boolean): React.CSSProperties => ({
+    ...baseInp,
+    border: `1px solid ${hasErr ? "rgba(239,68,68,0.55)" : "#1f1f40"}`,
+    background: hasErr ? "rgba(239,68,68,0.04)" : "#070714",
+  });
+
+  const lbl: React.CSSProperties = { display: "block", fontSize: 11, fontWeight: 700, color: "#6666a0", marginBottom: 7, letterSpacing: "0.08em", textTransform: "uppercase" };
+  const errSpan: React.CSSProperties = { fontSize: 12, color: "#f87171", marginTop: 5, display: "block" };
+
+  const focusStyle = { borderColor: "#7c3aed", boxShadow: "0 0 0 3px rgba(124,58,237,0.15)" };
+  const blurStyle = (hasErr?: boolean) => ({ borderColor: hasErr ? "rgba(239,68,68,0.55)" : "#1f1f40", boxShadow: "none" });
 
   return (
     <>
-      {/* Backdrop */}
-      <div onClick={onClose} style={{
-        position: "fixed", inset: 0, zIndex: 100,
-        background: "rgba(0,0,0,0.75)", backdropFilter: "blur(6px)",
-        animation: "fadeIn 0.2s ease",
-      }} />
+      <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 100, background: "rgba(0,0,0,0.82)", backdropFilter: "blur(8px)", animation: "fcIn 0.2s ease" }} />
 
-      {/* Modal */}
-      <div style={{
-        position: "fixed", inset: 0, zIndex: 101,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        padding: "20px", pointerEvents: "none",
-      }}>
+      <div style={{ position: "fixed", inset: 0, zIndex: 101, display: "flex", alignItems: "center", justifyContent: "center", padding: "16px", pointerEvents: "none" }}>
         <div onClick={e => e.stopPropagation()} style={{
-          width: "100%", maxWidth: 560, maxHeight: "90vh", overflowY: "auto",
-          background: "#0a0a1a", borderRadius: 24,
-          border: "1px solid rgba(124,58,237,0.35)",
-          boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 64px rgba(124,58,237,0.1)",
-          pointerEvents: "all",
-          animation: "slideUp 0.25s ease",
+          width: "100%", maxWidth: 548, maxHeight: "92vh", overflowY: "auto",
+          background: "linear-gradient(160deg, #0d0d22 0%, #080816 100%)",
+          borderRadius: 22, border: "1px solid rgba(124,58,237,0.4)",
+          boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(124,58,237,0.08)",
+          pointerEvents: "all", animation: "slUp 0.25s ease",
         }}>
+          <div style={{ height: 3, background: "linear-gradient(90deg, #7c3aed, #a855f7, #3b82f6)", borderRadius: "22px 22px 0 0" }} />
+
           {/* Header */}
-          <div style={{ padding: "28px 32px 0", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+          <div style={{ padding: "22px 26px 0", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
             <div>
-              <h2 style={{ fontSize: 24, fontWeight: 900, color: "#eeeeff", letterSpacing: "-0.02em", margin: "0 0 6px" }}>
+              <h2 style={{ fontSize: 22, fontWeight: 900, color: "#eeeeff", letterSpacing: "-0.02em", margin: "0 0 4px" }}>
                 {status === "success" ? "Message sent!" : "Let's work together"}
               </h2>
-              <p style={{ fontSize: 14, color: "#6666a0", margin: 0 }}>
-                {status === "success" ? "I'll get back to you within 24 hours." : "I typically reply within 24 hours."}
+              <p style={{ fontSize: 13, color: "#6666a0", margin: 0 }}>
+                {status === "success" ? "I'll reply within 24 hours." : "Typically reply within 24 hours."}
               </p>
             </div>
-            <button onClick={onClose} style={{
-              width: 36, height: 36, borderRadius: "50%", border: "1px solid #1f1f40",
-              background: "transparent", color: "#6666a0", fontSize: 18, cursor: "pointer",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              flexShrink: 0, transition: "all 0.2s",
-            }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#eeeeff"; (e.currentTarget as HTMLElement).style.borderColor = "#3a3a60"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#6666a0"; (e.currentTarget as HTMLElement).style.borderColor = "#1f1f40"; }}>
+            <button onClick={onClose} aria-label="Close"
+              style={{ width: 32, height: 32, borderRadius: "50%", border: "1px solid #1f1f40", background: "transparent", color: "#6666a0", fontSize: 15, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               ✕
             </button>
           </div>
 
           {/* Success state */}
           {status === "success" ? (
-            <div style={{ padding: "40px 32px 32px", textAlign: "center" }}>
-              <div style={{ width: 72, height: 72, borderRadius: "50%", background: "rgba(34,197,94,0.12)", border: "2px solid rgba(34,197,94,0.4)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", fontSize: 32 }}>
-                ✓
-              </div>
-              <p style={{ fontSize: 16, color: "#a8a8c8", lineHeight: 1.7, marginBottom: 28 }}>
-                Your message is on its way to <strong style={{ color: "#eeeeff" }}>codingwithhasnain@gmail.com</strong>. I will read it and reply soon.
+            <div style={{ padding: "36px 26px 28px", textAlign: "center" }}>
+              <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(34,197,94,0.12)", border: "2px solid rgba(34,197,94,0.4)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 18px", fontSize: 26, color: "#4ade80" }}>✓</div>
+              <p style={{ fontSize: 15, color: "#a8a8c8", lineHeight: 1.7, marginBottom: 22 }}>
+                Your message is on its way to <strong style={{ color: "#eeeeff" }}>codingwithhasnain@gmail.com</strong>. Talk soon.
               </p>
-              <button onClick={onClose} style={{
-                padding: "12px 32px", borderRadius: 12, background: "#7c3aed",
-                color: "#fff", fontWeight: 700, fontSize: 15, border: "none",
-                cursor: "pointer", fontFamily: "inherit",
-              }}>Done</button>
+              <button onClick={onClose} style={{ padding: "11px 28px", borderRadius: 10, background: "#7c3aed", color: "#fff", fontWeight: 700, fontSize: 15, border: "none", cursor: "pointer", fontFamily: "inherit" }}>
+                Done
+              </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ padding: "24px 32px 32px" }}>
-              {/* Name + Email row */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
+            <form onSubmit={handleSubmit} noValidate style={{ padding: "18px 26px 26px" }}>
+
+              {/* Name + Email */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
                 <div>
-                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#6666a0", marginBottom: 7, letterSpacing: "0.06em", textTransform: "uppercase" }}>Name *</label>
-                  <input required value={form.name} onChange={set("name")} placeholder="Sarah Chen"
-                    style={inp}
-                    onFocus={e => (e.currentTarget.style.borderColor = "#7c3aed")}
-                    onBlur={e => (e.currentTarget.style.borderColor = "#1f1f40")} />
+                  <label style={lbl}>Name *</label>
+                  <input ref={firstRef} value={form.name}
+                    onChange={e => setField("name", e.target.value)}
+                    onFocus={e => Object.assign(e.currentTarget.style, focusStyle)}
+                    onBlur={e => { blur("name"); Object.assign(e.currentTarget.style, blurStyle(!!errors.name)); }}
+                    placeholder="Sarah Chen" style={inp(touched.name && !!errors.name)} />
+                  {touched.name && errors.name && <span style={errSpan}>⚠ {errors.name}</span>}
                 </div>
                 <div>
-                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#6666a0", marginBottom: 7, letterSpacing: "0.06em", textTransform: "uppercase" }}>Email *</label>
-                  <input required type="email" value={form.email} onChange={set("email")} placeholder="sarah@company.com"
-                    style={inp}
-                    onFocus={e => (e.currentTarget.style.borderColor = "#7c3aed")}
-                    onBlur={e => (e.currentTarget.style.borderColor = "#1f1f40")} />
+                  <label style={lbl}>Email *</label>
+                  <input type="email" value={form.email}
+                    onChange={e => setField("email", e.target.value)}
+                    onFocus={e => Object.assign(e.currentTarget.style, focusStyle)}
+                    onBlur={e => { blur("email"); Object.assign(e.currentTarget.style, blurStyle(!!errors.email)); }}
+                    placeholder="sarah@company.com" style={inp(touched.email && !!errors.email)} />
+                  {touched.email && errors.email && <span style={errSpan}>⚠ {errors.email}</span>}
                 </div>
               </div>
 
-              {/* Company + Budget row */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
-                <div>
-                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#6666a0", marginBottom: 7, letterSpacing: "0.06em", textTransform: "uppercase" }}>Company</label>
-                  <input value={form.company} onChange={set("company")} placeholder="Acme Corp"
-                    style={inp}
-                    onFocus={e => (e.currentTarget.style.borderColor = "#7c3aed")}
-                    onBlur={e => (e.currentTarget.style.borderColor = "#1f1f40")} />
+              {/* Company */}
+              <div style={{ marginBottom: 12 }}>
+                <label style={lbl}>Company <span style={{ fontSize: 10, color: "#3a3a60", textTransform: "none", letterSpacing: 0 }}>optional</span></label>
+                <input value={form.company}
+                  onChange={e => setField("company", e.target.value)}
+                  onFocus={e => Object.assign(e.currentTarget.style, focusStyle)}
+                  onBlur={e => Object.assign(e.currentTarget.style, blurStyle())}
+                  placeholder="Acme Corp" style={inp()} />
+              </div>
+
+              {/* Budget — pill selector */}
+              <div style={{ marginBottom: 14 }}>
+                <label style={lbl}>Budget / Role <span style={{ fontSize: 10, color: "#3a3a60", textTransform: "none", letterSpacing: 0 }}>optional</span></label>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {BUDGET_PRESETS.map(p => {
+                    const active = form.budget === p;
+                    return (
+                      <button key={p} type="button" onClick={() => selectBudget(p)}
+                        style={{ padding: "7px 14px", borderRadius: 20, fontSize: 12, fontWeight: 600, fontFamily: "inherit", cursor: "pointer", transition: "all 0.15s", border: `1px solid ${active ? "rgba(124,58,237,0.6)" : "#1f1f40"}`, background: active ? "rgba(124,58,237,0.2)" : "rgba(255,255,255,0.03)", color: active ? "#c084fc" : "#6666a0" }}>
+                        {p}
+                      </button>
+                    );
+                  })}
+                  <button type="button" onClick={() => selectBudget("__custom")}
+                    style={{ padding: "7px 14px", borderRadius: 20, fontSize: 12, fontWeight: 600, fontFamily: "inherit", cursor: "pointer", transition: "all 0.15s", border: `1px solid ${form.budget === "__custom" ? "rgba(124,58,237,0.6)" : "#1f1f40"}`, background: form.budget === "__custom" ? "rgba(124,58,237,0.2)" : "rgba(255,255,255,0.03)", color: form.budget === "__custom" ? "#c084fc" : "#6666a0" }}>
+                    Custom...
+                  </button>
                 </div>
-                <div>
-                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#6666a0", marginBottom: 7, letterSpacing: "0.06em", textTransform: "uppercase" }}>Budget / Role</label>
-                  <select value={form.budget} onChange={set("budget")}
-                    style={{ ...inp, appearance: "none" }}
-                    onFocus={e => (e.currentTarget.style.borderColor = "#7c3aed")}
-                    onBlur={e => (e.currentTarget.style.borderColor = "#1f1f40")}>
-                    <option value="">Select range</option>
-                    {BUDGET_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
-                  </select>
-                </div>
+                {customBudget && (
+                  <input value={form.customBudget}
+                    onChange={e => setField("customBudget", e.target.value)}
+                    onFocus={e => Object.assign(e.currentTarget.style, focusStyle)}
+                    onBlur={e => Object.assign(e.currentTarget.style, blurStyle())}
+                    placeholder="e.g. $8K fixed, hourly rate, equity + base..."
+                    autoFocus style={{ ...inp(), marginTop: 10 }} />
+                )}
               </div>
 
               {/* Message */}
-              <div style={{ marginBottom: 20 }}>
-                <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#6666a0", marginBottom: 7, letterSpacing: "0.06em", textTransform: "uppercase" }}>What are you building? *</label>
-                <textarea required value={form.message} onChange={set("message")}
-                  placeholder="Tell me about your project — what it does, what AI problem you're solving, and any timeline or constraints..."
-                  rows={5}
-                  style={{ ...inp, resize: "vertical", lineHeight: 1.65 }}
-                  onFocus={e => (e.currentTarget.style.borderColor = "#7c3aed")}
-                  onBlur={e => (e.currentTarget.style.borderColor = "#1f1f40")} />
+              <div style={{ marginBottom: 18 }}>
+                <label style={lbl}>What are you building? *</label>
+                <textarea value={form.message} rows={4}
+                  onChange={e => setField("message", e.target.value)}
+                  onFocus={e => Object.assign(e.currentTarget.style, focusStyle)}
+                  onBlur={e => { blur("message"); Object.assign(e.currentTarget.style, blurStyle(!!errors.message)); }}
+                  placeholder="Tell me about your project — what it does, the AI problem you're solving, and any timeline or constraints..."
+                  style={{ ...inp(touched.message && !!errors.message), resize: "vertical", lineHeight: 1.65 }} />
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 5 }}>
+                  {touched.message && errors.message
+                    ? <span style={errSpan}>⚠ {errors.message}</span>
+                    : <span />}
+                  <span style={{ fontSize: 11, color: form.message.length > 9 ? "#3a3a60" : "#525270" }}>{form.message.length} chars</span>
+                </div>
               </div>
 
-              {/* Error */}
-              {status === "error" && (
-                <div style={{ marginBottom: 16, padding: "12px 16px", borderRadius: 10, background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", color: "#fca5a5", fontSize: 13 }}>
-                  {errorMsg || "Something went wrong."} Email me directly at{" "}
-                  <a href="mailto:codingwithhasnain@gmail.com" style={{ color: "#f87171" }}>codingwithhasnain@gmail.com</a>
+              {/* Server error */}
+              {status === "error" && serverError && (
+                <div style={{ marginBottom: 14, padding: "12px 14px", borderRadius: 10, background: "rgba(239,68,68,0.07)", border: "1px solid rgba(239,68,68,0.28)", color: "#fca5a5", fontSize: 13, lineHeight: 1.6 }}>
+                  {serverError}
                 </div>
               )}
 
-              {/* Submit */}
               <button type="submit" disabled={status === "sending"}
-                style={{
-                  width: "100%", padding: "14px", borderRadius: 12,
-                  background: status === "sending" ? "#4c2896" : "linear-gradient(135deg, #7c3aed, #a855f7)",
-                  color: "#fff", fontWeight: 700, fontSize: 16, border: "none",
-                  cursor: status === "sending" ? "not-allowed" : "pointer",
-                  fontFamily: "inherit", transition: "opacity 0.2s",
-                  boxShadow: "0 4px 20px rgba(124,58,237,0.35)",
-                }}>
+                style={{ width: "100%", padding: "14px", borderRadius: 12, background: status === "sending" ? "#3a1a70" : "linear-gradient(135deg, #7c3aed, #a855f7)", color: "#fff", fontWeight: 700, fontSize: 16, border: "none", cursor: status === "sending" ? "not-allowed" : "pointer", fontFamily: "inherit", boxShadow: "0 4px 24px rgba(124,58,237,0.4)", transition: "opacity 0.2s" }}>
                 {status === "sending" ? "Sending..." : "Send Message"}
               </button>
 
-              <p style={{ textAlign: "center", fontSize: 12, color: "#3a3a60", marginTop: 14 }}>
-                Or email directly:{" "}
-                <a href="mailto:codingwithhasnain@gmail.com" style={{ color: "#6666a0", textDecoration: "none" }}>
-                  codingwithhasnain@gmail.com
-                </a>
+              <p style={{ textAlign: "center", fontSize: 12, color: "#3a3a60", marginTop: 12 }}>
+                Or email: <a href="mailto:codingwithhasnain@gmail.com" style={{ color: "#525270", textDecoration: "none" }}>codingwithhasnain@gmail.com</a>
               </p>
             </form>
           )}
@@ -217,8 +259,9 @@ export default function ContactModal({ open, onClose }: Props) {
       </div>
 
       <style>{`
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: none; } }
+        @keyframes fcIn { from { opacity:0 } to { opacity:1 } }
+        @keyframes slUp { from { opacity:0; transform:translateY(18px) scale(0.97) } to { opacity:1; transform:none } }
+        input::placeholder, textarea::placeholder { color: #3a3a60; }
       `}</style>
     </>
   );
