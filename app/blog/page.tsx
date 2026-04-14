@@ -9,6 +9,15 @@ export const metadata: Metadata = {
 
 const POSTS = [
   {
+    href: "/blog/gcp-pubsub-ai-outreach",
+    tag: "System Design",
+    tagColor: "#f59e0b",
+    title: "117K Emails + 10K AI Calls in One Day: GCP Pub/Sub Architecture Deep Dive",
+    desc: "Full engineering breakdown — four-stage Pub/Sub pipeline, parallel Cloud Run workers, distributed rate limiting, idempotency guarantees, and BigQuery observability. How we processed 117K leads autonomously.",
+    date: "Apr 14, 2026",
+    read: "14 min",
+  },
+  {
     href: "/blog/agentic-ai-systems",
     tag: "System Design",
     tagColor: "#34d399",
