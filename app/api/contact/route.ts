@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const TO_EMAIL = "codingwithhasnain@gmail.com";
+const TO_EMAIL = process.env.CONTACT_EMAIL || "alihasnain.031350.pk@gmail.com";
 
 export const runtime = "nodejs";
 
@@ -85,8 +85,11 @@ export async function POST(req: NextRequest) {
     });
 
     if (error) {
-      console.error("Resend error:", error);
-      return NextResponse.json({ error: "Failed to send message. Please email directly." }, { status: 500 });
+      console.error("Resend error:", JSON.stringify(error));
+      return NextResponse.json(
+        { error: "Failed to send. Please email codingwithhasnain@gmail.com directly." },
+        { status: 500 },
+      );
     }
 
     return NextResponse.json({ success: true });
