@@ -53,6 +53,13 @@ export const metadata: Metadata = {
   verification: {
     google: "cCCtJPAlfgyqMLfVUEEs2ooa9gs4638LLziBBaU_JDo",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/favicon.svg",
+  },
 };
 
 /* ─── JSON-LD structured data ──────────────────────────────── */
