@@ -43,11 +43,11 @@ const JOBS = [
 
 export default function Experience() {
   return (
-    <section id="experience" aria-label="Work experience" style={{ padding: "100px 0", background: "#05050f", borderTop: "1px solid #1f1f40", borderBottom: "1px solid #1f1f40" }}>
-      <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px" }}>
+    <section id="experience" aria-label="Work experience" style={{ padding: "100px 0", background: "#050510", borderTop: "1px solid rgba(124,58,237,0.15)", borderBottom: "1px solid rgba(124,58,237,0.15)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 60 }}>
           <p style={{ color: "#7c3aed", fontSize: 11, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Career</p>
-          <h2 style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 900, color: "#eeeeff", marginBottom: 14, letterSpacing: "-0.03em" }}>Experience</h2>
+          <h2 className="section-heading" style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 900, color: "#eeeeff", marginBottom: 14 }}>Experience</h2>
           <p style={{ fontSize: 17, color: "#6666a0" }}>5+ years building production AI systems that scale.</p>
         </motion.div>
 
@@ -55,9 +55,9 @@ export default function Experience() {
           {JOBS.map((job, i) => (
             <motion.div key={job.company}
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-              <div style={{ borderRadius: 20, border: "1px solid #1f1f40", background: "linear-gradient(160deg, #0f0f22 0%, #0a0a18 100%)", padding: "28px 32px", transition: "border-color 0.3s" }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = `${job.color}40`)}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "#1f1f40")}>
+              <div className="glass-card" style={{ borderRadius: 20, padding: "28px 32px" }}
+                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = `${job.color}50`)}
+                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(124,58,237,0.15)")}>
                 <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 20 }}>
                   <div>
                     <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
@@ -67,7 +67,7 @@ export default function Experience() {
                     </div>
                     <p style={{ fontSize: 15, fontWeight: 600, color: job.color, paddingLeft: 22 }}>{job.company}</p>
                   </div>
-                  <span style={{ fontSize: 12, color: "#3a3a60", fontFamily: "monospace" }}>{job.period}</span>
+                  <span style={{ fontSize: 12, color: "#3a3a60", fontFamily: "'JetBrains Mono', monospace" }}>{job.period}</span>
                 </div>
 
                 <ul style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20, paddingLeft: 4 }}>
@@ -81,7 +81,7 @@ export default function Experience() {
 
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
                   {job.stack.map(t => (
-                    <span key={t} style={{ fontSize: 11, fontFamily: "monospace", padding: "4px 12px", borderRadius: 8, background: "rgba(255,255,255,0.03)", border: "1px solid #1f1f40", color: "#6666a0" }}>{t}</span>
+                    <span key={t} style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", padding: "4px 12px", borderRadius: 8, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.15)", color: "#6666a0" }}>{t}</span>
                   ))}
                 </div>
               </div>

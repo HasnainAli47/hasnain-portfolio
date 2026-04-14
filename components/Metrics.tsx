@@ -1,5 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
 
 const METRICS = [
   { value: "$2M+", label: "Revenue Generated", desc: "Autonomous AI outreach system" },
@@ -10,18 +11,106 @@ const METRICS = [
   { value: "5+", label: "Years in Production AI", desc: "Model design to deployment" },
 ];
 
+function CountUp({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [display, setDisplay] = useState(value);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!isInView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    const match = value.match(/^([^\d]*)(\d+)(.*)$/);
+    if (!match) return;
+
+    const prefix = match[1];
+    const target = parseInt(match[2]);
+    const suffix = match[3];
+    const duration = 2000;
+    const startTime = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(`${prefix}${Math.round(target * eased)}${suffix}`);
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  }, [isInView, value]);
+
+  return <span ref={ref}>{display}</span>;
+}
+
 export default function Metrics() {
   return (
-    <section aria-label="Key metrics" style={{ background: "linear-gradient(180deg, #0a0a1a 0%, #0d0d20 100%)", borderTop: "1px solid #1f1f40", borderBottom: "1px solid #1f1f40", padding: "60px 0" }}>
-      <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "32px 20px", textAlign: "center" }}>
+    <section
+      aria-label="Key metrics"
+      style={{
+        background: "linear-gradient(180deg, #0a0a1a 0%, #0d0d22 100%)",
+        borderTop: "1px solid rgba(124,58,237,0.15)",
+        borderBottom: "1px solid rgba(124,58,237,0.15)",
+        padding: "80px 0",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+            gap: "48px 24px",
+            textAlign: "center",
+          }}
+        >
           {METRICS.map((m, i) => (
-            <motion.div key={m.label}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-              <div className="text-gradient" style={{ fontSize: "clamp(30px, 4vw, 44px)", fontWeight: 900, marginBottom: 6, letterSpacing: "-0.03em" }}>{m.value}</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#eeeeff", marginBottom: 4 }}>{m.label}</div>
-              <div style={{ fontSize: 11, color: "#6666a0" }}>{m.desc}</div>
+            <motion.div
+              key={m.label}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              style={{ position: "relative" }}
+            >
+              {/* Radial gradient behind number */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: -20,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: 120,
+                  height: 80,
+                  borderRadius: "50%",
+                  background:
+                    "radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 70%)",
+                  pointerEvents: "none",
+                }}
+              />
+              <div
+                className="text-gradient"
+                style={{
+                  fontSize: "clamp(34px, 5vw, 50px)",
+                  fontWeight: 900,
+                  marginBottom: 8,
+                  letterSpacing: "-0.04em",
+                  position: "relative",
+                }}
+              >
+                <CountUp value={m.value} />
+              </div>
+              <div
+                style={{
+                  fontSize: 14,
+                  fontWeight: 700,
+                  color: "#eeeeff",
+                  marginBottom: 6,
+                }}
+              >
+                {m.label}
+              </div>
+              <div style={{ fontSize: 12, color: "#6666a0" }}>{m.desc}</div>
             </motion.div>
           ))}
         </div>

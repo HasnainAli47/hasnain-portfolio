@@ -11,11 +11,11 @@ const GROUPS = [
 
 export default function Skills() {
   return (
-    <section id="skills" aria-label="Technical skills" style={{ padding: "100px 0", background: "linear-gradient(180deg, #07071a 0%, #0a0a1e 100%)" }}>
-      <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px" }}>
+    <section id="skills" aria-label="Technical skills" style={{ padding: "100px 0", background: "linear-gradient(180deg, #070718 0%, #0a0a1e 100%)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 60 }}>
           <p style={{ color: "#7c3aed", fontSize: 11, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Toolkit</p>
-          <h2 style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 900, color: "#eeeeff", marginBottom: 14, letterSpacing: "-0.03em" }}>Skills and Stack</h2>
+          <h2 className="section-heading" style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 900, color: "#eeeeff", marginBottom: 14 }}>Skills and Stack</h2>
           <p style={{ fontSize: 17, color: "#6666a0" }}>Production-tested across healthcare, legal, real estate, and SaaS.</p>
         </motion.div>
 
@@ -23,9 +23,10 @@ export default function Skills() {
           {GROUPS.map((g, i) => (
             <motion.div key={g.label}
               initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
-              style={{ borderRadius: 18, border: "1px solid #1f1f40", background: "linear-gradient(160deg, #0f0f22 0%, #0a0a18 100%)", padding: "24px", transition: "border-color 0.3s" }}
+              className="glass-card"
+              style={{ borderRadius: 18, padding: "24px" }}
               onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = `${g.color}40`)}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "#1f1f40")}>
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(124,58,237,0.15)")}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
                 <div style={{ width: 4, height: 20, borderRadius: 2, background: `linear-gradient(180deg, ${g.color}, ${g.color}60)` }} />
                 <h3 style={{ fontSize: 14, fontWeight: 700, color: "#eeeeff" }}>{g.label}</h3>
@@ -41,7 +42,8 @@ export default function Skills() {
           {/* Education card */}
           <motion.div
             initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.35 }}
-            style={{ borderRadius: 18, border: "1px solid #1f1f40", background: "linear-gradient(160deg, #0f0f22 0%, #0a0a18 100%)", padding: "24px" }}>
+            className="glass-card"
+            style={{ borderRadius: 18, padding: "24px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
               <div style={{ width: 4, height: 20, borderRadius: 2, background: "#3a3a60" }} />
               <h3 style={{ fontSize: 14, fontWeight: 700, color: "#eeeeff" }}>Education</h3>

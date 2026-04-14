@@ -5,7 +5,7 @@ import { useContact } from "./ContactProvider";
 export default function Contact() {
   const { open } = useContact();
   return (
-    <section id="contact" aria-label="Contact Hasnain Ali" style={{ padding: "120px 0", background: "linear-gradient(180deg, #07071a 0%, #05050f 100%)", position: "relative", overflow: "hidden" }}>
+    <section id="contact" aria-label="Contact Hasnain Ali" style={{ padding: "120px 0", background: "linear-gradient(180deg, #070718 0%, #050510 100%)", position: "relative", overflow: "hidden" }}>
       {/* Background accent */}
       <div style={{ position: "absolute", bottom: "-10%", left: "50%", transform: "translateX(-50%)", width: 600, height: 400, borderRadius: "50%", background: "rgba(124,58,237,0.07)", filter: "blur(80px)", pointerEvents: "none" }} />
 
@@ -13,7 +13,7 @@ export default function Contact() {
         <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <p style={{ color: "#7c3aed", fontSize: 11, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 20 }}>Get In Touch</p>
 
-          <h2 style={{ fontSize: "clamp(38px, 8vw, 76px)", fontWeight: 900, color: "#eeeeff", letterSpacing: "-0.045em", lineHeight: 1.0, marginBottom: 24 }}>
+          <h2 className="section-heading" style={{ fontSize: "clamp(38px, 8vw, 76px)", fontWeight: 900, color: "#eeeeff", lineHeight: 1.0, marginBottom: 24 }}>
             Have a system
             <br />
             <span className="text-gradient">worth building?</span>
@@ -26,7 +26,7 @@ export default function Contact() {
           <p style={{ fontSize: 14, color: "#6666a0", marginBottom: 52 }}>Pakistan (UTC+5), available remote globally or open to relocation.</p>
 
           <button onClick={open}
-            style={{ display: "inline-flex", alignItems: "center", gap: 12, padding: "20px 44px", borderRadius: 18, background: "linear-gradient(135deg, #7c3aed, #a855f7)", color: "#fff", fontSize: "clamp(14px, 2.5vw, 18px)", fontWeight: 700, border: "none", cursor: "pointer", fontFamily: "inherit", boxShadow: "0 20px 60px rgba(124,58,237,0.4), 0 4px 16px rgba(0,0,0,0.3)", transition: "all 0.25s", marginBottom: 40 }}
+            style={{ display: "inline-flex", alignItems: "center", gap: 12, padding: "20px 44px", borderRadius: 18, background: "linear-gradient(135deg, #7c3aed, #a855f7)", color: "#fff", fontSize: "clamp(14px, 2.5vw, 18px)", fontWeight: 700, border: "none", cursor: "pointer", fontFamily: "inherit", boxShadow: "0 20px 60px rgba(124,58,237,0.4), 0 4px 16px rgba(0,0,0,0.3)", transition: "all 0.25s", marginBottom: 40, minHeight: 44 }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 28px 72px rgba(124,58,237,0.5), 0 4px 16px rgba(0,0,0,0.3)"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "none"; (e.currentTarget as HTMLElement).style.boxShadow = "0 20px 60px rgba(124,58,237,0.4), 0 4px 16px rgba(0,0,0,0.3)"; }}>
             Send Me a Message
@@ -42,9 +42,9 @@ export default function Contact() {
             ].map(l => (
               <a key={l.label} href={l.href}
                 target={l.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 20px", borderRadius: 12, border: "1px solid #1f1f40", background: "rgba(255,255,255,0.03)", color: "#6666a0", fontSize: 13, fontWeight: 500, textDecoration: "none", transition: "all 0.2s" }}
-                onMouseEnter={e => { e.currentTarget.style.color = "#eeeeff"; e.currentTarget.style.borderColor = "rgba(124,58,237,0.4)"; e.currentTarget.style.background = "rgba(124,58,237,0.08)"; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "#6666a0"; e.currentTarget.style.borderColor = "#1f1f40"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}>
+                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 20px", borderRadius: 12, border: "1px solid rgba(124,58,237,0.15)", background: "rgba(15,15,35,0.4)", color: "#6666a0", fontSize: 13, fontWeight: 500, textDecoration: "none", transition: "all 0.2s", minHeight: 44 }}
+                onMouseEnter={e => { e.currentTarget.style.color = "#eeeeff"; e.currentTarget.style.borderColor = "rgba(124,58,237,0.5)"; e.currentTarget.style.background = "rgba(124,58,237,0.08)"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "#6666a0"; e.currentTarget.style.borderColor = "rgba(124,58,237,0.15)"; e.currentTarget.style.background = "rgba(15,15,35,0.4)"; }}>
                 <span>{l.emoji}</span>{l.label}
               </a>
             ))}

@@ -12,7 +12,8 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main style={{ background: "#05050f", overflowX: "hidden" }}>
+    <main style={{ background: "#050510", overflowX: "hidden" }}>
+      <div className="glow-strip" />
       <Nav />
       <Hero />
       <Metrics />
