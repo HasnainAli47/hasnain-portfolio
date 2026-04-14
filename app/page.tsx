@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
 import Projects from "@/components/Projects";
+import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import OpenSource from "@/components/OpenSource";
@@ -21,6 +22,7 @@ export default function Home() {
         <Hero />
         <Metrics />
         <Projects />
+        <About />
         <Experience />
         <Skills />
         <OpenSource />
