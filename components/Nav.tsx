@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useContact } from "./ContactProvider";
 
 const links = [
   { href: "#projects", label: "Projects" },
@@ -11,6 +12,7 @@ const links = [
 ];
 
 export default function Nav() {
+  const { open } = useContact();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -44,12 +46,12 @@ export default function Nav() {
           ))}
         </div>
 
-        <a href="mailto:codingwithhasnain@gmail.com"
-          style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 18px", borderRadius: 10, background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.4)", color: "#c084fc", fontSize: 13, fontWeight: 600, textDecoration: "none", transition: "all 0.2s" }}
-          onMouseEnter={e => { e.currentTarget.style.background = "rgba(124,58,237,0.28)"; e.currentTarget.style.color = "#e9d5ff"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = "rgba(124,58,237,0.15)"; e.currentTarget.style.color = "#c084fc"; }}>
+        <button onClick={open}
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 18px", borderRadius: 10, background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.4)", color: "#c084fc", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s" }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(124,58,237,0.28)"; (e.currentTarget as HTMLElement).style.color = "#e9d5ff"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(124,58,237,0.15)"; (e.currentTarget as HTMLElement).style.color = "#c084fc"; }}>
           Hire Me
-        </a>
+        </button>
       </nav>
     </header>
   );

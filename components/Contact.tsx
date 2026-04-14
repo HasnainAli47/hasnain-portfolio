@@ -1,7 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
+import { useContact } from "./ContactProvider";
 
 export default function Contact() {
+  const { open } = useContact();
   return (
     <section id="contact" aria-label="Contact Hasnain Ali" style={{ padding: "120px 0", background: "linear-gradient(180deg, #07071a 0%, #05050f 100%)", position: "relative", overflow: "hidden" }}>
       {/* Background accent */}
@@ -23,13 +25,13 @@ export default function Contact() {
           </p>
           <p style={{ fontSize: 14, color: "#6666a0", marginBottom: 52 }}>Pakistan (UTC+5), available remote globally or open to relocation.</p>
 
-          <a href="mailto:codingwithhasnain@gmail.com"
-            style={{ display: "inline-flex", alignItems: "center", gap: 12, padding: "20px 44px", borderRadius: 18, background: "linear-gradient(135deg, #7c3aed, #a855f7)", color: "#fff", fontSize: "clamp(14px, 2.5vw, 18px)", fontWeight: 700, textDecoration: "none", boxShadow: "0 20px 60px rgba(124,58,237,0.4), 0 4px 16px rgba(0,0,0,0.3)", transition: "all 0.25s", marginBottom: 40 }}
-            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 28px 72px rgba(124,58,237,0.5), 0 4px 16px rgba(0,0,0,0.3)"; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(124,58,237,0.4), 0 4px 16px rgba(0,0,0,0.3)"; }}>
-            codingwithhasnain@gmail.com
+          <button onClick={open}
+            style={{ display: "inline-flex", alignItems: "center", gap: 12, padding: "20px 44px", borderRadius: 18, background: "linear-gradient(135deg, #7c3aed, #a855f7)", color: "#fff", fontSize: "clamp(14px, 2.5vw, 18px)", fontWeight: 700, border: "none", cursor: "pointer", fontFamily: "inherit", boxShadow: "0 20px 60px rgba(124,58,237,0.4), 0 4px 16px rgba(0,0,0,0.3)", transition: "all 0.25s", marginBottom: 40 }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 28px 72px rgba(124,58,237,0.5), 0 4px 16px rgba(0,0,0,0.3)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "none"; (e.currentTarget as HTMLElement).style.boxShadow = "0 20px 60px rgba(124,58,237,0.4), 0 4px 16px rgba(0,0,0,0.3)"; }}>
+            Send Me a Message
             <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </a>
+          </button>
 
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 12 }}>
             {[

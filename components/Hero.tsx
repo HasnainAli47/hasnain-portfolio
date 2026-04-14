@@ -1,9 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
+import { useContact } from "./ContactProvider";
 
 const TAGS = ["LLMs", "RAG / KAG", "LangGraph", "Agentic AI", "Python", "GCP", "LoRA / QLoRA"];
 
 export default function Hero() {
+  const { open } = useContact();
   return (
     <section
       aria-label="Introduction"
@@ -69,12 +71,12 @@ export default function Hero() {
               View My Work
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </a>
-            <a href="mailto:codingwithhasnain@gmail.com"
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "15px 30px", borderRadius: 14, border: "1px solid rgba(124,58,237,0.3)", background: "rgba(124,58,237,0.08)", color: "#eeeeff", fontWeight: 600, fontSize: 16, textDecoration: "none", transition: "all 0.2s" }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(124,58,237,0.6)"; e.currentTarget.style.background = "rgba(124,58,237,0.15)"; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(124,58,237,0.3)"; e.currentTarget.style.background = "rgba(124,58,237,0.08)"; }}>
+            <button onClick={open}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "15px 30px", borderRadius: 14, border: "1px solid rgba(124,58,237,0.3)", background: "rgba(124,58,237,0.08)", color: "#eeeeff", fontWeight: 600, fontSize: 16, fontFamily: "inherit", cursor: "pointer", transition: "all 0.2s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(124,58,237,0.6)"; (e.currentTarget as HTMLElement).style.background = "rgba(124,58,237,0.15)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(124,58,237,0.3)"; (e.currentTarget as HTMLElement).style.background = "rgba(124,58,237,0.08)"; }}>
               Get in Touch
-            </a>
+            </button>
             <a href="https://www.linkedin.com/in/hasnainali3/" target="_blank" rel="noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "15px 30px", borderRadius: 14, border: "1px solid #1f1f40", background: "rgba(255,255,255,0.03)", color: "#a8a8c8", fontWeight: 600, fontSize: 16, textDecoration: "none", transition: "all 0.2s" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = "#3b82f6"; e.currentTarget.style.color = "#eeeeff"; }}
