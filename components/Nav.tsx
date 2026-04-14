@@ -11,6 +11,7 @@ const links = [
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
@@ -20,32 +21,45 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-bg/90 backdrop-blur-md border-b border-border" : "bg-transparent"
-      }`}
+      style={{
+        position: "fixed",
+        top: 0, left: 0, right: 0,
+        zIndex: 50,
+        transition: "all 0.3s ease",
+        background: scrolled ? "rgba(8,8,16,0.92)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid #1e1e2e" : "1px solid transparent",
+      }}
     >
-      <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="font-bold text-lg tracking-tight">
+      <nav style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <a href="#" style={{ fontWeight: 700, fontSize: 18, letterSpacing: "-0.02em", textDecoration: "none" }}>
           <span className="text-gradient">Hasnain Ali</span>
         </a>
-        <div className="hidden md:flex items-center gap-8">
+
+        {/* Desktop links */}
+        <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden-mobile">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-text-muted hover:text-text transition-colors duration-200"
-            >
+            <a key={l.href} href={l.href} style={{ fontSize: 14, color: "#8b8fa8", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#f0f0ff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#8b8fa8")}>
               {l.label}
             </a>
           ))}
         </div>
-        <a
-          href="mailto:codingwithhasnain@gmail.com"
-          className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 border border-accent/30 text-accent text-sm font-medium hover:bg-accent/20 transition-all duration-200"
-        >
+
+        <a href="mailto:codingwithhasnain@gmail.com"
+          style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", borderRadius: 10, background: "rgba(124,58,237,0.12)", border: "1px solid rgba(124,58,237,0.35)", color: "#a855f7", fontSize: 14, fontWeight: 500, textDecoration: "none", transition: "all 0.2s" }}
+          onMouseEnter={e => (e.currentTarget.style.background = "rgba(124,58,237,0.22)")}
+          onMouseLeave={e => (e.currentTarget.style.background = "rgba(124,58,237,0.12)")}>
           Hire Me
         </a>
       </nav>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hidden-mobile { display: none !important; }
+        }
+      `}</style>
     </header>
   );
 }

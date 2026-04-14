@@ -3,91 +3,70 @@ import { motion } from "framer-motion";
 
 const FACTS = [
   { icon: "🌍", text: "Islamabad, Pakistan — working remote globally" },
-  { icon: "⏱", text: "UTC+5 — fully available for EST, CST, GMT overlap" },
+  { icon: "⏱", text: "UTC+5 — available for EST, CST, GMT overlap" },
   { icon: "🧩", text: "Led 14 engineers, from zero to $2M+ product" },
   { icon: "📦", text: "Published open-source packages on PyPI" },
-  { icon: "🎓", text: "CS graduate with active research (LUMS KADE Lab)" },
+  { icon: "🎓", text: "CS graduate + active research at LUMS KADE Lab" },
   { icon: "🤝", text: "18+ US/UK clients across healthcare, legal, real estate" },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-24 border-y border-border bg-surface/10">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-accent text-sm font-semibold tracking-widest uppercase mb-3">About</p>
-            <h2 className="text-4xl md:text-5xl font-black text-text mb-6">
-              Not just an AI engineer.
-              <br />
+    <section id="about" style={{ padding: "96px 0", borderTop: "1px solid #1e1e2e", borderBottom: "1px solid #1e1e2e", background: "rgba(15,15,26,0.3)" }}>
+      <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 64, alignItems: "center" }}>
+
+          {/* Left — text */}
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+            <p style={{ color: "#7c3aed", fontSize: 12, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 12 }}>About</p>
+            <h2 style={{ fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 900, color: "#f0f0ff", marginBottom: 24, letterSpacing: "-0.03em", lineHeight: 1.15 }}>
+              Not just an AI engineer.{" "}
               <span className="text-gradient">A builder.</span>
             </h2>
-            <div className="space-y-5 text-text-muted leading-relaxed">
-              <p className="text-lg">
-                I started 2ndPlace from scratch — no investors, no team. Recruited 14 engineers, built a travel platform
-                with 15,000+ global listings, and shipped it. That experience taught me that the gap between&nbsp;
-                <em className="text-text">good code</em> and&nbsp;
-                <em className="text-text">good product</em> is everything.
+            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+              <p style={{ fontSize: 17, color: "#8b8fa8", lineHeight: 1.75 }}>
+                I started 2ndPlace from scratch — no investors, no team. Recruited 14 engineers, built a travel platform with 15,000+ global listings, and shipped it. That experience taught me the gap between{" "}
+                <em style={{ color: "#f0f0ff", fontStyle: "normal", fontWeight: 500 }}>good code</em> and{" "}
+                <em style={{ color: "#f0f0ff", fontStyle: "normal", fontWeight: 500 }}>good product</em> is everything.
               </p>
-              <p>
-                Since then I&apos;ve worked on enterprise-grade AI for law firms, healthcare SaaS, and autonomous sales systems.
-                I focus on things that actually work under real conditions — not demos, not toys.
+              <p style={{ fontSize: 15, color: "#8b8fa8", lineHeight: 1.75 }}>
+                Since then I&apos;ve worked on enterprise-grade AI for law firms, healthcare SaaS, and autonomous sales systems. I focus on things that actually work under real conditions — not demos, not toys.
               </p>
-              <p>
-                I prefer async-first teams, challenging technical problems, and founders who care about ROI.
-                If you need someone who can sit in a war room and ship under pressure, I&apos;m that person.
+              <p style={{ fontSize: 15, color: "#8b8fa8", lineHeight: 1.75 }}>
+                I prefer async-first teams, hard problems, and founders who care about ROI. If you need someone who can sit in a war room and ship under pressure, I&apos;m that person.
               </p>
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
-            <div className="grid grid-cols-1 gap-3">
+          {/* Right — facts + links */}
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
               {FACTS.map((fact, i) => (
-                <motion.div
-                  key={fact.text}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 + i * 0.05 }}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-border bg-surface hover:border-accent/30 transition-colors duration-200"
-                >
-                  <span className="text-xl w-8 flex-shrink-0">{fact.icon}</span>
-                  <span className="text-sm text-text-muted">{fact.text}</span>
+                <motion.div key={fact.text}
+                  initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.05 }}
+                  style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 18px", borderRadius: 12, border: "1px solid #1e1e2e", background: "#0f0f1a", transition: "border-color 0.2s" }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(124,58,237,0.3)")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "#1e1e2e")}>
+                  <span style={{ fontSize: 18, flexShrink: 0 }}>{fact.icon}</span>
+                  <span style={{ fontSize: 13, color: "#8b8fa8" }}>{fact.text}</span>
                 </motion.div>
               ))}
             </div>
 
-            {/* CTA cards */}
-            <div className="grid grid-cols-2 gap-3 mt-6">
-              <a
-                href="https://www.linkedin.com/in/hasnainali3/"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex flex-col items-center justify-center p-5 rounded-xl border border-border bg-surface hover:border-blue-500/40 hover:bg-blue-500/5 transition-all duration-200 text-center"
-              >
-                <span className="text-2xl mb-2">🔗</span>
-                <span className="text-sm font-semibold text-text group-hover:text-blue-400 transition-colors">LinkedIn</span>
-                <span className="text-xs text-text-dim mt-0.5">hasnainali3</span>
-              </a>
-              <a
-                href="https://github.com/HasnainAli47"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex flex-col items-center justify-center p-5 rounded-xl border border-border bg-surface hover:border-accent/40 hover:bg-accent/5 transition-all duration-200 text-center"
-              >
-                <span className="text-2xl mb-2">⌥</span>
-                <span className="text-sm font-semibold text-text group-hover:text-accent transition-colors">GitHub</span>
-                <span className="text-xs text-text-dim mt-0.5">HasnainAli47</span>
-              </a>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              {[
+                { href: "https://www.linkedin.com/in/hasnainali3/", emoji: "🔗", label: "LinkedIn", sub: "hasnainali3", hoverColor: "#3b82f6" },
+                { href: "https://github.com/HasnainAli47", emoji: "⌥", label: "GitHub", sub: "HasnainAli47", hoverColor: "#7c3aed" },
+              ].map(link => (
+                <a key={link.label} href={link.href} target="_blank" rel="noreferrer"
+                  style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "20px 16px", borderRadius: 14, border: "1px solid #1e1e2e", background: "#0f0f1a", textDecoration: "none", textAlign: "center", transition: "all 0.2s" }}
+                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = link.hoverColor + "50"; el.style.background = link.hoverColor + "08"; }}
+                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "#1e1e2e"; el.style.background = "#0f0f1a"; }}>
+                  <span style={{ fontSize: 24, marginBottom: 8 }}>{link.emoji}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "#f0f0ff" }}>{link.label}</span>
+                  <span style={{ fontSize: 11, color: "#525270", marginTop: 2 }}>{link.sub}</span>
+                </a>
+              ))}
             </div>
           </motion.div>
         </div>

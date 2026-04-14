@@ -3,87 +3,146 @@ import { motion } from "framer-motion";
 
 const TAGS = ["LLMs", "RAG & KAG", "Agentic AI", "LangGraph", "Python", "GCP", "LoRA/QLoRA"];
 
+const s = {
+  section: {
+    position: "relative" as const,
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column" as const,
+    justifyContent: "center",
+    paddingTop: 64,
+  },
+  inner: {
+    maxWidth: 1152,
+    margin: "0 auto",
+    padding: "96px 24px",
+  },
+  badge: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    padding: "6px 16px",
+    borderRadius: 999,
+    border: "1px solid rgba(34,197,94,0.3)",
+    background: "rgba(34,197,94,0.05)",
+    marginBottom: 32,
+  },
+  badgeDot: {
+    width: 8,
+    height: 8,
+    borderRadius: "50%",
+    background: "#4ade80",
+    animation: "pulse 2s ease-in-out infinite",
+  },
+  badgeText: {
+    color: "#4ade80",
+    fontSize: 13,
+    fontWeight: 500,
+  },
+  h1: {
+    fontSize: "clamp(52px, 10vw, 96px)",
+    fontWeight: 900,
+    letterSpacing: "-0.04em",
+    lineHeight: 1,
+    marginBottom: 24,
+  },
+  sub: {
+    fontSize: "clamp(16px, 2.5vw, 22px)",
+    color: "#8b8fa8",
+    maxWidth: 640,
+    lineHeight: 1.65,
+    marginBottom: 16,
+  },
+  impact: {
+    fontSize: 17,
+    color: "#525270",
+    marginBottom: 40,
+  },
+  tagsWrap: {
+    display: "flex",
+    flexWrap: "wrap" as const,
+    gap: 8,
+    marginBottom: 48,
+  },
+  tag: {
+    padding: "4px 14px",
+    fontSize: 12,
+    fontFamily: "monospace",
+    borderRadius: 999,
+    background: "#0f0f1a",
+    border: "1px solid #1e1e2e",
+    color: "#8b8fa8",
+  },
+  ctaRow: {
+    display: "flex",
+    flexWrap: "wrap" as const,
+    gap: 16,
+  },
+};
+
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center pt-16">
-      <div className="max-w-6xl mx-auto px-6 py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        >
-          {/* Availability badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-green-500/30 bg-green-500/5 mb-8">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-sm font-medium">Available for contracts &amp; full-time roles</span>
+    <section style={s.section}>
+      <div style={s.inner}>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+
+          <div style={s.badge}>
+            <span style={s.badgeDot} />
+            <span style={s.badgeText}>Available for contracts &amp; full-time roles</span>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6">
-            <span className="text-text">Senior</span>
+          <h1 style={s.h1}>
+            <span style={{ color: "#f0f0ff" }}>Senior</span>
             <br />
             <span className="text-gradient">AI Engineer.</span>
           </h1>
 
-          {/* Sub-headline */}
-          <p className="text-xl md:text-2xl text-text-muted max-w-2xl leading-relaxed mb-4">
+          <p style={s.sub}>
             I build{" "}
-            <span className="text-text font-medium">production-grade LLM and agentic systems</span>{" "}
+            <strong style={{ color: "#f0f0ff", fontWeight: 600 }}>production-grade LLM and agentic systems</strong>{" "}
             that ship under pressure — from architecture to scaled deployment.
           </p>
 
-          {/* Impact line */}
-          <p className="text-lg text-text-dim mb-10">
-            Systems I&apos;ve built have processed{" "}
-            <span className="text-accent font-semibold">117K+ automated interactions</span> and generated{" "}
-            <span className="text-accent font-semibold">$2M+ in annual revenue.</span>
+          <p style={s.impact}>
+            Systems I&apos;ve built processed{" "}
+            <strong style={{ color: "#a855f7" }}>117K+ automated interactions</strong> and generated{" "}
+            <strong style={{ color: "#a855f7" }}>$2M+ in annual revenue.</strong>
           </p>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-12">
+          <div style={s.tagsWrap}>
             {TAGS.map((t) => (
-              <span key={t} className="px-3 py-1 text-xs font-mono rounded-full bg-surface border border-border text-text-muted">
-                {t}
-              </span>
+              <span key={t} style={s.tag}>{t}</span>
             ))}
           </div>
 
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-white font-semibold text-base hover:bg-accent-light transition-all duration-200 shadow-lg shadow-accent/30"
-            >
+          <div style={s.ctaRow}>
+            <a href="#projects"
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 12, background: "#7c3aed", color: "#fff", fontWeight: 700, fontSize: 16, textDecoration: "none", boxShadow: "0 8px 32px rgba(124,58,237,0.35)", transition: "all 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.background = "#a855f7")}
+              onMouseLeave={e => (e.currentTarget.style.background = "#7c3aed")}>
               View My Work
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 8h10M9 4l4 4-4 4"/>
-              </svg>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </a>
-            <a
-              href="mailto:codingwithhasnain@gmail.com"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-border bg-surface text-text font-semibold text-base hover:border-accent/50 hover:bg-surface/80 transition-all duration-200"
-            >
+            <a href="mailto:codingwithhasnain@gmail.com"
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 12, border: "1px solid #1e1e2e", background: "#0f0f1a", color: "#f0f0ff", fontWeight: 600, fontSize: 16, textDecoration: "none", transition: "all 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(124,58,237,0.5)"; e.currentTarget.style.background = "#141420"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "#1e1e2e"; e.currentTarget.style.background = "#0f0f1a"; }}>
               Get in Touch
             </a>
-            <a
-              href="https://www.linkedin.com/in/hasnainali3/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-border bg-surface text-text font-semibold text-base hover:border-accent/50 transition-all duration-200"
-            >
-              LinkedIn
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M8 2H14V8M14 2L6 10M3 5H1V15H11V13"/>
-              </svg>
+            <a href="https://www.linkedin.com/in/hasnainali3/" target="_blank" rel="noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 12, border: "1px solid #1e1e2e", background: "#0f0f1a", color: "#f0f0ff", fontWeight: 600, fontSize: 16, textDecoration: "none", transition: "all 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(124,58,237,0.5)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "#1e1e2e"; }}>
+              LinkedIn ↗
             </a>
           </div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <span className="text-xs text-text-dim">scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-text-dim to-transparent" />
+      {/* Scroll hint */}
+      <div style={{ position: "absolute", bottom: 40, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, opacity: 0.35 }}>
+        <span style={{ fontSize: 11, color: "#525270", letterSpacing: "0.1em" }}>SCROLL</span>
+        <div style={{ width: 1, height: 40, background: "linear-gradient(to bottom, #525270, transparent)" }} />
       </div>
     </section>
   );

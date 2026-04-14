@@ -12,12 +12,13 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-bg overflow-x-hidden">
-      {/* Global hero glow */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-gradient-radial from-accent/10 via-accent/3 to-transparent rounded-full blur-3xl" />
-      </div>
-      <div className="relative z-10">
+    <main style={{ position: "relative", minHeight: "100vh", background: "#080810", overflowX: "hidden" }}>
+      {/* Background glow */}
+      <div style={{
+        position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0,
+        background: "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,0.12) 0%, transparent 60%)",
+      }} />
+      <div style={{ position: "relative", zIndex: 1 }}>
         <Nav />
         <Hero />
         <Metrics />
