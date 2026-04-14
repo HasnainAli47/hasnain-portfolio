@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "https://hasnainali.vercel.app" },
   category: "technology",
+  verification: {
+    google: "cCCtJPAlfgyqMLfVUEEs2ooa9gs4638LLziBBaU_JDo",
+  },
 };
 
 /* ─── JSON-LD structured data ──────────────────────────────── */
