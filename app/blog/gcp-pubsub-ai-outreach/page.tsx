@@ -93,8 +93,8 @@ export default function GcpPubSubPost() {
 
         {/* Abstract */}
         <div style={s.callout("#7c3aed")}>
-          <p style={{ ...s.p, marginBottom: 0, color: "#c084fc", fontWeight: 500 }}>
-            <strong style={{ color: "#eeeeff" }}>TL;DR:</strong> This post is a detailed engineering breakdown of the AI outreach infrastructure I built at Speculo.ai. The system processed 117K+ leads, generated personalised emails and call scripts using LLMs, and dispatched everything autonomously using a four-stage GCP Pub/Sub pipeline with parallel Cloud Run workers. No humans in the loop. $2M+ in attributed revenue. This is exactly how it works.
+          <p style={{ ...s.p, marginBottom: 0, color: "#c084fc", lineHeight: 1.75 }}>
+            This is a detailed engineering breakdown of the AI outreach infrastructure I built at Speculo.ai. The system processed 117K+ leads, generated personalised emails and call scripts using LLMs, and dispatched everything autonomously using a four-stage GCP Pub/Sub pipeline with parallel Cloud Run workers. No humans in the loop. $2M+ in attributed revenue. This is exactly how it works.
           </p>
         </div>
 
