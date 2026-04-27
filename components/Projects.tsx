@@ -1,7 +1,19 @@
 "use client";
 import { motion } from "framer-motion";
 
-const PROJECTS = [
+type Project = {
+  title: string;
+  tagline: string;
+  result: string;
+  description: string;
+  impact: string[];
+  stack: string[];
+  live: string | null;
+  liveLabel?: string;
+  accent: string;
+};
+
+const PROJECTS: Project[] = [
   {
     title: "Speculo.ai",
     tagline: "Autonomous AI Outreach System",
@@ -11,6 +23,17 @@ const PROJECTS = [
     stack: ["Python", "LangGraph", "OpenAI", "Twilio", "ElevenLabs", "HubSpot", "GCP", "pgvector"],
     live: "https://speculo.ai",
     accent: "#7c3aed",
+  },
+  {
+    title: "Brightly Family Dental",
+    tagline: "AI Receptionist for Healthcare",
+    result: "Live Demo",
+    description: "End to end AI receptionist for a dental practice. Handles inbound calls, outbound callbacks, reminders, and follow ups. Sends SMS, email, and calendar invites directly to patients. Routes anything it does not know to a human staff member instead of fabricating an answer.",
+    impact: ["Inbound and outbound voice calls with natural conversation", "SMS, email, and calendar invites in one pipeline", "Pre appointment check ins to reduce no shows", "Routes unknown queries to human staff instead of hallucinating"],
+    stack: ["Python", "LangGraph", "Twilio", "ElevenLabs", "OpenAI", "Calendar APIs"],
+    live: "https://www.linkedin.com/posts/hasnainali3_aiautomation-voiceai-aiagents-ugcPost-7454493971289980929-ORrZ",
+    liveLabel: "Watch Demo",
+    accent: "#06b6d4",
   },
   {
     title: "Smart Advocate",
@@ -44,7 +67,7 @@ const PROJECTS = [
   },
 ];
 
-function Card({ p, i }: { p: (typeof PROJECTS)[0]; i: number }) {
+function Card({ p, i }: { p: Project; i: number }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -158,7 +181,7 @@ function Card({ p, i }: { p: (typeof PROJECTS)[0]; i: number }) {
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
-              Live Site
+              {p.liveLabel ?? "Live Site"}
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M8 2H14V8M14 2L6 10M3 5H1V15H11V13" />
               </svg>
