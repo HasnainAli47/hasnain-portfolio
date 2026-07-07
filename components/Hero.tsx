@@ -1,120 +1,115 @@
 "use client";
-import { useEffect, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useContact } from "./ContactProvider";
 import Magnetic from "./Magnetic";
-import LivePipeline from "./LivePipeline";
+import VelocityMarquee from "./VelocityMarquee";
 
-/* Kinetic word — cycles through what his systems actually do */
-const WORDS = ["makes money.", "answers calls.", "closes deals.", "reads case files.", "ships itself."];
-
-function Rotator() {
-  const reduced = useReducedMotion();
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    if (reduced) return;
-    const id = setInterval(() => setI(v => (v + 1) % WORDS.length), 2600);
-    return () => clearInterval(id);
-  }, [reduced]);
+/* Line-mask reveal: each line rises out of a clipped container. */
+function Line({ children, delay, className, style }: { children: React.ReactNode; delay: number; className?: string; style?: React.CSSProperties }) {
   return (
-    <span className="rotator" style={{ color: "var(--signal)" }}>
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
-          key={WORDS[i]}
-          initial={{ y: "105%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "-105%" }}
-          transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
-          style={{ display: "inline-block", whiteSpace: "nowrap" }}
-        >
-          {WORDS[i]}
-        </motion.span>
-      </AnimatePresence>
+    <span style={{ display: "block", overflow: "hidden", ...style }}>
+      <motion.span
+        initial={{ y: "112%" }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1, delay, ease: [0.76, 0, 0.24, 1] }}
+        className={className}
+        style={{ display: "block" }}
+      >
+        {children}
+      </motion.span>
     </span>
   );
 }
 
-const rise = (delay: number) => ({
-  initial: { opacity: 0, y: 32 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
-});
+const TICKER = ["AGENTIC AI", "VOICE AI", "RAG / KAG", "LANGGRAPH", "LLM PIPELINES", "NEO4J GRAPH AI", "LORA FINE-TUNING", "MCP"];
 
 export default function Hero() {
   const { open } = useContact();
   const { scrollY } = useScroll();
-  const yType = useTransform(scrollY, [0, 600], [0, -60]);
-  const yPanel = useTransform(scrollY, [0, 600], [0, 40]);
+  /* staggered scrub: each line leaves at its own speed → depth */
+  const y1 = useTransform(scrollY, [0, 800], [0, -140]);
+  const y2 = useTransform(scrollY, [0, 800], [0, -260]);
+  const y3 = useTransform(scrollY, [0, 800], [0, -400]);
+  const fade = useTransform(scrollY, [0, 520], [1, 0]);
 
   return (
-    <section aria-label="Introduction" style={{ position: "relative", minHeight: "100svh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 92 }}>
-      {/* backdrop: engineering grid + heat glow */}
+    <section aria-label="Introduction" style={{ position: "relative", minHeight: "100svh", display: "flex", flexDirection: "column", justifyContent: "flex-end", overflow: "hidden", paddingTop: 100 }}>
+      {/* engineering grid backdrop */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
         backgroundImage: "linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px)",
-        backgroundSize: "72px 72px", opacity: 0.28,
-        maskImage: "radial-gradient(ellipse 85% 70% at 50% 20%, #000 20%, transparent 75%)",
-        WebkitMaskImage: "radial-gradient(ellipse 85% 70% at 50% 20%, #000 20%, transparent 75%)",
+        backgroundSize: "72px 72px", opacity: 0.25,
+        maskImage: "radial-gradient(ellipse 90% 75% at 50% 30%, #000 15%, transparent 78%)",
+        WebkitMaskImage: "radial-gradient(ellipse 90% 75% at 50% 30%, #000 15%, transparent 78%)",
       }} />
       <div aria-hidden style={{
-        position: "absolute", top: "-20%", right: "-10%", width: 640, height: 640, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(255,92,31,0.09), transparent 65%)", filter: "blur(40px)", pointerEvents: "none",
-      }} />
-      <div aria-hidden style={{
-        position: "absolute", bottom: "-25%", left: "-8%", width: 520, height: 520, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(255,197,61,0.06), transparent 65%)", filter: "blur(40px)", pointerEvents: "none",
+        position: "absolute", top: "-18%", right: "-12%", width: 700, height: 700, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(255,92,31,0.1), transparent 62%)", filter: "blur(46px)", pointerEvents: "none",
       }} />
 
-      <div className="wrap" style={{ position: "relative", zIndex: 1, width: "100%", padding: "48px 28px 72px" }}>
-        <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1.12fr 0.88fr", gap: 72, alignItems: "center" }}>
+      <motion.div className="wrap" style={{ position: "relative", zIndex: 1, width: "100%", opacity: fade, paddingBottom: 26 }}>
+        {/* status row */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.6 }}
+          style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: "clamp(22px, 3.5vh, 40px)", flexWrap: "wrap" }}
+        >
+          <span className="eyebrow">Senior AI Engineer · 6 yrs · Islamabad → worldwide</span>
+          <span className="mono" style={{
+            display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, color: "var(--mint)",
+            border: "1px solid rgba(72,229,178,0.3)", background: "rgba(72,229,178,0.05)",
+            padding: "5px 12px", borderRadius: 999, letterSpacing: "0.08em",
+          }}>
+            <span className="live-dot" /> OPEN FOR WORK
+          </span>
+        </motion.div>
 
-          {/* LEFT — kinetic type */}
-          <motion.div style={{ y: yType }}>
-            <motion.div {...rise(0.05)} style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 34, flexWrap: "wrap" }}>
-              <span className="eyebrow">Senior AI Engineer</span>
-              <span className="mono" style={{
-                display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, color: "var(--mint)",
-                border: "1px solid rgba(72,229,178,0.3)", background: "rgba(72,229,178,0.05)",
-                padding: "5px 12px", borderRadius: 999, letterSpacing: "0.08em",
-              }}>
-                <span className="live-dot" />
-                OPEN FOR CONTRACTS &amp; FULL-TIME
-              </span>
-            </motion.div>
+        {/* the statement — three lines, three scroll speeds */}
+        <h1 className="display" style={{ fontSize: "clamp(72px, 15.5vw, 220px)", lineHeight: 0.88, letterSpacing: "-0.04em", marginBottom: "clamp(26px, 4vh, 44px)", textTransform: "uppercase" }}>
+          <motion.span style={{ y: y1, display: "block" }}>
+            <Line delay={0.35}>AI that</Line>
+          </motion.span>
+          <motion.span style={{ y: y2, display: "block" }}>
+            <Line delay={0.47} className="outline-text">makes</Line>
+          </motion.span>
+          <motion.span style={{ y: y3, display: "block" }}>
+            <Line delay={0.59} style={{ paddingBottom: "0.08em" }}>
+              <span style={{ color: "var(--signal)" }}>money</span>
+              <sup className="mono" style={{ fontSize: "0.14em", color: "var(--ink-3)", letterSpacing: "0.1em", verticalAlign: "super", marginLeft: "0.15em" }}>[$2M+ ARR]</sup>
+            </Line>
+          </motion.span>
+        </h1>
 
-            <motion.h1 {...rise(0.15)} className="display" style={{ fontSize: "clamp(52px, 8.5vw, 104px)", marginBottom: 34 }}>
-              <span style={{ display: "block" }}>I build AI</span>
-              <span className="outline-text" style={{ display: "block" }}>that actually</span>
-              <span style={{ display: "block" }}><Rotator /></span>
-            </motion.h1>
-
-            <motion.p {...rise(0.28)} style={{ fontSize: "clamp(16px, 2vw, 19px)", color: "var(--ink-2)", maxWidth: 560, lineHeight: 1.75, marginBottom: 40 }}>
-              Agentic systems, LLM pipelines, and voice AI — architected, shipped, and running in production.
-              My systems have sent <strong style={{ color: "var(--ink)" }}>117K+ automated interactions</strong> and
-              generated <strong style={{ color: "var(--ink)" }}>$2M+ in annual revenue</strong>. Not demos. Deployments.
-            </motion.p>
-
-            <motion.div {...rise(0.4)} style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
-              <Magnetic><a href="#work" className="btn btn-signal">See the systems ↓</a></Magnetic>
-              <Magnetic><button onClick={open} className="btn btn-line">Start a conversation</button></Magnetic>
-            </motion.div>
-          </motion.div>
-
-          {/* RIGHT — live mission console */}
-          <motion.div className="hide-mobile" style={{ y: yPanel }}>
-            <LivePipeline />
+        {/* sub + CTAs */}
+        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 28, alignItems: "end", marginBottom: "clamp(30px, 5vh, 54px)" }}>
+          <motion.p
+            initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.85, duration: 0.6 }}
+            style={{ fontSize: "clamp(15px, 1.8vw, 18px)", color: "var(--ink-2)", maxWidth: 520, lineHeight: 1.75 }}
+          >
+            Autonomous systems — architected, shipped, and running in production for
+            healthcare, legal, and SaaS teams across the US &amp; UK. Not demos. Deployments.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.95, duration: 0.6 }}
+            style={{ display: "flex", gap: 14, flexWrap: "wrap" }}
+          >
+            <Magnetic><a href="#work" className="btn btn-signal">The proof ↓</a></Magnetic>
+            <Magnetic><button onClick={open} className="btn btn-line">Hire me</button></Magnetic>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* scroll cue */}
+      {/* velocity ticker — scroll fast and watch it whip */}
       <motion.div
-        aria-hidden
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}
-        className="mono hide-mobile"
-        style={{ position: "absolute", bottom: 26, left: "50%", transform: "translateX(-50%)", fontSize: 10, letterSpacing: "0.3em", color: "var(--ink-3)" }}
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.15 }}
+        style={{ borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", padding: "16px 0", background: "var(--bg-1)", position: "relative", zIndex: 1 }}
       >
-        SCROLL ▾
+        <VelocityMarquee baseVelocity={2.2}>
+          {TICKER.map(t => (
+            <span key={t} className="mono" style={{ fontSize: 13, letterSpacing: "0.18em", color: "var(--ink-2)", padding: "0 30px", display: "inline-flex", alignItems: "center", gap: 30 }}>
+              {t} <span style={{ color: "var(--signal)" }}>✦</span>
+            </span>
+          ))}
+        </VelocityMarquee>
       </motion.div>
     </section>
   );

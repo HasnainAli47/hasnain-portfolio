@@ -1,10 +1,15 @@
 "use client";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useContact } from "./ContactProvider";
 import Magnetic from "./Magnetic";
 
 export default function Contact() {
   const { open } = useContact();
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
+  const scale = useTransform(scrollYProgress, [0, 1], [0.72, 1]);
+  const rot = useTransform(scrollYProgress, [0, 1], [3, 0]);
   return (
     <section id="contact" aria-label="Contact Hasnain Ali" className="section"
       style={{ borderTop: "1px solid var(--line)", position: "relative", overflow: "hidden", background: "var(--bg-1)" }}>
@@ -14,7 +19,8 @@ export default function Contact() {
         background: "radial-gradient(circle, rgba(255,92,31,0.1), transparent 65%)", filter: "blur(50px)", pointerEvents: "none",
       }} />
 
-      <div className="wrap" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
+      <div ref={ref} className="wrap" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
+        <motion.div style={{ scale, rotate: rot }}>
         <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="eyebrow" style={{ justifyContent: "center" }}>06 — Transmission</span>
           <h2 className="display" style={{ fontSize: "clamp(56px, 11vw, 150px)", margin: "26px 0 8px", lineHeight: 0.92 }}>
@@ -49,6 +55,7 @@ export default function Contact() {
               </a>
             ))}
           </div>
+        </motion.div>
         </motion.div>
       </div>
     </section>
