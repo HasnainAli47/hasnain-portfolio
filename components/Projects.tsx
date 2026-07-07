@@ -124,9 +124,8 @@ function Panel({ p, i }: { p: Project; i: number }) {
 
 export default function Projects() {
   const driver = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: driver, offset: ["start start", "end end"] });
-  const x = useTransform(scrollYProgress, [0, 1], ["2vw", `-${PROJECTS.length * 86 - 92}vw`]);
-  const barScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   /* mobile / reduced-motion: plain vertical list */
   const [flat, setFlat] = useState(false);
@@ -137,6 +136,27 @@ export default function Projects() {
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  /* Measure the real horizontal travel so the pan ends exactly when the
+     last panel reaches the right edge — no empty space, no overshoot. */
+  const [distance, setDistance] = useState(0);
+  useEffect(() => {
+    if (flat) { setDistance(0); return; }
+    const measure = () => {
+      const el = track.current;
+      if (!el) return;
+      setDistance(Math.max(0, el.scrollWidth - window.innerWidth));
+    };
+    measure();
+    const settle = setTimeout(measure, 300); // re-measure after fonts/layout settle
+    const ro = new ResizeObserver(measure);
+    if (track.current) ro.observe(track.current);
+    window.addEventListener("resize", measure);
+    return () => { clearTimeout(settle); ro.disconnect(); window.removeEventListener("resize", measure); };
+  }, [flat]);
+
+  const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
+  const barScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <section id="work">
@@ -163,9 +183,9 @@ export default function Projects() {
           ))}
         </div>
       ) : (
-        <div ref={driver} style={{ height: `${PROJECTS.length * 105}vh`, position: "relative" }}>
+        <div ref={driver} style={{ height: `calc(100vh + ${distance}px)`, position: "relative" }}>
           <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
-            <motion.div style={{ x, display: "flex", gap: "4vw", paddingLeft: "2vw" }}>
+            <motion.div ref={track} style={{ x, display: "flex", gap: "4vw", paddingLeft: "2vw", paddingRight: "2vw" }}>
               {PROJECTS.map((p, i) => <Panel key={p.title} p={p} i={i} />)}
             </motion.div>
 

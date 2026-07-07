@@ -17,7 +17,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <SmoothScroll>
-      <main style={{ background: "var(--bg)", overflowX: "hidden" }}>
+      <main style={{ background: "var(--bg)", overflowX: "clip" }}>
         <Preloader />
         <Cursor />
         <Nav />
