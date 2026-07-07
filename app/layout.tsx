@@ -103,11 +103,6 @@ const jsonLd = {
         name: "Devsinc",
         url: "https://www.devsinc.com/",
       },
-      alumniOf: {
-        "@type": "CollegeOrUniversity",
-        name: "Lahore University of Management Sciences (LUMS)",
-        url: "https://lums.edu.pk/",
-      },
       nationality: { "@type": "Country", name: "Pakistan" },
       sameAs: [
         "https://www.linkedin.com/in/hasnainali3/",

@@ -6,7 +6,7 @@ const LEDGER = [
   { k: "HOURS", v: "UTC+5 · overlaps EST / CST / GMT daily" },
   { k: "TRACK RECORD", v: "Founded 2ndPlace · led 14 engineers" },
   { k: "OPEN SOURCE", v: "Published packages on PyPI" },
-  { k: "RESEARCH", v: "LUMS KADE Lab — NLP & vision" },
+  { k: "FOCUS", v: "LLMs · RAG / KAG · agentic & voice AI" },
   { k: "CLIENTS", v: "18+ across US & UK · health, legal, real estate" },
 ];
 

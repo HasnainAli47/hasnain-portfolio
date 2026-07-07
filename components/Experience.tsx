@@ -25,24 +25,6 @@ const JOBS = [
     stack: ["Django REST", "React Native", "OpenAI", "PostgreSQL", "AWS S3", "Docker"],
   },
   {
-    company: "LUMS", role: "Research Assistant", period: "FEB 2024 — DEC 2024", type: "INTERNSHIP · HYBRID",
-    location: "Lahore, PK",
-    bullets: [
-      "Applied research on cricket bowling-action analysis, working from real practice-session and competitive-match data to support biomechanical assessment.",
-      "Analyzed temporal and biomechanical signal patterns to surface bowling-technique deviations; built tooling that translated raw data into actionable feedback for players and coaches.",
-    ],
-    stack: ["Computer Vision", "Scikit-Learn", "Python"],
-  },
-  {
-    company: "Arbisoft", role: "Django Developer", period: "JAN 2022 — AUG 2023", type: "PART-TIME · HYBRID",
-    location: "Lahore, PK",
-    bullets: [
-      "Built a centralized books discovery and review platform — Django backend, React frontend.",
-      "Shipped reviews, content management, and top-rated filtering with data-driven visualizations, following REST API best practices in a production engineering environment.",
-    ],
-    stack: ["Django", "Django REST", "React"],
-  },
-  {
     company: "Turing", role: "Software Engineer", period: "APR 2021 — FEB 2022", type: "FULL-TIME · REMOTE",
     location: "Remote",
     bullets: [
