@@ -94,15 +94,10 @@ const jsonLd = {
       image: "https://hasnainali.vercel.app/opengraph-image",
       jobTitle: "Senior AI Engineer",
       description:
-        "Senior AI Engineer at Devsinc specialising in LLMs, RAG, KAG, LangGraph, Agentic AI, and autonomous voice plus email systems for healthcare, legal, real estate, and SaaS companies.",
+        "Senior AI Engineer working independently with global clients on LLMs, RAG, KAG, LangGraph, Agentic AI, and autonomous voice plus email systems for legal, healthcare, real estate, and SaaS companies. Previously Senior AI Engineer at Devsinc.",
       email: "codingwithhasnain@gmail.com",
       telephone: "+923135085477",
       address: { "@type": "PostalAddress", addressCountry: "PK", addressRegion: "Islamabad" },
-      worksFor: {
-        "@type": "Organization",
-        name: "Devsinc",
-        url: "https://www.devsinc.com/",
-      },
       nationality: { "@type": "Country", name: "Pakistan" },
       sameAs: [
         "https://www.linkedin.com/in/hasnainali3/",

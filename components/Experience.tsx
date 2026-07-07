@@ -3,10 +3,20 @@ import { motion } from "framer-motion";
 
 const JOBS = [
   {
-    company: "Devsinc", role: "Senior Software Engineer", period: "NOV 2024 — NOW", type: "FULL-TIME · ON-SITE",
+    company: "Independent", role: "Freelance AI Engineer", period: "JUL 2026 — NOW", type: "FREELANCE · REMOTE",
+    location: "Remote — worldwide",
+    bullets: [
+      "Partner with global clients to design and ship production LLM, RAG/KAG, and agentic AI systems end to end — architecture, model strategy, backend, and infrastructure.",
+      "Building Mentanima — an adaptive KAG legal copilot that learns each firm's language and working style and routes requests through RAG, deep-thinking (query solver), or hybrid reasoning.",
+      "Advise on model strategy, evaluation, and cost/latency optimization for teams putting LLMs into production.",
+    ],
+    stack: ["LLMs", "RAG / KAG", "LangGraph", "Neo4j", "GCP", "Python"],
+  },
+  {
+    company: "Devsinc", role: "Senior Software Engineer", period: "NOV 2024 — JUN 2026", type: "FULL-TIME · ON-SITE",
     location: "Lahore, PK",
     bullets: [
-      "Lead AI engineering on production GenAI systems for enterprise clients — own architecture, model strategy, backend, infra, cost optimization, and production reliability.",
+      "Led AI engineering on production GenAI systems for enterprise clients — owned architecture, model strategy, backend, infra, cost optimization, and production reliability.",
       "Smart Advocate (US legal client · HIPAA-compliant · multi-GPU): cut demand-letter and medical-chronology generation from ~30 days down to ~5 minutes.",
       "Built the LangGraph multi-agent OCR + classification + extraction pipeline reading thousands of unstructured medical and legal documents.",
       "Architected the enterprise RAG layer (~40% retrieval accuracy lift), fine-tuned domain LLMs with LoRA on multi-GPU for legal entity/clause extraction, and built Neo4j knowledge graphs for temporal reasoning across case timelines.",
@@ -23,6 +33,15 @@ const JOBS = [
       "Owned the PostgreSQL data layer + AWS S3 storage; containerized deployments with Docker and tuned backend performance and API reliability.",
     ],
     stack: ["Django REST", "React Native", "OpenAI", "PostgreSQL", "AWS S3", "Docker"],
+  },
+  {
+    company: "Arbisoft", role: "Django Developer", period: "JAN 2022 — AUG 2023", type: "PART-TIME · HYBRID",
+    location: "Lahore, PK",
+    bullets: [
+      "Built a centralized books discovery and review platform — Django backend, React frontend.",
+      "Shipped reviews, content management, and top-rated filtering with data-driven visualizations, following REST API best practices in a production engineering environment.",
+    ],
+    stack: ["Django", "Django REST", "React"],
   },
   {
     company: "Turing", role: "Software Engineer", period: "APR 2021 — FEB 2022", type: "FULL-TIME · REMOTE",
