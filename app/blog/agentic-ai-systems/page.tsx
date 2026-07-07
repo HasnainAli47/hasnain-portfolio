@@ -31,11 +31,11 @@ const jsonLd = {
 const s = {
   wrap: { maxWidth: 760, margin: "0 auto", padding: "64px 24px 120px" },
   tag: { display: "inline-block", fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 6, background: "rgba(5,150,105,0.15)", color: "#34d399", border: "1px solid rgba(5,150,105,0.3)", marginBottom: 24, letterSpacing: "0.08em", textTransform: "uppercase" as const },
-  h1: { fontSize: "clamp(28px, 5vw, 46px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, color: "#eeeeff", marginBottom: 20 },
-  meta: { fontSize: 14, color: "#6666a0", marginBottom: 48, display: "flex", gap: 20, flexWrap: "wrap" as const },
-  h2: { fontSize: 22, fontWeight: 800, color: "#eeeeff", marginTop: 48, marginBottom: 16, letterSpacing: "-0.02em" },
-  p: { fontSize: 16, color: "#a8a8c8", lineHeight: 1.85, marginBottom: 20 },
-  strong: { color: "#eeeeff", fontWeight: 600 },
+  h1: { fontSize: "clamp(28px, 5vw, 46px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, color: "#EFEBE3", marginBottom: 20 },
+  meta: { fontSize: 14, color: "#7A736B", marginBottom: 48, display: "flex", gap: 20, flexWrap: "wrap" as const },
+  h2: { fontSize: 22, fontWeight: 800, color: "#EFEBE3", marginTop: 48, marginBottom: 16, letterSpacing: "-0.02em" },
+  p: { fontSize: 16, color: "#9C948A", lineHeight: 1.85, marginBottom: 20 },
+  strong: { color: "#EFEBE3", fontWeight: 600 },
   callout: { padding: "20px 24px", borderRadius: 14, border: "1px solid rgba(5,150,105,0.3)", background: "rgba(5,150,105,0.06)", marginBottom: 28 },
   metric: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 36 },
   metricCard: { padding: "20px", borderRadius: 14, border: "1px solid #1f1f40", background: "#0f0f22", textAlign: "center" as const },
@@ -61,13 +61,13 @@ export default function AgenticAI() {
           {[["$2M+", "ARR Generated", "by the system"], ["117K+", "Emails Sent", "autonomously"], ["10K+", "AI Voice Calls", "in 6 hours"]].map(([v, l, d]) => (
             <div key={l} style={s.metricCard}>
               <div style={{ fontSize: 28, fontWeight: 900, color: "#34d399", marginBottom: 4 }}>{v}</div>
-              <div style={{ fontSize: 12, fontWeight: 700, color: "#eeeeff", marginBottom: 2 }}>{l}</div>
-              <div style={{ fontSize: 11, color: "#6666a0" }}>{d}</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#EFEBE3", marginBottom: 2 }}>{l}</div>
+              <div style={{ fontSize: 11, color: "#7A736B" }}>{d}</div>
             </div>
           ))}
         </div>
 
-        <p style={{ ...s.p, fontSize: 17, color: "#c084fc" }}>
+        <p style={{ ...s.p, fontSize: 17, color: "#FFD666" }}>
           This is the architecture behind Speculo.ai — an autonomous outreach system I designed and built that replaced an entire inside sales team. Here is how it works, what the hard parts were, and what I would do differently.
         </p>
 
@@ -108,14 +108,14 @@ export default function AgenticAI() {
           <p style={{ ...s.p, marginBottom: 12 }}><strong style={s.strong}>Building an autonomous AI system?</strong></p>
           <p style={{ ...s.p, marginBottom: 16 }}>I have designed and shipped agentic pipelines that handle millions of interactions. Happy to discuss your architecture.</p>
           <a href="mailto:codingwithhasnain@gmail.com"
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 700, padding: "10px 22px", borderRadius: 10, background: "#7c3aed", color: "#fff", textDecoration: "none" }}>
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 700, padding: "10px 22px", borderRadius: 10, background: "#FFC53D", color: "#fff", textDecoration: "none" }}>
             Get in Touch
           </a>
         </div>
 
         <div style={{ marginTop: 64, paddingTop: 32, borderTop: "1px solid #1f1f40" }}>
-          <p style={{ fontSize: 13, color: "#6666a0" }}>
-            Written by <a href="/" style={{ color: "#a855f7", textDecoration: "none" }}>Hasnain Ali</a>, Senior AI Engineer.
+          <p style={{ fontSize: 13, color: "#7A736B" }}>
+            Written by <a href="/" style={{ color: "#FFB020", textDecoration: "none" }}>Hasnain Ali</a>, Senior AI Engineer.
             Open to contracts and full-time roles building production LLM and agentic systems.
           </p>
         </div>

@@ -33,19 +33,19 @@ const jsonLd = {
 const s = {
   wrap: { maxWidth: 780, margin: "0 auto", padding: "60px 24px 120px" },
   tag: (color: string): React.CSSProperties => ({ display: "inline-block", fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 6, background: `${color}15`, color, border: `1px solid ${color}30`, marginBottom: 22, letterSpacing: "0.08em", textTransform: "uppercase" as const }),
-  h1: { fontSize: "clamp(26px, 5vw, 42px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.2, color: "#eeeeff", marginBottom: 20 },
-  meta: { fontSize: 13, color: "#6666a0", marginBottom: 44, display: "flex", gap: 16, flexWrap: "wrap" as const, alignItems: "center" },
-  h2: { fontSize: "clamp(20px, 3vw, 26px)", fontWeight: 800, color: "#eeeeff", marginTop: 56, marginBottom: 18, letterSpacing: "-0.02em" },
-  h3: { fontSize: 18, fontWeight: 700, color: "#c084fc", marginTop: 32, marginBottom: 12 },
-  p: { fontSize: 16, color: "#a8a8c8", lineHeight: 1.85, marginBottom: 20 },
-  strong: { color: "#eeeeff", fontWeight: 600 },
-  code: { fontFamily: "'JetBrains Mono', monospace", fontSize: 13, padding: "2px 8px", borderRadius: 5, background: "rgba(124,58,237,0.12)", color: "#c084fc" },
-  pre: { background: "#070714", borderRadius: 12, border: "1px solid #1f1f40", padding: "20px 24px", marginBottom: 24, overflowX: "auto" as const, fontFamily: "'JetBrains Mono', monospace", fontSize: 13, lineHeight: 1.8, color: "#a8a8c8" },
+  h1: { fontSize: "clamp(26px, 5vw, 42px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.2, color: "#EFEBE3", marginBottom: 20 },
+  meta: { fontSize: 13, color: "#7A736B", marginBottom: 44, display: "flex", gap: 16, flexWrap: "wrap" as const, alignItems: "center" },
+  h2: { fontSize: "clamp(20px, 3vw, 26px)", fontWeight: 800, color: "#EFEBE3", marginTop: 56, marginBottom: 18, letterSpacing: "-0.02em" },
+  h3: { fontSize: 18, fontWeight: 700, color: "#FFD666", marginTop: 32, marginBottom: 12 },
+  p: { fontSize: 16, color: "#9C948A", lineHeight: 1.85, marginBottom: 20 },
+  strong: { color: "#EFEBE3", fontWeight: 600 },
+  code: { fontFamily: "'JetBrains Mono', monospace", fontSize: 13, padding: "2px 8px", borderRadius: 5, background: "rgba(255,197,61,0.12)", color: "#FFD666" },
+  pre: { background: "#070714", borderRadius: 12, border: "1px solid #1f1f40", padding: "20px 24px", marginBottom: 24, overflowX: "auto" as const, fontFamily: "'JetBrains Mono', monospace", fontSize: 13, lineHeight: 1.8, color: "#9C948A" },
   callout: (color: string): React.CSSProperties => ({ padding: "18px 22px", borderRadius: 12, border: `1px solid ${color}30`, background: `${color}08`, marginBottom: 24, marginTop: 8 }),
   divider: { height: 1, background: "linear-gradient(90deg, transparent, #1f1f40, transparent)", margin: "52px 0" },
   table: { width: "100%", borderCollapse: "collapse" as const, marginBottom: 28, fontSize: 14 },
-  th: { padding: "10px 14px", textAlign: "left" as const, fontSize: 11, fontWeight: 700, color: "#6666a0", letterSpacing: "0.08em", textTransform: "uppercase" as const, borderBottom: "1px solid #1f1f40" },
-  td: { padding: "12px 14px", color: "#a8a8c8", borderBottom: "1px solid rgba(255,255,255,0.04)", verticalAlign: "top" as const },
+  th: { padding: "10px 14px", textAlign: "left" as const, fontSize: 11, fontWeight: 700, color: "#7A736B", letterSpacing: "0.08em", textTransform: "uppercase" as const, borderBottom: "1px solid #1f1f40" },
+  td: { padding: "12px 14px", color: "#9C948A", borderBottom: "1px solid rgba(255,255,255,0.04)", verticalAlign: "top" as const },
   metric: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 14, marginBottom: 36, marginTop: 8 },
   metricCard: (color: string): React.CSSProperties => ({ padding: "18px 16px", borderRadius: 12, border: `1px solid ${color}25`, background: `${color}08`, textAlign: "center" as const }),
 };
@@ -53,14 +53,14 @@ const s = {
 const Metric = ({ value, label, sub, color }: { value: string; label: string; sub: string; color: string }) => (
   <div style={s.metricCard(color)}>
     <div style={{ fontSize: "clamp(22px, 4vw, 32px)", fontWeight: 900, color, marginBottom: 4 }}>{value}</div>
-    <div style={{ fontSize: 12, fontWeight: 700, color: "#eeeeff", marginBottom: 3 }}>{label}</div>
-    <div style={{ fontSize: 11, color: "#6666a0" }}>{sub}</div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: "#EFEBE3", marginBottom: 3 }}>{label}</div>
+    <div style={{ fontSize: 11, color: "#7A736B" }}>{sub}</div>
   </div>
 );
 
 const Code = ({ children, comment }: { children: string; comment?: string }) => (
   <div style={s.pre}>
-    {comment && <div style={{ color: "#3a3a60", marginBottom: 8 }}>{comment}</div>}
+    {comment && <div style={{ color: "#5F5952", marginBottom: 8 }}>{comment}</div>}
     <pre style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{children}</pre>
   </div>
 );
@@ -85,15 +85,15 @@ export default function GcpPubSubPost() {
 
         {/* Metrics bar */}
         <div style={s.metric}>
-          <Metric value="117K+" label="Personalised Emails" sub="Sent in under 6 hours" color="#7c3aed" />
+          <Metric value="117K+" label="Personalised Emails" sub="Sent in under 6 hours" color="#FFC53D" />
           <Metric value="10K+" label="AI Voice Calls" sub="Twilio + ElevenLabs" color="#3b82f6" />
           <Metric value="4" label="GCP Services" sub="Pub/Sub, Cloud Run, BQ, GCS" color="#f59e0b" />
           <Metric value="$2M+" label="ARR Attributed" sub="Direct pipeline revenue" color="#22c55e" />
         </div>
 
         {/* Abstract */}
-        <div style={s.callout("#7c3aed")}>
-          <p style={{ ...s.p, marginBottom: 0, color: "#c084fc", lineHeight: 1.75 }}>
+        <div style={s.callout("#FFC53D")}>
+          <p style={{ ...s.p, marginBottom: 0, color: "#FFD666", lineHeight: 1.75 }}>
             This is a detailed engineering breakdown of the AI outreach infrastructure I built at Speculo.ai. The system processed 117K+ leads, generated personalised emails and call scripts using LLMs, and dispatched everything autonomously using a four-stage GCP Pub/Sub pipeline with parallel Cloud Run workers. No humans in the loop. $2M+ in attributed revenue. This is exactly how it works.
           </p>
         </div>
@@ -119,7 +119,7 @@ export default function GcpPubSubPost() {
         {/* SVG DIAGRAM */}
         <div style={{ marginBottom: 36 }}>
           <ArchDiagram />
-          <p style={{ fontSize: 12, color: "#6666a0", textAlign: "center", marginTop: 12 }}>
+          <p style={{ fontSize: 12, color: "#7A736B", textAlign: "center", marginTop: 12 }}>
             Full pipeline from lead ingestion to email and voice dispatch. All inter-layer communication goes through Pub/Sub topics.
           </p>
         </div>
@@ -142,7 +142,7 @@ export default function GcpPubSubPost() {
               ["4 — Dispatch", "SMTP email delivery and Twilio voice call initiation", "Cloud Run", "0 → 80 instances"],
             ].map(([l, r, s_, sc]) => (
               <tr key={l}>
-                <td style={{ ...s.td, color: "#eeeeff", fontWeight: 600 }}>{l}</td>
+                <td style={{ ...s.td, color: "#EFEBE3", fontWeight: 600 }}>{l}</td>
                 <td style={s.td}>{r}</td>
                 <td style={{ ...s.td, color: "#f59e0b", fontFamily: "monospace" }}>{s_}</td>
                 <td style={{ ...s.td, color: "#22c55e" }}>{sc}</td>
@@ -434,12 +434,12 @@ ORDER BY stage_order;`}</Code>
         <h2 style={{ ...s.h2, marginTop: 0 }}>Results</h2>
 
         <div style={s.metric}>
-          <Metric value="117,420" label="Emails Dispatched" sub="5h 42min total runtime" color="#7c3aed" />
+          <Metric value="117,420" label="Emails Dispatched" sub="5h 42min total runtime" color="#FFC53D" />
           <Metric value="10,340" label="AI Calls Initiated" sub="68% answer rate" color="#3b82f6" />
           <Metric value="3.1%" label="Email Reply Rate" sub="4× industry average (0.7%)" color="#22c55e" />
           <Metric value="0" label="Duplicate Sends" sub="Idempotency held at scale" color="#f59e0b" />
           <Metric value="99.4%" label="Email Deliverability" sub="3 warmed domains, DMARC" color="#06b6d4" />
-          <Metric value="$0.0019" label="Cost Per Lead" sub="Email + call combined" color="#a855f7" />
+          <Metric value="$0.0019" label="Cost Per Lead" sub="Email + call combined" color="#FFB020" />
         </div>
 
         <table style={s.table}>
@@ -460,10 +460,10 @@ ORDER BY stage_order;`}</Code>
               ["Voice Dispatch", "42", "1.2s", "1.2%", "124"],
             ].map(([l, p, a, e, d]) => (
               <tr key={l}>
-                <td style={{ ...s.td, color: "#eeeeff", fontWeight: 600 }}>{l}</td>
+                <td style={{ ...s.td, color: "#EFEBE3", fontWeight: 600 }}>{l}</td>
                 <td style={{ ...s.td, color: "#22c55e" }}>{p}</td>
                 <td style={s.td}>{a}</td>
-                <td style={{ ...s.td, color: parseFloat(e) > 1 ? "#f87171" : "#a8a8c8" }}>{e}</td>
+                <td style={{ ...s.td, color: parseFloat(e) > 1 ? "#f87171" : "#9C948A" }}>{e}</td>
                 <td style={s.td}>{d}</td>
               </tr>
             ))}
@@ -484,20 +484,20 @@ ORDER BY stage_order;`}</Code>
 
         {/* ── CTA ── */}
         <div style={s.divider} />
-        <div style={s.callout("#7c3aed")}>
+        <div style={s.callout("#FFC53D")}>
           <p style={{ ...s.p, marginBottom: 12 }}><strong style={s.strong}>Building a high-scale AI pipeline?</strong></p>
           <p style={{ ...s.p, marginBottom: 20 }}>I have designed and shipped agentic systems that process hundreds of thousands of operations autonomously. If you are building something in this space and want to talk architecture, get in touch.</p>
           <a href="mailto:codingwithhasnain@gmail.com"
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 700, padding: "11px 24px", borderRadius: 10, background: "#7c3aed", color: "#fff", textDecoration: "none" }}>
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 700, padding: "11px 24px", borderRadius: 10, background: "#FFC53D", color: "#fff", textDecoration: "none" }}>
             Get in Touch
           </a>
         </div>
 
         <div style={{ marginTop: 56, paddingTop: 28, borderTop: "1px solid #1f1f40" }}>
-          <p style={{ fontSize: 13, color: "#6666a0" }}>
-            Written by <a href="/" style={{ color: "#a855f7", textDecoration: "none" }}>Hasnain Ali</a>, Senior AI Engineer.
+          <p style={{ fontSize: 13, color: "#7A736B" }}>
+            Written by <a href="/" style={{ color: "#FFB020", textDecoration: "none" }}>Hasnain Ali</a>, Senior AI Engineer.
             Specialising in production LLM systems, agentic pipelines, and GCP infrastructure.{" "}
-            <a href="https://www.linkedin.com/in/hasnainali3/" target="_blank" rel="noreferrer" style={{ color: "#6666a0" }}>Connect on LinkedIn</a>.
+            <a href="https://www.linkedin.com/in/hasnainali3/" target="_blank" rel="noreferrer" style={{ color: "#7A736B" }}>Connect on LinkedIn</a>.
           </p>
         </div>
       </article>

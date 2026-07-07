@@ -1,278 +1,121 @@
 "use client";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useContact } from "./ContactProvider";
+import Magnetic from "./Magnetic";
 import LivePipeline from "./LivePipeline";
 
-const TAGS = ["LLMs", "RAG / KAG", "LangGraph", "Agentic AI", "Python", "GCP", "LoRA / QLoRA"];
+/* Kinetic word — cycles through what his systems actually do */
+const WORDS = ["makes money.", "answers calls.", "closes deals.", "reads case files.", "ships itself."];
+
+function Rotator() {
+  const reduced = useReducedMotion();
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (reduced) return;
+    const id = setInterval(() => setI(v => (v + 1) % WORDS.length), 2600);
+    return () => clearInterval(id);
+  }, [reduced]);
+  return (
+    <span className="rotator" style={{ color: "var(--signal)" }}>
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={WORDS[i]}
+          initial={{ y: "105%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "-105%" }}
+          transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+          style={{ display: "inline-block", whiteSpace: "nowrap" }}
+        >
+          {WORDS[i]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
+const rise = (delay: number) => ({
+  initial: { opacity: 0, y: 32 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
+});
 
 export default function Hero() {
   const { open } = useContact();
+  const { scrollY } = useScroll();
+  const yType = useTransform(scrollY, [0, 600], [0, -60]);
+  const yPanel = useTransform(scrollY, [0, 600], [0, 40]);
+
   return (
-    <section
-      aria-label="Introduction"
-      style={{
-        position: "relative",
-        minHeight: "100svh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        paddingTop: 64,
-        overflow: "hidden",
-      }}
-    >
-      {/* Subtle top gradient */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,0.1) 0%, transparent 60%)",
-          pointerEvents: "none",
-        }}
-      />
+    <section aria-label="Introduction" style={{ position: "relative", minHeight: "100svh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 92 }}>
+      {/* backdrop: engineering grid + heat glow */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        backgroundImage: "linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px)",
+        backgroundSize: "72px 72px", opacity: 0.28,
+        maskImage: "radial-gradient(ellipse 85% 70% at 50% 20%, #000 20%, transparent 75%)",
+        WebkitMaskImage: "radial-gradient(ellipse 85% 70% at 50% 20%, #000 20%, transparent 75%)",
+      }} />
+      <div aria-hidden style={{
+        position: "absolute", top: "-20%", right: "-10%", width: 640, height: 640, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(255,92,31,0.09), transparent 65%)", filter: "blur(40px)", pointerEvents: "none",
+      }} />
+      <div aria-hidden style={{
+        position: "absolute", bottom: "-25%", left: "-8%", width: 520, height: 520, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(255,197,61,0.06), transparent 65%)", filter: "blur(40px)", pointerEvents: "none",
+      }} />
 
-      {/* Barely-visible dot grid */}
-      <div
-        className="dot-grid"
-        style={{ position: "absolute", inset: 0, opacity: 0.35, pointerEvents: "none" }}
-      />
+      <div className="wrap" style={{ position: "relative", zIndex: 1, width: "100%", padding: "48px 28px 72px" }}>
+        <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1.12fr 0.88fr", gap: 72, alignItems: "center" }}>
 
-      {/* Static ambient blurs */}
-      <div
-        style={{
-          position: "absolute",
-          top: "25%",
-          left: "5%",
-          width: 300,
-          height: 300,
-          borderRadius: "50%",
-          background: "rgba(124,58,237,0.04)",
-          filter: "blur(100px)",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          top: "15%",
-          right: "10%",
-          width: 250,
-          height: 250,
-          borderRadius: "50%",
-          background: "rgba(59,130,246,0.03)",
-          filter: "blur(100px)",
-          pointerEvents: "none",
-        }}
-      />
-
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "clamp(48px, 8vh, 96px) 24px",
-          position: "relative",
-          zIndex: 1,
-          width: "100%",
-        }}
-      >
-        <div
-          className="hero-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.15fr 0.85fr",
-            gap: 80,
-            alignItems: "center",
-          }}
-        >
-          {/* LEFT — Text */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "6px 16px",
-                borderRadius: 999,
-                border: "1px solid rgba(34,197,94,0.2)",
-                background: "rgba(34,197,94,0.04)",
-                marginBottom: 36,
-              }}
-            >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: "#22c55e",
-                  flexShrink: 0,
-                }}
-              />
-              <span style={{ color: "#4ade80", fontSize: 13, fontWeight: 500 }}>
-                Available for contracts and full-time roles
+          {/* LEFT — kinetic type */}
+          <motion.div style={{ y: yType }}>
+            <motion.div {...rise(0.05)} style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 34, flexWrap: "wrap" }}>
+              <span className="eyebrow">Senior AI Engineer</span>
+              <span className="mono" style={{
+                display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, color: "var(--mint)",
+                border: "1px solid rgba(72,229,178,0.3)", background: "rgba(72,229,178,0.05)",
+                padding: "5px 12px", borderRadius: 999, letterSpacing: "0.08em",
+              }}>
+                <span className="live-dot" />
+                OPEN FOR CONTRACTS &amp; FULL-TIME
               </span>
-            </div>
+            </motion.div>
 
-            <h1
-              style={{
-                fontSize: "clamp(44px, 8vw, 88px)",
-                fontWeight: 900,
-                letterSpacing: "-0.045em",
-                lineHeight: 1.05,
-                marginBottom: 28,
-              }}
-            >
-              <span style={{ color: "#eeeeff", display: "block" }}>Senior</span>
-              <span className="text-gradient" style={{ display: "block", paddingBottom: 4 }}>
-                AI Engineer.
-              </span>
-            </h1>
+            <motion.h1 {...rise(0.15)} className="display" style={{ fontSize: "clamp(52px, 8.5vw, 104px)", marginBottom: 34 }}>
+              <span style={{ display: "block" }}>I build AI</span>
+              <span className="outline-text" style={{ display: "block" }}>that actually</span>
+              <span style={{ display: "block" }}><Rotator /></span>
+            </motion.h1>
 
-            <p
-              style={{
-                fontSize: "clamp(17px, 2.2vw, 20px)",
-                color: "#a8a8c8",
-                maxWidth: 580,
-                lineHeight: 1.7,
-                marginBottom: 16,
-              }}
-            >
-              I build production-grade LLM and agentic systems that ship under pressure,{" "}
-              from architecture to scaled deployment.
-            </p>
+            <motion.p {...rise(0.28)} style={{ fontSize: "clamp(16px, 2vw, 19px)", color: "var(--ink-2)", maxWidth: 560, lineHeight: 1.75, marginBottom: 40 }}>
+              Agentic systems, LLM pipelines, and voice AI — architected, shipped, and running in production.
+              My systems have sent <strong style={{ color: "var(--ink)" }}>117K+ automated interactions</strong> and
+              generated <strong style={{ color: "var(--ink)" }}>$2M+ in annual revenue</strong>. Not demos. Deployments.
+            </motion.p>
 
-            <p
-              style={{
-                fontSize: 16,
-                color: "#6666a0",
-                marginBottom: 40,
-                maxWidth: 540,
-                lineHeight: 1.6,
-              }}
-            >
-              Systems I have built processed{" "}
-              <strong style={{ color: "#c084fc", fontWeight: 600 }}>
-                117K+ automated interactions
-              </strong>{" "}
-              and generated{" "}
-              <strong style={{ color: "#c084fc", fontWeight: 600 }}>
-                $2M+ in annual revenue.
-              </strong>
-            </p>
-
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 44 }}>
-              {TAGS.map((t) => (
-                <span
-                  key={t}
-                  style={{
-                    padding: "5px 14px",
-                    fontSize: 12,
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontWeight: 500,
-                    borderRadius: 6,
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    color: "#6666a0",
-                  }}
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-              <a
-                href="#projects"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "13px 28px",
-                  borderRadius: 10,
-                  background: "#7c3aed",
-                  color: "#fff",
-                  fontWeight: 600,
-                  fontSize: 15,
-                  textDecoration: "none",
-                  transition: "opacity 0.2s",
-                  minHeight: 44,
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-              >
-                View My Work
-                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M3 8h10M9 4l4 4-4 4" />
-                </svg>
-              </a>
-              <button
-                onClick={open}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "13px 28px",
-                  borderRadius: 10,
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  background: "transparent",
-                  color: "#eeeeff",
-                  fontWeight: 600,
-                  fontSize: 15,
-                  fontFamily: "inherit",
-                  cursor: "pointer",
-                  transition: "border-color 0.2s",
-                  minHeight: 44,
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.2)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)")
-                }
-              >
-                Get in Touch
-              </button>
-              <a
-                href="https://www.linkedin.com/in/hasnainali3/"
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "13px 28px",
-                  borderRadius: 10,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  background: "transparent",
-                  color: "#6666a0",
-                  fontWeight: 600,
-                  fontSize: 15,
-                  textDecoration: "none",
-                  transition: "color 0.2s",
-                  minHeight: 44,
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#a8a8c8")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#6666a0")}
-              >
-                LinkedIn
-              </a>
-            </div>
+            <motion.div {...rise(0.4)} style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
+              <Magnetic><a href="#work" className="btn btn-signal">See the systems ↓</a></Magnetic>
+              <Magnetic><button onClick={open} className="btn btn-line">Start a conversation</button></Magnetic>
+            </motion.div>
           </motion.div>
 
-          {/* RIGHT — Live agent pipeline (signature) */}
-          <div className="hide-mobile">
+          {/* RIGHT — live mission console */}
+          <motion.div className="hide-mobile" style={{ y: yPanel }}>
             <LivePipeline />
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      <div
-        className="glow-line"
-        style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
-      />
+      {/* scroll cue */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}
+        className="mono hide-mobile"
+        style={{ position: "absolute", bottom: 26, left: "50%", transform: "translateX(-50%)", fontSize: 10, letterSpacing: "0.3em", color: "var(--ink-3)" }}
+      >
+        SCROLL ▾
+      </motion.div>
     </section>
   );
 }

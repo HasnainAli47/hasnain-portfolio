@@ -18,7 +18,7 @@ export default function OpengraphImage() {
           padding: "72px 80px",
           background:
             "radial-gradient(circle at 25% 20%, #2a1466 0%, #0a0420 45%, #05050f 100%)",
-          color: "#eeeeff",
+          color: "#EFEBE3",
           fontFamily: "system-ui, -apple-system, sans-serif",
         }}
       >
@@ -29,7 +29,7 @@ export default function OpengraphImage() {
               width: 64,
               height: 64,
               borderRadius: 14,
-              background: "linear-gradient(135deg, #c084fc 0%, #7c3aed 100%)",
+              background: "linear-gradient(135deg, #FFD666 0%, #FFC53D 100%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -45,7 +45,7 @@ export default function OpengraphImage() {
             style={{
               fontSize: 22,
               fontWeight: 600,
-              color: "#a8a8c8",
+              color: "#9C948A",
               letterSpacing: 0.5,
             }}
           >
@@ -61,7 +61,7 @@ export default function OpengraphImage() {
               fontWeight: 700,
               letterSpacing: 4,
               textTransform: "uppercase",
-              color: "#c084fc",
+              color: "#FFD666",
             }}
           >
             Senior AI Engineer
@@ -100,7 +100,7 @@ export default function OpengraphImage() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <div style={{ fontSize: 44, fontWeight: 900, color: "#c084fc", letterSpacing: -1 }}>$2M+ ARR</div>
+            <div style={{ fontSize: 44, fontWeight: 900, color: "#FFD666", letterSpacing: -1 }}>$2M+ ARR</div>
             <div style={{ fontSize: 20, color: "#8888a8" }}>Speculo autonomous outreach</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>

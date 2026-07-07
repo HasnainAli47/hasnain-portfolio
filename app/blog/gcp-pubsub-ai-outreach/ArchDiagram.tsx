@@ -1,7 +1,7 @@
 "use client";
 
 const colors = {
-  purple: { text: "#a855f7", border: "rgba(168,85,247,0.4)", bg: "rgba(168,85,247,0.08)" },
+  purple: { text: "#FFB020", border: "rgba(255,176,32,0.4)", bg: "rgba(255,176,32,0.08)" },
   blue:   { text: "#60a5fa", border: "rgba(96,165,250,0.4)",  bg: "rgba(96,165,250,0.08)"  },
   amber:  { text: "#fbbf24", border: "rgba(251,191,36,0.4)",  bg: "rgba(251,191,36,0.08)"  },
   green:  { text: "#34d399", border: "rgba(52,211,153,0.4)",  bg: "rgba(52,211,153,0.08)"  },
@@ -139,7 +139,7 @@ export default function ArchDiagram() {
 
         {/* ── LAYER 2: ENRICHMENT ── */}
         <Section>
-          <LayerLabel label="Layer 2 — Enrichment Workers  (Cloud Run · auto-scale 0 → 50 instances)" color="#a855f7" />
+          <LayerLabel label="Layer 2 — Enrichment Workers  (Cloud Run · auto-scale 0 → 50 instances)" color="#FFB020" />
           <div style={{ display: "flex", gap: 12, alignItems: "stretch" }}>
             <ServiceBox icon="⚡" title="Enrichment Worker" sub="Tavily search · Gemini summarise · ICP rescore" color="purple" />
             <ServiceBox icon="⚡" title="Enrichment Worker" sub="Parallel instance, same subscription" color="purple" />
@@ -219,7 +219,7 @@ export default function ArchDiagram() {
         <div style={{ display: "flex", flexWrap: "wrap", gap: 18, marginTop: 24, paddingTop: 18, borderTop: "1px solid rgba(255,255,255,0.06)", width: "100%", justifyContent: "center" }}>
           {[
             { dot: "#fbbf24", label: "Pub/Sub Topic" },
-            { dot: "#a855f7", label: "Cloud Run Workers (auto-scale)" },
+            { dot: "#FFB020", label: "Cloud Run Workers (auto-scale)" },
             { dot: "#f87171", label: "Dead Letter Queue (DLQ)" },
             { dot: "#34d399", label: "Email Delivery" },
             { dot: "#60a5fa", label: "Voice + External APIs" },

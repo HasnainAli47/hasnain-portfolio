@@ -31,11 +31,11 @@ const jsonLd = {
 const s = {
   wrap: { maxWidth: 760, margin: "0 auto", padding: "64px 24px 120px" },
   tag: { display: "inline-block", fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 6, background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", marginBottom: 24, letterSpacing: "0.08em", textTransform: "uppercase" as const },
-  h1: { fontSize: "clamp(28px, 5vw, 46px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, color: "#eeeeff", marginBottom: 20 },
-  meta: { fontSize: 14, color: "#6666a0", marginBottom: 48, display: "flex", gap: 20, flexWrap: "wrap" as const },
-  h2: { fontSize: 22, fontWeight: 800, color: "#eeeeff", marginTop: 48, marginBottom: 16, letterSpacing: "-0.02em" },
-  p: { fontSize: 16, color: "#a8a8c8", lineHeight: 1.85, marginBottom: 20 },
-  strong: { color: "#eeeeff", fontWeight: 600 },
+  h1: { fontSize: "clamp(28px, 5vw, 46px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, color: "#EFEBE3", marginBottom: 20 },
+  meta: { fontSize: 14, color: "#7A736B", marginBottom: 48, display: "flex", gap: 20, flexWrap: "wrap" as const },
+  h2: { fontSize: 22, fontWeight: 800, color: "#EFEBE3", marginTop: 48, marginBottom: 16, letterSpacing: "-0.02em" },
+  p: { fontSize: 16, color: "#9C948A", lineHeight: 1.85, marginBottom: 20 },
+  strong: { color: "#EFEBE3", fontWeight: 600 },
   callout: { padding: "20px 24px", borderRadius: 14, border: "1px solid rgba(59,130,246,0.3)", background: "rgba(59,130,246,0.06)", marginBottom: 28 },
   divider: { height: 1, background: "linear-gradient(90deg, transparent, #1f1f40, transparent)", margin: "48px 0" },
 };
@@ -55,7 +55,7 @@ export default function AiForHealthcare() {
           <span>6 min read</span>
         </div>
 
-        <p style={{ ...s.p, fontSize: 18, color: "#c084fc" }}>
+        <p style={{ ...s.p, fontSize: 18, color: "#FFD666" }}>
           Healthcare is one of the highest-value verticals for AI. It is also one of the most unforgiving. Here is what I have seen work in real deployments and what tends to fail.
         </p>
 
@@ -86,14 +86,14 @@ export default function AiForHealthcare() {
           <p style={{ ...s.p, marginBottom: 12 }}><strong style={s.strong}>Building AI for a healthcare company?</strong></p>
           <p style={{ ...s.p, marginBottom: 16 }}>I have shipped HIPAA-aware AI systems in production. Happy to talk architecture and compliance approach.</p>
           <a href="mailto:codingwithhasnain@gmail.com"
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 700, padding: "10px 22px", borderRadius: 10, background: "#7c3aed", color: "#fff", textDecoration: "none" }}>
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 700, padding: "10px 22px", borderRadius: 10, background: "#FFC53D", color: "#fff", textDecoration: "none" }}>
             Get in Touch
           </a>
         </div>
 
         <div style={{ marginTop: 64, paddingTop: 32, borderTop: "1px solid #1f1f40" }}>
-          <p style={{ fontSize: 13, color: "#6666a0" }}>
-            Written by <a href="/" style={{ color: "#a855f7", textDecoration: "none" }}>Hasnain Ali</a>, Senior AI Engineer.
+          <p style={{ fontSize: 13, color: "#7A736B" }}>
+            Written by <a href="/" style={{ color: "#FFB020", textDecoration: "none" }}>Hasnain Ali</a>, Senior AI Engineer.
             Specialising in AI for healthcare, legal, real estate, and SaaS.
           </p>
         </div>

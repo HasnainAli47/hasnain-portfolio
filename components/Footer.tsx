@@ -1,29 +1,16 @@
 export default function Footer() {
   return (
-    <footer style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "28px 0" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 14 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#3a3a60" }} />
-          <p style={{ fontSize: 13, color: "#3a3a60" }}>
-            {new Date().getFullYear()} Hasnain Ali, Senior AI Engineer
-          </p>
-        </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 24 }}>
-          {[
-            { href: "https://www.linkedin.com/in/hasnainali3/", label: "LinkedIn" },
-            { href: "https://github.com/HasnainAli47", label: "GitHub" },
-            { href: "https://pypi.org/project/toon-mcp-server/", label: "PyPI" },
-            { href: "mailto:codingwithhasnain@gmail.com", label: "Email" },
-          ].map(l => (
-            <a key={l.label} href={l.href}
-              target={l.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
-              style={{ fontSize: 13, color: "#3a3a60", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#6666a0")}
-              onMouseLeave={e => (e.currentTarget.style.color = "#3a3a60")}>
-              {l.label}
-            </a>
-          ))}
-        </div>
+    <footer style={{ borderTop: "1px solid var(--line)", padding: "26px 0" }}>
+      <div className="wrap grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 12, alignItems: "center" }}>
+        <span className="mono" style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.08em" }}>
+          © {new Date().getFullYear()} HASNAIN ALI
+        </span>
+        <span className="mono" style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.14em", textAlign: "center" }}>
+          33.6844° N, 73.0479° E — ISLAMABAD
+        </span>
+        <span className="mono" style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.08em", textAlign: "right" }}>
+          BUILT TO SHIP ✦
+        </span>
       </div>
     </footer>
   );

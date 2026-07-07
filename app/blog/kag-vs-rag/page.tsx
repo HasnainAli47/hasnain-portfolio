@@ -32,15 +32,15 @@ const jsonLd = {
 
 const s = {
   wrap: { maxWidth: 760, margin: "0 auto", padding: "64px 24px 120px" },
-  tag: { display: "inline-block", fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 6, background: "rgba(124,58,237,0.15)", color: "#a855f7", border: "1px solid rgba(124,58,237,0.3)", marginBottom: 24, letterSpacing: "0.08em", textTransform: "uppercase" as const },
-  h1: { fontSize: "clamp(28px, 5vw, 46px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, color: "#eeeeff", marginBottom: 20 },
-  meta: { fontSize: 14, color: "#6666a0", marginBottom: 48, display: "flex", gap: 20, flexWrap: "wrap" as const, alignItems: "center" },
-  h2: { fontSize: 22, fontWeight: 800, color: "#eeeeff", marginTop: 48, marginBottom: 16, letterSpacing: "-0.02em" },
-  h3: { fontSize: 17, fontWeight: 700, color: "#c084fc", marginTop: 28, marginBottom: 10 },
-  p: { fontSize: 16, color: "#a8a8c8", lineHeight: 1.85, marginBottom: 20 },
-  strong: { color: "#eeeeff", fontWeight: 600 },
-  code: { fontFamily: "monospace", fontSize: 13, padding: "2px 8px", borderRadius: 5, background: "rgba(124,58,237,0.12)", color: "#c084fc" },
-  callout: { padding: "20px 24px", borderRadius: 14, border: "1px solid rgba(124,58,237,0.3)", background: "rgba(124,58,237,0.06)", marginBottom: 28 },
+  tag: { display: "inline-block", fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 6, background: "rgba(255,197,61,0.15)", color: "#FFB020", border: "1px solid rgba(255,197,61,0.3)", marginBottom: 24, letterSpacing: "0.08em", textTransform: "uppercase" as const },
+  h1: { fontSize: "clamp(28px, 5vw, 46px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, color: "#EFEBE3", marginBottom: 20 },
+  meta: { fontSize: 14, color: "#7A736B", marginBottom: 48, display: "flex", gap: 20, flexWrap: "wrap" as const, alignItems: "center" },
+  h2: { fontSize: 22, fontWeight: 800, color: "#EFEBE3", marginTop: 48, marginBottom: 16, letterSpacing: "-0.02em" },
+  h3: { fontSize: 17, fontWeight: 700, color: "#FFD666", marginTop: 28, marginBottom: 10 },
+  p: { fontSize: 16, color: "#9C948A", lineHeight: 1.85, marginBottom: 20 },
+  strong: { color: "#EFEBE3", fontWeight: 600 },
+  code: { fontFamily: "monospace", fontSize: 13, padding: "2px 8px", borderRadius: 5, background: "rgba(255,197,61,0.12)", color: "#FFD666" },
+  callout: { padding: "20px 24px", borderRadius: 14, border: "1px solid rgba(255,197,61,0.3)", background: "rgba(255,197,61,0.06)", marginBottom: 28 },
   metric: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 32 },
   metricCard: { padding: "20px", borderRadius: 14, border: "1px solid #1f1f40", background: "#0f0f22", textAlign: "center" as const },
   divider: { height: 1, background: "linear-gradient(90deg, transparent, #1f1f40, transparent)", margin: "48px 0" },
@@ -64,15 +64,15 @@ export default function KagVsRag() {
         <div style={s.metric}>
           {[["40%", "Accuracy Gain", "vs standard RAG"], ["10K+", "Documents", "processed in production"], ["20K+", "Users", "SmartAdvocate platform"]].map(([v, l, d]) => (
             <div key={l} style={s.metricCard}>
-              <div style={{ fontSize: 28, fontWeight: 900, color: "#a855f7", marginBottom: 4 }}>{v}</div>
-              <div style={{ fontSize: 12, fontWeight: 700, color: "#eeeeff", marginBottom: 2 }}>{l}</div>
-              <div style={{ fontSize: 11, color: "#6666a0" }}>{d}</div>
+              <div style={{ fontSize: 28, fontWeight: 900, color: "#FFB020", marginBottom: 4 }}>{v}</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#EFEBE3", marginBottom: 2 }}>{l}</div>
+              <div style={{ fontSize: 11, color: "#7A736B" }}>{d}</div>
             </div>
           ))}
         </div>
 
         <div style={s.callout}>
-          <p style={{ ...s.p, marginBottom: 0, color: "#c084fc", fontWeight: 500 }}>
+          <p style={{ ...s.p, marginBottom: 0, color: "#FFD666", fontWeight: 500 }}>
             This is not a theoretical comparison. I built both systems in production for SmartAdvocate, a legal case management platform used by 20,000+ legal professionals. RAG failed. KAG delivered a 40% accuracy improvement. Here is exactly why.
           </p>
         </div>
@@ -138,14 +138,14 @@ export default function KagVsRag() {
           <p style={{ ...s.p, marginBottom: 12 }}><strong style={s.strong}>Building an AI system for legal, healthcare, or compliance?</strong></p>
           <p style={{ ...s.p, marginBottom: 16 }}>I have built KAG systems in production. Happy to discuss your architecture.</p>
           <a href="mailto:codingwithhasnain@gmail.com"
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 700, padding: "10px 22px", borderRadius: 10, background: "#7c3aed", color: "#fff", textDecoration: "none" }}>
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 700, padding: "10px 22px", borderRadius: 10, background: "#FFC53D", color: "#fff", textDecoration: "none" }}>
             Get in Touch
           </a>
         </div>
 
         <div style={{ marginTop: 64, paddingTop: 32, borderTop: "1px solid #1f1f40" }}>
-          <p style={{ fontSize: 13, color: "#6666a0" }}>
-            Written by <a href="/" style={{ color: "#a855f7", textDecoration: "none" }}>Hasnain Ali</a>, Senior AI Engineer.
+          <p style={{ fontSize: 13, color: "#7A736B" }}>
+            Written by <a href="/" style={{ color: "#FFB020", textDecoration: "none" }}>Hasnain Ali</a>, Senior AI Engineer.
             Specialising in LLMs, RAG, KAG, LangGraph, and production AI for healthcare, legal, and SaaS.
           </p>
         </div>

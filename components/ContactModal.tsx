@@ -115,7 +115,7 @@ export default function ContactModal({ open, onClose }: Props) {
 
   const baseInp: React.CSSProperties = {
     width: "100%", padding: "12px 14px", borderRadius: 10,
-    background: "#070714", color: "#eeeeff", fontSize: 15,
+    background: "#070714", color: "#EFEBE3", fontSize: 15,
     fontFamily: "inherit", outline: "none", boxSizing: "border-box",
     transition: "border-color 0.2s, box-shadow 0.2s",
   };
@@ -124,9 +124,9 @@ export default function ContactModal({ open, onClose }: Props) {
     border: `1px solid ${hasErr ? "rgba(239,68,68,0.55)" : "#1f1f40"}`,
     background: hasErr ? "rgba(239,68,68,0.04)" : "#070714",
   });
-  const lbl: React.CSSProperties = { display: "block", fontSize: 11, fontWeight: 700, color: "#6666a0", marginBottom: 7, letterSpacing: "0.08em", textTransform: "uppercase" };
+  const lbl: React.CSSProperties = { display: "block", fontSize: 11, fontWeight: 700, color: "#7A736B", marginBottom: 7, letterSpacing: "0.08em", textTransform: "uppercase" };
   const errSpan: React.CSSProperties = { fontSize: 12, color: "#f87171", marginTop: 5, display: "block" };
-  const focusCss = { borderColor: "#7c3aed", boxShadow: "0 0 0 3px rgba(124,58,237,0.15)" };
+  const focusCss = { borderColor: "#FFC53D", boxShadow: "0 0 0 3px rgba(255,197,61,0.15)" };
   const blurCss = (err?: boolean) => ({ borderColor: err ? "rgba(239,68,68,0.55)" : "#1f1f40", boxShadow: "none" });
 
   return (
@@ -137,23 +137,23 @@ export default function ContactModal({ open, onClose }: Props) {
         <div onClick={e => e.stopPropagation()} style={{
           width: "100%", maxWidth: 548, maxHeight: "92vh", overflowY: "auto",
           background: "linear-gradient(160deg, #0d0d22 0%, #080816 100%)",
-          borderRadius: 22, border: "1px solid rgba(124,58,237,0.4)",
-          boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(124,58,237,0.08)",
+          borderRadius: 22, border: "1px solid rgba(255,197,61,0.4)",
+          boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(255,197,61,0.08)",
           pointerEvents: "all", animation: "slUp 0.25s ease",
         }}>
-          <div style={{ height: 3, background: "linear-gradient(90deg, #7c3aed, #a855f7, #3b82f6)", borderRadius: "22px 22px 0 0" }} />
+          <div style={{ height: 3, background: "linear-gradient(90deg, #FFC53D, #FFB020, #3b82f6)", borderRadius: "22px 22px 0 0" }} />
 
           <div style={{ padding: "22px 26px 0", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
             <div>
-              <h2 style={{ fontSize: 22, fontWeight: 900, color: "#eeeeff", letterSpacing: "-0.02em", margin: "0 0 4px" }}>
+              <h2 style={{ fontSize: 22, fontWeight: 900, color: "#EFEBE3", letterSpacing: "-0.02em", margin: "0 0 4px" }}>
                 {status === "success" ? "Message sent!" : "Let's work together"}
               </h2>
-              <p style={{ fontSize: 13, color: "#6666a0", margin: 0 }}>
+              <p style={{ fontSize: 13, color: "#7A736B", margin: 0 }}>
                 {status === "success" ? "I'll reply within 24 hours." : "Typically reply within 24 hours."}
               </p>
             </div>
             <button onClick={onClose} aria-label="Close"
-              style={{ width: 32, height: 32, borderRadius: "50%", border: "1px solid #1f1f40", background: "transparent", color: "#6666a0", fontSize: 15, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              style={{ width: 32, height: 32, borderRadius: "50%", border: "1px solid #1f1f40", background: "transparent", color: "#7A736B", fontSize: 15, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               ✕
             </button>
           </div>
@@ -161,10 +161,10 @@ export default function ContactModal({ open, onClose }: Props) {
           {status === "success" ? (
             <div style={{ padding: "36px 26px 28px", textAlign: "center" }}>
               <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(34,197,94,0.12)", border: "2px solid rgba(34,197,94,0.4)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 18px", fontSize: 26, color: "#4ade80" }}>✓</div>
-              <p style={{ fontSize: 15, color: "#a8a8c8", lineHeight: 1.7, marginBottom: 22 }}>
+              <p style={{ fontSize: 15, color: "#9C948A", lineHeight: 1.7, marginBottom: 22 }}>
                 Your message is on its way. Talk soon.
               </p>
-              <button onClick={onClose} style={{ padding: "11px 28px", borderRadius: 10, background: "#7c3aed", color: "#fff", fontWeight: 700, fontSize: 15, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Done</button>
+              <button onClick={onClose} style={{ padding: "11px 28px", borderRadius: 10, background: "#FFC53D", color: "#fff", fontWeight: 700, fontSize: 15, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Done</button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate style={{ padding: "18px 26px 26px" }}>
@@ -193,7 +193,7 @@ export default function ContactModal({ open, onClose }: Props) {
               </div>
 
               <div style={{ marginBottom: 12 }}>
-                <label style={lbl}>Company <span style={{ fontSize: 10, color: "#3a3a60", textTransform: "none", letterSpacing: 0 }}>optional</span></label>
+                <label style={lbl}>Company <span style={{ fontSize: 10, color: "#5F5952", textTransform: "none", letterSpacing: 0 }}>optional</span></label>
                 <input value={form.company}
                   onChange={e => setField("company", e.target.value)}
                   onFocus={e => Object.assign(e.currentTarget.style, focusCss)}
@@ -202,19 +202,19 @@ export default function ContactModal({ open, onClose }: Props) {
               </div>
 
               <div style={{ marginBottom: 14 }}>
-                <label style={lbl}>Budget / Role <span style={{ fontSize: 10, color: "#3a3a60", textTransform: "none", letterSpacing: 0 }}>optional</span></label>
+                <label style={lbl}>Budget / Role <span style={{ fontSize: 10, color: "#5F5952", textTransform: "none", letterSpacing: 0 }}>optional</span></label>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {BUDGET_PRESETS.map(p => {
                     const active = form.budget === p;
                     return (
                       <button key={p} type="button" onClick={() => selectBudget(p)}
-                        style={{ padding: "7px 14px", borderRadius: 20, fontSize: 12, fontWeight: 600, fontFamily: "inherit", cursor: "pointer", transition: "all 0.15s", border: `1px solid ${active ? "rgba(124,58,237,0.6)" : "#1f1f40"}`, background: active ? "rgba(124,58,237,0.2)" : "rgba(255,255,255,0.03)", color: active ? "#c084fc" : "#6666a0" }}>
+                        style={{ padding: "7px 14px", borderRadius: 20, fontSize: 12, fontWeight: 600, fontFamily: "inherit", cursor: "pointer", transition: "all 0.15s", border: `1px solid ${active ? "rgba(255,197,61,0.6)" : "#1f1f40"}`, background: active ? "rgba(255,197,61,0.2)" : "rgba(255,255,255,0.03)", color: active ? "#FFD666" : "#7A736B" }}>
                         {p}
                       </button>
                     );
                   })}
                   <button type="button" onClick={() => selectBudget("__custom")}
-                    style={{ padding: "7px 14px", borderRadius: 20, fontSize: 12, fontWeight: 600, fontFamily: "inherit", cursor: "pointer", transition: "all 0.15s", border: `1px solid ${form.budget === "__custom" ? "rgba(124,58,237,0.6)" : "#1f1f40"}`, background: form.budget === "__custom" ? "rgba(124,58,237,0.2)" : "rgba(255,255,255,0.03)", color: form.budget === "__custom" ? "#c084fc" : "#6666a0" }}>
+                    style={{ padding: "7px 14px", borderRadius: 20, fontSize: 12, fontWeight: 600, fontFamily: "inherit", cursor: "pointer", transition: "all 0.15s", border: `1px solid ${form.budget === "__custom" ? "rgba(255,197,61,0.6)" : "#1f1f40"}`, background: form.budget === "__custom" ? "rgba(255,197,61,0.2)" : "rgba(255,255,255,0.03)", color: form.budget === "__custom" ? "#FFD666" : "#7A736B" }}>
                     Custom...
                   </button>
                 </div>
@@ -238,7 +238,7 @@ export default function ContactModal({ open, onClose }: Props) {
                   style={{ ...inp(touched.message && !!errors.message), resize: "vertical", lineHeight: 1.65 }} />
                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: 5 }}>
                   {touched.message && errors.message ? <span style={errSpan}>⚠ {errors.message}</span> : <span />}
-                  <span style={{ fontSize: 11, color: form.message.length > 9 ? "#3a3a60" : "#525270" }}>{form.message.length}</span>
+                  <span style={{ fontSize: 11, color: form.message.length > 9 ? "#5F5952" : "#525270" }}>{form.message.length}</span>
                 </div>
               </div>
 
@@ -249,11 +249,11 @@ export default function ContactModal({ open, onClose }: Props) {
               )}
 
               <button type="submit" disabled={status === "sending"}
-                style={{ width: "100%", padding: "14px", borderRadius: 12, background: status === "sending" ? "#3a1a70" : "linear-gradient(135deg, #7c3aed, #a855f7)", color: "#fff", fontWeight: 700, fontSize: 16, border: "none", cursor: status === "sending" ? "not-allowed" : "pointer", fontFamily: "inherit", boxShadow: "0 4px 24px rgba(124,58,237,0.4)", transition: "opacity 0.2s" }}>
+                style={{ width: "100%", padding: "14px", borderRadius: 12, background: status === "sending" ? "#3a1a70" : "linear-gradient(135deg, #FFC53D, #FFB020)", color: "#fff", fontWeight: 700, fontSize: 16, border: "none", cursor: status === "sending" ? "not-allowed" : "pointer", fontFamily: "inherit", boxShadow: "0 4px 24px rgba(255,197,61,0.4)", transition: "opacity 0.2s" }}>
                 {status === "sending" ? "Sending..." : "Send Message"}
               </button>
 
-              <p style={{ textAlign: "center", fontSize: 12, color: "#3a3a60", marginTop: 12 }}>
+              <p style={{ textAlign: "center", fontSize: 12, color: "#5F5952", marginTop: 12 }}>
                 Or email: <a href="mailto:codingwithhasnain@gmail.com" style={{ color: "#525270", textDecoration: "none" }}>codingwithhasnain@gmail.com</a>
               </p>
             </form>
@@ -264,7 +264,7 @@ export default function ContactModal({ open, onClose }: Props) {
       <style>{`
         @keyframes fcIn { from { opacity:0 } to { opacity:1 } }
         @keyframes slUp { from { opacity:0; transform:translateY(18px) scale(0.97) } to { opacity:1; transform:none } }
-        input::placeholder, textarea::placeholder { color: #3a3a60; }
+        input::placeholder, textarea::placeholder { color: #5F5952; }
       `}</style>
     </>
   );

@@ -25,7 +25,7 @@ export default function AppleIcon() {
       >
         <span
           style={{
-            backgroundImage: "linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #7c3aed 100%)",
+            backgroundImage: "linear-gradient(135deg, #FFD666 0%, #FFB020 50%, #FFC53D 100%)",
             backgroundClip: "text",
             color: "transparent",
           }}

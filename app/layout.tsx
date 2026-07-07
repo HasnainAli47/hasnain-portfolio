@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     apple: "/apple-icon",
   },
   other: {
-    "theme-color": "#7c3aed",
+    "theme-color": "#FFC53D",
     "color-scheme": "dark",
     "format-detection": "telephone=no",
   },

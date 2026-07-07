@@ -1,88 +1,72 @@
 "use client";
 import { motion } from "framer-motion";
 
+const REPOS = [
+  {
+    name: "toon-mcp-server",
+    badges: ["PyPI", "MIT"],
+    desc: "TOON-aware MCP server and Python library for JSON↔TOON conversion and TOON-wrapped system prompts. Cuts LLM token usage by 30–60% versus raw JSON payloads, reducing inference cost for AI agents at scale.",
+    stack: ["Python", "FastAPI", "MCP", "LLMs"],
+    links: [
+      { href: "https://pypi.org/project/toon-mcp-server/", label: "PyPI ↗" },
+      { href: "https://github.com/HasnainAli47/toon-mcp-server", label: "GitHub ↗" },
+    ],
+  },
+  {
+    name: "AI Resume Parser",
+    badges: ["Public demo"],
+    desc: "AI-driven resume parsing using OCR and Llama-3-70B to extract structured candidate data. Eliminates manual resume screening and feeds directly into ATS-style filtering workflows for recruitment teams.",
+    stack: ["Python", "Django", "React", "OCR", "Llama-3-70B"],
+    links: [
+      { href: "https://github.com/HasnainAli47/ResumeParser", label: "GitHub ↗" },
+      { href: "https://www.linkedin.com/posts/hasnainali3_hr-resume-parser-activity-7304457213845102593-3Vru", label: "Demo video ↗" },
+    ],
+  },
+];
+
 export default function OpenSource() {
   return (
-    <section aria-label="Open source work" style={{ padding: "100px 0", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 56 }}>
-          <p style={{ color: "#7c3aed", fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 12 }}>Open Source</p>
-          <h2 className="section-heading" style={{ fontSize: "clamp(30px, 5vw, 48px)", fontWeight: 900, color: "#eeeeff" }}>Public Work</h2>
+    <section className="section" style={{ borderTop: "1px solid var(--line)" }}>
+      <div className="wrap">
+        <motion.div className="section-head"
+          initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+          <span className="eyebrow">05 — Public record</span>
+          <h2>Open <span className="outline-text">source.</span></h2>
         </motion.div>
 
-        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))", gap: 16 }}>
-          {/* Toon MCP */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="card-hover"
-            style={{ borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)", padding: "28px", display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-              <span style={{ fontSize: 24 }}>📦</span>
-              <div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#eeeeff", marginBottom: 4 }}>Toon MCP Server</h3>
-                <div style={{ display: "flex", gap: 6 }}>
-                  <span style={{ fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 5, background: "rgba(234,179,8,0.08)", color: "#eab308", border: "1px solid rgba(234,179,8,0.15)" }}>PyPI</span>
-                  <span style={{ fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 5, background: "rgba(124,58,237,0.08)", color: "#a855f7", border: "1px solid rgba(124,58,237,0.15)" }}>Open Source</span>
-                </div>
+        <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+          {REPOS.map((r, i) => (
+            <motion.article key={r.name}
+              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: i * 0.08 }}
+              className="panel ticked spotlight"
+              onMouseMove={(e) => {
+                const rct = e.currentTarget.getBoundingClientRect();
+                e.currentTarget.style.setProperty("--mx", `${e.clientX - rct.left}px`);
+                e.currentTarget.style.setProperty("--my", `${e.clientY - rct.top}px`);
+              }}
+              style={{ padding: "34px 32px", display: "flex", flexDirection: "column" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, flexWrap: "wrap", position: "relative", zIndex: 1 }}>
+                <h3 className="mono" style={{ fontSize: 17, fontWeight: 700, color: "var(--ink)" }}>{r.name}</h3>
+                {r.badges.map(b => (
+                  <span key={b} className="mono" style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", padding: "3px 9px", borderRadius: 3, background: "rgba(255,197,61,0.08)", color: "var(--signal)", border: "1px solid rgba(255,197,61,0.25)" }}>{b.toUpperCase()}</span>
+                ))}
               </div>
-            </div>
-            <p style={{ fontSize: 14, color: "#a8a8c8", lineHeight: 1.75, marginBottom: 20, flex: 1 }}>
-              TOON-aware MCP server and Python library for JSON to TOON conversion and TOON-wrapped system prompts. Cuts LLM token usage by 30 to 60% versus raw JSON payloads, reducing inference cost for AI agents at scale. Published on PyPI, MIT licensed.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 18 }}>
-              {["Python", "FastAPI", "MCP", "IoT"].map(t => (
-                <span key={t} style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", padding: "3px 10px", borderRadius: 6, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)", color: "#3a3a60" }}>{t}</span>
-              ))}
-            </div>
-            <div style={{ display: "flex", gap: 8 }}>
-              <a href="https://pypi.org/project/toon-mcp-server/" target="_blank" rel="noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, padding: "8px 16px", borderRadius: 8, background: "rgba(124,58,237,0.1)", color: "#a855f7", textDecoration: "none", transition: "opacity 0.2s", minHeight: 44 }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = "0.75")}
-                onMouseLeave={e => (e.currentTarget.style.opacity = "1")}>
-                View on PyPI
-              </a>
-              <a href="https://github.com/HasnainAli47/toon-mcp-server" target="_blank" rel="noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, padding: "8px 16px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.06)", color: "#6666a0", textDecoration: "none", transition: "color 0.2s", minHeight: 44 }}
-                onMouseEnter={e => (e.currentTarget.style.color = "#a8a8c8")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#6666a0")}>
-                GitHub
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Resume Parser */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.08 }}
-            className="card-hover"
-            style={{ borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)", padding: "28px", display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-              <span style={{ fontSize: 24 }}>🤖</span>
-              <div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#eeeeff", marginBottom: 4 }}>AI Resume Parser</h3>
-                <span style={{ fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 5, background: "rgba(34,197,94,0.08)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.15)" }}>Public Demo</span>
+              <p style={{ fontSize: 14.5, color: "var(--ink-2)", lineHeight: 1.8, marginBottom: 22, flex: 1, position: "relative", zIndex: 1 }}>{r.desc}</p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: 22, position: "relative", zIndex: 1 }}>
+                {r.stack.map(t => (
+                  <span key={t} className="mono" style={{ fontSize: 11, padding: "4px 11px", borderRadius: 3, border: "1px solid var(--line-2)", color: "var(--ink-3)" }}>{t}</span>
+                ))}
               </div>
-            </div>
-            <p style={{ fontSize: 14, color: "#a8a8c8", lineHeight: 1.75, marginBottom: 20, flex: 1 }}>
-              AI-driven resume parsing using OCR and Llama-3-70B to extract structured candidate data. Eliminates manual resume screening and feeds directly into ATS-style filtering workflows for recruitment teams.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 18 }}>
-              {["Python", "Django", "React", "OCR", "Llama-3-70B", "SQL"].map(t => (
-                <span key={t} style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", padding: "3px 10px", borderRadius: 6, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)", color: "#3a3a60" }}>{t}</span>
-              ))}
-            </div>
-            <div style={{ display: "flex", gap: 8 }}>
-              <a href="https://github.com/HasnainAli47/ResumeParser" target="_blank" rel="noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, padding: "8px 16px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.06)", color: "#6666a0", textDecoration: "none", transition: "color 0.2s", minHeight: 44 }}
-                onMouseEnter={e => (e.currentTarget.style.color = "#a8a8c8")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#6666a0")}>
-                GitHub
-              </a>
-              <a href="https://www.linkedin.com/posts/hasnainali3_hr-resume-parser-activity-7304457213845102593-3Vru" target="_blank" rel="noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, padding: "8px 16px", borderRadius: 8, background: "rgba(59,130,246,0.08)", color: "#60a5fa", textDecoration: "none", transition: "opacity 0.2s", minHeight: 44 }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = "0.75")}
-                onMouseLeave={e => (e.currentTarget.style.opacity = "1")}>
-                Demo Video
-              </a>
-            </div>
-          </motion.div>
+              <div style={{ display: "flex", gap: 22, position: "relative", zIndex: 1 }}>
+                {r.links.map(l => (
+                  <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="mono"
+                     style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--signal)", textDecoration: "none" }}>
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>
