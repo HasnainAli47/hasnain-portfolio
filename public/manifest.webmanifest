@@ -4,8 +4,8 @@
   "description": "Portfolio of Hasnain Ali, Senior AI Engineer specialising in LLMs, RAG, KAG, LangGraph, and Agentic AI for healthcare, legal, real estate, and SaaS.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#05050f",
-  "theme_color": "#7c3aed",
+  "background_color": "#111010",
+  "theme_color": "#FFC53D",
   "icons": [
     { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
     { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },

@@ -77,6 +77,16 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "ProfilePage",
+      "@id": "https://hasnainali.vercel.app/#profilepage",
+      url: "https://hasnainali.vercel.app",
+      name: "Hasnain Ali — Senior AI Engineer",
+      isPartOf: { "@id": "https://hasnainali.vercel.app/#website" },
+      about: { "@id": "https://hasnainali.vercel.app/#person" },
+      mainEntity: { "@id": "https://hasnainali.vercel.app/#person" },
+      inLanguage: "en",
+    },
+    {
       "@type": "Person",
       "@id": "https://hasnainali.vercel.app/#person",
       name: "Hasnain Ali",
@@ -84,10 +94,21 @@ const jsonLd = {
       image: "https://hasnainali.vercel.app/opengraph-image",
       jobTitle: "Senior AI Engineer",
       description:
-        "Senior AI Engineer specialising in LLMs, RAG, KAG, LangGraph, Agentic AI, and autonomous voice plus email systems for healthcare, legal, real estate, and SaaS companies.",
+        "Senior AI Engineer at Devsinc specialising in LLMs, RAG, KAG, LangGraph, Agentic AI, and autonomous voice plus email systems for healthcare, legal, real estate, and SaaS companies.",
       email: "codingwithhasnain@gmail.com",
       telephone: "+923135085477",
       address: { "@type": "PostalAddress", addressCountry: "PK", addressRegion: "Islamabad" },
+      worksFor: {
+        "@type": "Organization",
+        name: "Devsinc",
+        url: "https://www.devsinc.com/",
+      },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Lahore University of Management Sciences (LUMS)",
+        url: "https://lums.edu.pk/",
+      },
+      nationality: { "@type": "Country", name: "Pakistan" },
       sameAs: [
         "https://www.linkedin.com/in/hasnainali3/",
         "https://github.com/HasnainAli47",
@@ -180,12 +201,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        {/* Preconnect to the font hosts the design actually uses (loaded via globals.css) */}
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -195,9 +214,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         style={{
           margin: 0,
           padding: 0,
-          background: "#05050f",
-          color: "#eeeeff",
-          fontFamily: "'Inter', system-ui, sans-serif",
+          background: "#111010",
+          color: "#EFEBE3",
+          fontFamily: "'Satoshi', system-ui, sans-serif",
           WebkitFontSmoothing: "antialiased",
         }}
       >

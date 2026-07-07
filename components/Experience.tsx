@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const JOBS = [
   {
-    company: "Devsinc", role: "Senior Software Engineer", period: "APR 2025 — NOW", type: "FULL-TIME · ON-SITE",
+    company: "Devsinc", role: "Senior Software Engineer", period: "NOV 2024 — NOW", type: "FULL-TIME · ON-SITE",
     location: "Lahore, PK",
     bullets: [
       "Lead AI engineering on production GenAI systems for enterprise clients — own architecture, model strategy, backend, infra, cost optimization, and production reliability.",
@@ -13,15 +13,6 @@ const JOBS = [
       "Speculo.ai: architected the system that pushed 117K AI emails + 10K AI voice calls in a single 6-hour window ($2M+ ARR) — GCP Pub/Sub fan-out, Cloud Run workers, Redis token-bucket rate limiting, Firestore two-phase commits across 76 parallel workers.",
     ],
     stack: ["LangGraph", "Claude", "LoRA", "Multi-GPU", "Neo4j", "RAG / KAG", "GCP Pub/Sub", "Cloud Run", "Redis", "Firestore"],
-  },
-  {
-    company: "Devsinc", role: "Associate Software Engineer", period: "NOV 2024 — APR 2025", type: "FULL-TIME · ON-SITE",
-    location: "Lahore, PK",
-    bullets: [
-      "Turing-for-Google LLM training: built data-labeling and alignment pipelines and supported task-specific optimization workflows for fine-tuning runs.",
-      "Chronic-disease conversational assistant (healthcare client): patient-facing conversational AI on Neo4j graph reasoning with biomedical NLP (SciSpacy, HunFlair).",
-    ],
-    stack: ["Neo4j", "Transformers", "SciSpacy", "HunFlair", "NLP"],
   },
   {
     company: "Amrood Labs", role: "Associate Software Engineer", period: "MAR 2024 — NOV 2024", type: "FULL-TIME · ON-SITE",
