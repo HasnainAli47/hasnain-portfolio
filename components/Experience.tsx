@@ -3,36 +3,71 @@ import { motion } from "framer-motion";
 
 const JOBS = [
   {
-    company: "Devsinc", role: "Software Engineer", period: "OCT 2024 — NOW", type: "FULL-TIME",
+    company: "Devsinc", role: "Senior Software Engineer", period: "APR 2025 — NOW", type: "FULL-TIME · ON-SITE",
+    location: "Lahore, PK",
     bullets: [
-      "Led end-to-end design and deployment of production GenAI systems for enterprise clients — architecture, model strategy, backend, and infrastructure.",
-      "Built a KAG platform on Neo4j to resolve long-range semantic contradictions RAG missed: 40% accuracy improvement across 10,000+ legal documents.",
-      "Designed multi-agent workflows with LangGraph and Guardrails for OCR, document classification, and structured extraction.",
+      "Lead AI engineering on production GenAI systems for enterprise clients — own architecture, model strategy, backend, infra, cost optimization, and production reliability.",
+      "Smart Advocate (US legal client · HIPAA-compliant · multi-GPU): cut demand-letter and medical-chronology generation from ~30 days down to ~5 minutes.",
+      "Built the LangGraph multi-agent OCR + classification + extraction pipeline reading thousands of unstructured medical and legal documents.",
+      "Architected the enterprise RAG layer (~40% retrieval accuracy lift), fine-tuned domain LLMs with LoRA on multi-GPU for legal entity/clause extraction, and built Neo4j knowledge graphs for temporal reasoning across case timelines.",
+      "Speculo.ai: architected the system that pushed 117K AI emails + 10K AI voice calls in a single 6-hour window ($2M+ ARR) — GCP Pub/Sub fan-out, Cloud Run workers, Redis token-bucket rate limiting, Firestore two-phase commits across 76 parallel workers.",
     ],
-    stack: ["LangGraph", "Neo4j", "LoRA", "PyTorch", "OpenAI", "Docker", "MCP"],
+    stack: ["LangGraph", "Claude", "LoRA", "Multi-GPU", "Neo4j", "RAG / KAG", "GCP Pub/Sub", "Cloud Run", "Redis", "Firestore"],
   },
   {
-    company: "LUMS · KADE Lab", role: "Research Assistant", period: "FEB 2024 — NOW", type: "RESEARCH",
+    company: "Devsinc", role: "Associate Software Engineer", period: "NOV 2024 — APR 2025", type: "FULL-TIME · ON-SITE",
+    location: "Lahore, PK",
     bullets: [
-      "Cross-cultural toxicity detection: building specialized Urdu/English datasets addressing contextual gaps in existing sentiment models.",
-      "Temporal action recognition: a deep learning framework for cricket bowling action classification.",
+      "Turing-for-Google LLM training: built data-labeling and alignment pipelines and supported task-specific optimization workflows for fine-tuning runs.",
+      "Chronic-disease conversational assistant (healthcare client): patient-facing conversational AI on Neo4j graph reasoning with biomedical NLP (SciSpacy, HunFlair).",
     ],
-    stack: ["PyTorch", "Transformers", "NLP", "Computer Vision"],
+    stack: ["Neo4j", "Transformers", "SciSpacy", "HunFlair", "NLP"],
   },
   {
-    company: "Amrood Labs", role: "Associate Software Engineer", period: "FEB 2024 — OCT 2024", type: "FULL-TIME",
+    company: "Amrood Labs", role: "Associate Software Engineer", period: "MAR 2024 — NOV 2024", type: "FULL-TIME · ON-SITE",
+    location: "Lahore, PK",
     bullets: [
-      "Built OpenAI-powered legal document automation that cut manual contract analysis time by 60%.",
-      "Developed and scaled a Django backend for a production mobile application; PostgreSQL + AWS S3 for document storage and retrieval.",
+      "Backend engineer on the Vaultoniq fleet & employee-management mobile app — Django REST APIs integrated with React Native clients.",
+      "Automated attendance tracking and contract workflows with OpenAI APIs, cutting manual effort ~60%.",
+      "Owned the PostgreSQL data layer + AWS S3 storage; containerized deployments with Docker and tuned backend performance and API reliability.",
     ],
-    stack: ["Python", "Django", "OpenAI", "PostgreSQL", "AWS S3"],
+    stack: ["Django REST", "React Native", "OpenAI", "PostgreSQL", "AWS S3", "Docker"],
   },
   {
-    company: "2ndPlace", role: "Founder & Lead Engineer", period: "JAN 2022 — FEB 2024", type: "FOUNDER",
+    company: "LUMS", role: "Research Assistant", period: "FEB 2024 — DEC 2024", type: "INTERNSHIP · HYBRID",
+    location: "Lahore, PK",
     bullets: [
-      "Founded a global travel discovery platform from zero — vision, architecture, and every engineering decision.",
-      "AI-enhanced search with geolocation, NLP, and preference modeling cut search latency by 80%.",
-      "Grew to 3,500+ active users, 1,200+ agency clients, 15,000+ listings; led 14 engineers at 99.9% uptime.",
+      "Applied research on cricket bowling-action analysis, working from real practice-session and competitive-match data to support biomechanical assessment.",
+      "Analyzed temporal and biomechanical signal patterns to surface bowling-technique deviations; built tooling that translated raw data into actionable feedback for players and coaches.",
+    ],
+    stack: ["Computer Vision", "Scikit-Learn", "Python"],
+  },
+  {
+    company: "Arbisoft", role: "Django Developer", period: "JAN 2022 — AUG 2023", type: "PART-TIME · HYBRID",
+    location: "Lahore, PK",
+    bullets: [
+      "Built a centralized books discovery and review platform — Django backend, React frontend.",
+      "Shipped reviews, content management, and top-rated filtering with data-driven visualizations, following REST API best practices in a production engineering environment.",
+    ],
+    stack: ["Django", "Django REST", "React"],
+  },
+  {
+    company: "Turing", role: "Software Engineer", period: "APR 2021 — FEB 2022", type: "FULL-TIME · REMOTE",
+    location: "Remote",
+    bullets: [
+      "POD lead on the Anthropic annotations project — ran human-feedback annotation workflows used in Anthropic's model training and alignment.",
+      "Led a distributed annotation team across instruction-following, helpfulness, and harmlessness tasks; owned workflow design, QA, and inter-annotator agreement.",
+      "Built reviewer pipelines that improved label consistency and turnaround time.",
+    ],
+    stack: ["Claude", "RLHF", "NLP", "Data Annotation"],
+  },
+  {
+    company: "2ndPlace", role: "Founder", period: "MAR 2020 — MAR 2021", type: "SELF-EMPLOYED · REMOTE",
+    location: "Lahore, PK",
+    bullets: [
+      "Founded and ran a global travel-discovery platform — owned product, architecture, and engineering end to end.",
+      "Scaled to 3,500+ active users, 1,200+ clients, and a listings ecosystem of 15,000+ global travel entries.",
+      "Built the AI-enhanced search and recommendation system (geolocation, user preferences, NLP); implemented CI/CD on AWS for delivery, monitoring, and scaling; led a distributed team.",
     ],
     stack: ["Django", "React", "PostgreSQL", "AWS", "NLP", "CI/CD"],
   },
@@ -50,7 +85,7 @@ export default function Experience() {
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           {JOBS.map((job, i) => (
-            <motion.article key={job.company}
+            <motion.article key={`${job.company}-${job.period}`}
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.55, delay: i * 0.05 }}
               className="spotlight"
               onMouseMove={(e) => {
@@ -62,7 +97,8 @@ export default function Experience() {
               <div className="grid-mobile-1" style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 32, position: "relative", zIndex: 1 }}>
                 <div>
                   <div className="mono" style={{ fontSize: 11.5, color: "var(--signal)", letterSpacing: "0.1em", marginBottom: 8 }}>{job.period}</div>
-                  <div className="mono" style={{ fontSize: 10.5, color: "var(--ink-3)", letterSpacing: "0.16em" }}>{job.type}</div>
+                  <div className="mono" style={{ fontSize: 10.5, color: "var(--ink-3)", letterSpacing: "0.16em", marginBottom: 6 }}>{job.type}</div>
+                  <div className="mono" style={{ fontSize: 10.5, color: "var(--ink-3)", letterSpacing: "0.1em" }}>{job.location}</div>
                 </div>
                 <div>
                   <h3 className="display" style={{ fontSize: "clamp(22px, 2.6vw, 30px)", marginBottom: 4 }}>{job.role}</h3>
