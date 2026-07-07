@@ -74,7 +74,12 @@ function Card({ p, i }: { p: Project; i: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ delay: i * 0.08 }}
-      className="card-hover"
+      className="card-hover spotlight"
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }}
       style={{
         borderRadius: 16,
         border: "1px solid rgba(255,255,255,0.06)",

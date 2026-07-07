@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useContact } from "./ContactProvider";
+import LivePipeline from "./LivePipeline";
 
 const TAGS = ["LLMs", "RAG / KAG", "LangGraph", "Agentic AI", "Python", "GCP", "LoRA / QLoRA"];
 
@@ -261,88 +262,10 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* RIGHT — Clean terminal snippet */}
-          <motion.div
-            className="hide-mobile"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          >
-            <div
-              style={{
-                background: "rgba(255,255,255,0.02)",
-                borderRadius: 14,
-                border: "1px solid rgba(255,255,255,0.06)",
-                overflow: "hidden",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "12px 16px",
-                  borderBottom: "1px solid rgba(255,255,255,0.04)",
-                }}
-              >
-                <div style={{ display: "flex", gap: 6 }}>
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.08)" }} />
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.08)" }} />
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.08)" }} />
-                </div>
-                <span
-                  style={{
-                    fontSize: 11,
-                    color: "#3a3a60",
-                    fontFamily: "'JetBrains Mono', monospace",
-                    marginLeft: 8,
-                  }}
-                >
-                  pipeline.py
-                </span>
-              </div>
-
-              <div
-                style={{
-                  padding: "20px 24px",
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: 13,
-                  lineHeight: 1.9,
-                  color: "#6666a0",
-                }}
-              >
-                <div>
-                  <span style={{ color: "#7c3aed" }}>from</span>{" "}
-                  <span style={{ color: "#a8a8c8" }}>langgraph</span>{" "}
-                  <span style={{ color: "#7c3aed" }}>import</span>{" "}
-                  <span style={{ color: "#a8a8c8" }}>Agent</span>
-                </div>
-                <div style={{ height: 10 }} />
-                <div>
-                  <span style={{ color: "#a8a8c8" }}>pipeline</span>{" "}
-                  <span style={{ color: "#3a3a60" }}>=</span>{" "}
-                  <span style={{ color: "#a8a8c8" }}>Agent</span>(
-                </div>
-                <div>
-                  {"  "}model=<span style={{ color: "#22c55e" }}>&quot;gpt-4o&quot;</span>,
-                </div>
-                <div>
-                  {"  "}tools=[<span style={{ color: "#a8a8c8" }}>email, voice, crm</span>],
-                </div>
-                <div>
-                  {"  "}memory=<span style={{ color: "#a8a8c8" }}>pgvector</span>()
-                </div>
-                <div>)</div>
-                <div style={{ height: 10 }} />
-                <div>
-                  <span style={{ color: "#a8a8c8" }}>pipeline</span>.
-                  <span style={{ color: "#a8a8c8" }}>deploy</span>(
-                  <span style={{ color: "#a8a8c8" }}>leads</span>=
-                  <span style={{ color: "#c084fc" }}>117_000</span>)
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          {/* RIGHT — Live agent pipeline (signature) */}
+          <div className="hide-mobile">
+            <LivePipeline />
+          </div>
         </div>
       </div>
 

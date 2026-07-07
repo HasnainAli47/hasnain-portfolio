@@ -26,7 +26,7 @@ export default function OpenSource() {
               </div>
             </div>
             <p style={{ fontSize: 14, color: "#a8a8c8", lineHeight: 1.75, marginBottom: 20, flex: 1 }}>
-              Python package that lets LLMs (Claude, GPT) control Toon smart thermostats via the Model Context Protocol. Achieves 30 to 60% token reduction through optimized prompt wrapping, improving inference efficiency for AI agents at scale.
+              TOON-aware MCP server and Python library for JSON to TOON conversion and TOON-wrapped system prompts. Cuts LLM token usage by 30 to 60% versus raw JSON payloads, reducing inference cost for AI agents at scale. Published on PyPI, MIT licensed.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 18 }}>
               {["Python", "FastAPI", "MCP", "IoT"].map(t => (

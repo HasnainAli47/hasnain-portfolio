@@ -14,9 +14,15 @@ const links = [
 export default function Nav() {
   const { open } = useContact();
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50);
+    const fn = () => {
+      setScrolled(window.scrollY > 50);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? window.scrollY / max : 0);
+    };
+    fn();
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
@@ -38,6 +44,7 @@ export default function Nav() {
           : "1px solid transparent",
       }}
     >
+      <div className="scroll-progress" style={{ transform: `scaleX(${progress})` }} />
       <nav
         style={{
           maxWidth: 1200,
