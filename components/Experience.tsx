@@ -15,7 +15,7 @@ const JOBS = [
     stack: ["LangGraph", "Claude", "LoRA", "Multi-GPU", "Neo4j", "RAG / KAG", "GCP Pub/Sub", "Cloud Run", "Redis", "Firestore"],
   },
   {
-    company: "Amrood Labs", role: "Associate Software Engineer", period: "MAR 2024 — NOV 2024", type: "FULL-TIME · ON-SITE",
+    company: "Amrood Labs", role: "Associate Software Engineer", period: "MAR 2022 — NOV 2024", type: "FULL-TIME · ON-SITE",
     location: "Lahore, PK",
     bullets: [
       "Backend engineer on the Vaultoniq fleet & employee-management mobile app — Django REST APIs integrated with React Native clients.",
@@ -23,15 +23,6 @@ const JOBS = [
       "Owned the PostgreSQL data layer + AWS S3 storage; containerized deployments with Docker and tuned backend performance and API reliability.",
     ],
     stack: ["Django REST", "React Native", "OpenAI", "PostgreSQL", "AWS S3", "Docker"],
-  },
-  {
-    company: "Arbisoft", role: "Django Developer", period: "JAN 2022 — AUG 2023", type: "PART-TIME · HYBRID",
-    location: "Lahore, PK",
-    bullets: [
-      "Built a centralized books discovery and review platform — Django backend, React frontend.",
-      "Shipped reviews, content management, and top-rated filtering with data-driven visualizations, following REST API best practices in a production engineering environment.",
-    ],
-    stack: ["Django", "Django REST", "React"],
   },
   {
     company: "Turing", role: "Software Engineer", period: "APR 2021 — FEB 2022", type: "FULL-TIME · REMOTE",
