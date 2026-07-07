@@ -15,6 +15,7 @@ type Project = {
   stack: string[];
   live: string | null;
   liveLabel?: string;
+  status?: string;
   accent: string;
 };
 
@@ -40,14 +41,18 @@ const PROJECTS: Project[] = [
     accent: "var(--heat)",
   },
   {
-    title: "Brightly Dental",
-    tagline: "AI Receptionist · Healthcare",
-    result: "Live demo",
-    description: "End-to-end AI receptionist: inbound calls, outbound callbacks, reminders, SMS, email and calendar invites — and it routes anything it doesn't know to a human instead of making things up.",
-    impact: ["Natural two-way voice conversations", "Pre-appointment check-ins cut no-shows", "Unknown queries → human, never hallucinated"],
-    stack: ["LangGraph", "Twilio", "ElevenLabs", "Calendar APIs"],
-    live: "https://www.linkedin.com/posts/hasnainali3_aiautomation-voiceai-aiagents-ugcPost-7454493971289980929-ORrZ",
-    liveLabel: "Watch demo",
+    title: "Mentanima",
+    tagline: "Legal AI · Adaptive KAG Copilot",
+    result: "In development",
+    description: "A KAG-based legal copilot that learns the language, patterns, and working style of each firm — then drafts emails, supports deals, and handles open-ended legal work. It routes every request through the right reasoning mode instead of forcing one pipeline.",
+    impact: [
+      "Learns each firm's tone, patterns, and working style",
+      "Three reasoning modes: RAG, deep thinking (query solver), and hybrid (thinking over retrieved context)",
+      "Drafts emails, supports deal workflows, and open-ended legal tasks",
+    ],
+    stack: ["KAG", "LangGraph", "Neo4j", "RAG", "Query Solver", "LLMs"],
+    live: null,
+    status: "IN DEVELOPMENT",
     accent: "var(--mint)",
   },
   {
@@ -114,7 +119,7 @@ function Panel({ p, i }: { p: Project; i: number }) {
               {p.liveLabel ?? "Live site"} ↗
             </a>
           ) : (
-            <span className="mono" style={{ fontSize: 10.5, color: "var(--ink-3)", letterSpacing: "0.1em", marginLeft: "auto" }}>NDA PROTECTED</span>
+            <span className="mono" style={{ fontSize: 10.5, color: p.status ? p.accent : "var(--ink-3)", letterSpacing: "0.1em", marginLeft: "auto" }}>{p.status ?? "NDA PROTECTED"}</span>
           )}
         </div>
       </div>

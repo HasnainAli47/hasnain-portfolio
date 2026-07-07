@@ -13,14 +13,14 @@ export const metadata: Metadata = {
     template: "%s | Hasnain Ali – AI Engineer",
   },
   description:
-    "Hasnain Ali is a Senior AI Engineer specialising in LLMs, RAG, KAG, LangGraph, and Agentic AI for healthcare, legal, real estate, and SaaS. Shipped a $2M+ ARR autonomous outreach system at Speculo and an end-to-end AI receptionist demo for Brightly Family Dental. Available for remote contracts and full-time roles.",
+    "Hasnain Ali is a Senior AI Engineer specialising in LLMs, RAG, KAG, LangGraph, and Agentic AI for legal, healthcare, real estate, and SaaS. Shipped a $2M+ ARR autonomous outreach system at Speculo, a 40% accuracy lift via Neo4j KAG on legal docs at Smart Advocate, and is building Mentanima — an adaptive KAG legal copilot. Available for remote contracts and full-time roles.",
   applicationName: "Hasnain Ali Portfolio",
   manifest: "/manifest.webmanifest",
   keywords: [
     "AI Engineer", "Senior AI Engineer", "LLM Engineer", "Machine Learning Engineer",
     "RAG Engineer", "KAG", "Knowledge-Augmented Generation", "LangGraph developer",
     "Agentic AI", "Autonomous AI systems", "AI agent engineer", "AI for healthcare",
-    "AI receptionist", "AI for dentists", "AI for legal", "AI for real estate",
+    "AI receptionist", "legal AI copilot", "KAG legal AI", "AI for legal", "AI for law firms", "AI for real estate",
     "AI for SaaS", "Python AI developer", "OpenAI developer", "Anthropic Claude",
     "Gemini AI", "NLP engineer", "LangChain developer", "Neo4j graph RAG",
     "LoRA fine-tuning", "QLoRA", "AI consultant", "AI contractor", "remote AI engineer",
@@ -37,14 +37,14 @@ export const metadata: Metadata = {
     siteName: "Hasnain Ali – Senior AI Engineer",
     title: "Hasnain Ali | Senior AI Engineer – LLMs, RAG, KAG & Agentic AI",
     description:
-      "Senior AI Engineer. Shipped a $2M+ ARR autonomous outreach system at Speculo (117K emails plus 10K voice calls in hours), a 40 percent accuracy lift via Neo4j KAG on legal docs at Smart Advocate, and an end-to-end AI receptionist demo for Brightly Family Dental. Open to remote contracts and full-time roles.",
+      "Senior AI Engineer. Shipped a $2M+ ARR autonomous outreach system at Speculo (117K emails plus 10K voice calls in hours), a 40 percent accuracy lift via Neo4j KAG on legal docs at Smart Advocate, and is building Mentanima — an adaptive KAG legal copilot for law firms. Open to remote contracts and full-time roles.",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Hasnain Ali | Senior AI Engineer – LLMs, RAG, KAG & Agentic AI",
     description:
-      "Shipped $2M+ ARR autonomous outreach at Speculo, 40 percent KAG accuracy lift on legal RAG, and a live AI receptionist demo for healthcare. Open to remote.",
+      "Shipped $2M+ ARR autonomous outreach at Speculo, 40 percent KAG accuracy lift on legal RAG at Smart Advocate, and building Mentanima — an adaptive KAG legal copilot. Open to remote.",
     creator: "@hasnainali",
   },
   robots: {
@@ -137,7 +137,7 @@ const jsonLd = {
       workExample: [
         { "@id": "https://hasnainali.vercel.app/#speculo" },
         { "@id": "https://hasnainali.vercel.app/#smart-advocate" },
-        { "@id": "https://hasnainali.vercel.app/#brightly" },
+        { "@id": "https://hasnainali.vercel.app/#mentanima" },
         { "@id": "https://hasnainali.vercel.app/#convopilot" },
       ],
     },
@@ -177,13 +177,12 @@ const jsonLd = {
     },
     {
       "@type": "CreativeWork",
-      "@id": "https://hasnainali.vercel.app/#brightly",
-      name: "Brightly Family Dental – AI Receptionist",
-      url: "https://www.linkedin.com/posts/hasnainali3_aiautomation-voiceai-aiagents-ugcPost-7454493971289980929-ORrZ",
+      "@id": "https://hasnainali.vercel.app/#mentanima",
+      name: "Mentanima – Adaptive KAG Legal Copilot",
       author: { "@id": "https://hasnainali.vercel.app/#person" },
       description:
-        "End-to-end AI receptionist for a dental practice handling inbound and outbound calls, SMS, email, and calendar invites. Routes unknown queries to human staff instead of hallucinating.",
-      keywords: "AI receptionist, healthcare voice AI, Twilio, ElevenLabs, LangGraph, dental AI",
+        "A Knowledge-Augmented Generation (KAG) legal copilot that learns each firm's language, patterns, and working style to draft emails, support deals, and handle open-ended legal work. Routes every request through the right reasoning mode: pure RAG, deep thinking with a query solver, or a hybrid that reasons over retrieved context.",
+      keywords: "legal AI, KAG, RAG, query solver, hybrid reasoning, LangGraph, Neo4j, legal copilot",
     },
     {
       "@type": "CreativeWork",
